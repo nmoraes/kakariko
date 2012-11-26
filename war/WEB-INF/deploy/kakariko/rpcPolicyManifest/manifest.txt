@@ -1,0 +1,3 @@
+# Module kakariko
+# RPC service class, partial path of RPC policy file
+com.app.myKakariko.client.GreetingService, CA4BD654DE66C4099FAB5F90DE4646F0.gwt.rpc

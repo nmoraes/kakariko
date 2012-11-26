@@ -1,0 +1,96 @@
+/** Add css rules here for your application. */
+
+
+/** Example rules used by the template application (remove for your app) */
+
+html,body{
+height:100%;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  text-align: center;
+
+width: 900px;
+margin: auto;
+height: auto;
+min-height:100%;
+}
+
+.sendButton {
+  display: block;
+  font-size: 16pt;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+  width: 400px;
+}
+
+.dialogVPanel {
+  margin: 5px;
+}
+
+.serverResponseLabelError {
+  color: red;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+  margin: 15px 6px 6px;
+}
+
+/* FOOTER */
+footer {
+	border-top: 1px solid #EFEFEF;
+	color: #666666;
+	font-size: 11px;
+	margin: -150px auto 0;
+	width: 900px;
+height: 150px;
+	
+	
+	
+}
+
+.extra > li
+{
+	display: inline;
+}
+
+.extra > li
+{
+	display: inline-block;
+	border-left: 1px solid #EFEFEF;
+	padding: 0 10px;
+}
+
+.extra > li:first-child
+{
+	border-left: none;
+}
+
+.extra-copyright,
+.extra-termns
+{
+	float: left;
+}
+
+.extra-report-issue,
+.extra-twitter
+{
+	float: right;
+	text-align: right;
+}
+
+footer .social {
+	text-align: right;
+	border:none;
+}
+
+footer .maintained-by{
+	text-align: right;
+}
+

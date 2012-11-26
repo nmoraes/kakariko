@@ -1,0 +1,2 @@
+serviceClass: com.app.myKakariko.client.GreetingService
+path: CA4BD654DE66C4099FAB5F90DE4646F0.gwt.rpc

@@ -1,0 +1,315 @@
+package com.app.myKakariko.server;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
+
+import com.app.myKakariko.client.GreetingService;
+import com.app.myKakariko.shared.FieldVerifier;
+
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
+/**
+ * The server side implementation of the RPC service.
+ */
+@SuppressWarnings("serial")
+public class GreetingServiceImpl extends RemoteServiceServlet implements
+		GreetingService {
+
+	public String greetServer(String input) throws IllegalArgumentException {
+		// Verify that the input is valid.
+		if (!FieldVerifier.isValidName(input)) {
+			// If the input is not valid, throw an IllegalArgumentException back
+			// to
+			// the client.
+			throw new IllegalArgumentException(
+					"Name must be at least 4 characters long");
+		}
+
+		String pictures = null;
+		String price = null;
+		String sold_quantity = null;
+		String title = null;
+		String s = null;
+		String currency = null;
+
+		// http://answers.oreilly.com/topic/257-how-to-parse-json-in-java/
+		URL url;
+		try {
+			url = new URL("https://api.mercadolibre.com/items/" + input);
+			InputStream response = url.openStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					response));
+			String result = "";
+
+			for (String line; (line = reader.readLine()) != null;) {
+				System.out.println(line);
+				result = result + line;
+			}
+
+			System.out.println("result: " + result);
+
+			JSONObject json = (JSONObject) JSONSerializer.toJSON(result);
+
+			// String id = json.getString( "id" );
+			price = json.getString("price");
+			sold_quantity = json.getString("sold_quantity");
+			title = json.getString("title");
+			currency = json.getString("currency_id");
+
+			// https://api.mercadolibre.com/items/MLA421101451/pictures?access_token=$ACCESS_TOKEN
+			// T O
+
+			pictures = json.getString("thumbnail");
+			System.out.println("id pic: " + pictures);
+
+			s = pictures.replace("_v_I_f", "_v_T_f");
+
+			reader.close();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "Item, " + input + "!<br>" + title + "<br>Precio: " + price
+				+ " " + currency/* serverInfo */
+				+ ".<br><br>Cantidad: " + sold_quantity + "<br>" + "<img src="
+				+ s + ">";
+	}
+
+	/**
+	 * Escape an html string. Escaping data received from the client helps to
+	 * prevent cross-site script vulnerabilities.
+	 * 
+	 * @param html
+	 *            the html string to escape
+	 * @return the escaped string
+	 */
+	private String escapeHtml(String html) {
+		if (html == null) {
+			return null;
+		}
+		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
+				.replaceAll(">", "&gt;");
+	}
+
+	@Override
+	public String[] query(String name) throws IllegalArgumentException {
+
+		String site = null;
+		String query = null;
+		String currency = null;
+		String stop_time = null;
+		String condition = null;
+
+		String titles = null;
+		String subtitle = null;
+		String price = null;
+		String thumbnail = null;
+		String pic = null;
+		String parametro = name.replaceAll(" ", "");
+		String html = "";
+		String id= null;
+		System.out.println(parametro);
+		
+		String [] s = new String[15];
+
+
+		// http://answers.oreilly.com/topic/257-how-to-parse-json-in-java/
+		URL url;
+		try {
+			//https://api.mercadolibre.com/sites/MLU/search?category=MLU1051&q=blackberry
+			url = new URL("https://api.mercadolibre.com/sites/MLU/search?q="
+					+ parametro);
+			InputStream response = url.openStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					response));
+			String result = "";
+
+			for (String line; (line = reader.readLine()) != null;) {
+				//System.out.println(line);
+				result = result + line;
+			}
+
+			System.out.println("result: " + result);
+
+			JSONObject json = (JSONObject) JSONSerializer.toJSON(result);
+
+			// String id = json.getString( "id" );
+			site = json.getString("site_id");
+			query = json.getString("query");
+
+			// Obtengo el array de items
+			JSONObject p = (JSONObject) json.get("paging");
+			String total = p.getString("total");
+			System.out.println("Total: " + total);
+
+			JSONArray results = json.getJSONArray("results");
+
+			// results.size();
+			// Obtengo los 10 primeros
+			for (int i = 0; i < 15; i++) {
+				html=null;
+				pic=null;
+				JSONObject array = (JSONObject) results.get(i);
+				titles = array.getString("title");
+				subtitle = array.getString("subtitle");
+				price = array.getString("price");
+				thumbnail = array.getString("thumbnail");
+				currency = array.getString("currency_id");
+				pic = thumbnail.replace("_v_I_f", "_v_T_f");
+				stop_time = array.getString("stop_time");
+				condition = array.getString("condition");
+				id = array.getString("id");
+				
+				
+				html = "<!--"+id + "                                         -->"+
+						"<div>"
+						+ "<p><img src="
+						+ pic
+						+ " align=\"left\" class=\"img-rounded\"><div><br>"
+						+ titles
+						+ ".<br>"
+						+ subtitle
+						+ ".<br>"
+						+ price
+						+ " "
+						+ currency
+						+ ". Estado "
+						+ condition
+						+ "<br><b>Oferta Valida: </b>"
+						+ stop_time
+						+ "</p><br></div>" +
+						"<div id=\"gwtContainer\"><p align=\"right\"><button class=\"btn btn-warning\" input type=\"button\" >detalles</button></p></div>"
+						+"</div><hr> </div>";
+						
+					System.out.println(html);	
+						
+						//"<hr> </div>";
+				s[i]=html;
+				
+			}
+			
+
+			reader.close();
+
+			System.out.println("QUERY :" + site + " " + query);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// return null;
+		return s;
+
+	}
+
+	@Override
+	public String inicio(String name) {
+
+		String site = null;
+		String query = null;
+		String currency = null;
+		String stop_time = null;
+		String condition = null;
+		String ofertaValidaHasta=null;
+
+		String titles = null;
+		String subtitle = null;
+		String price = null;
+		String thumbnail = null;
+		String pic = null;
+		String parametro = name.replaceAll(" ", "");
+		String html = "";
+		String id=null;
+		System.out.println(parametro);
+		
+		String identificadores=null;
+
+
+		// http://answers.oreilly.com/topic/257-how-to-parse-json-in-java/
+		URL url;
+		try {
+			url = new URL("https://api.mercadolibre.com/sites/MLU/search?q="
+					+ parametro);
+			InputStream response = url.openStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					response));
+			String result = "";
+
+			for (String line; (line = reader.readLine()) != null;) {
+				//System.out.println(line);
+				result = result + line;
+			}
+
+			System.out.println("result: " + result);
+
+			JSONObject json = (JSONObject) JSONSerializer.toJSON(result);
+
+			site = json.getString("site_id");
+			query = json.getString("query");
+
+			// Obtengo el array de items
+			JSONObject p = (JSONObject) json.get("paging");
+			String total = p.getString("total");
+			System.out.println("Total: " + total);
+
+			JSONArray results = json.getJSONArray("results");
+
+			// results.size();
+			// Obtengo los 10 primeros
+			for (int i = 0; i < 3; i++) {
+				JSONObject array = (JSONObject) results.get(i);
+				titles = array.getString("title");
+				subtitle = array.getString("subtitle");
+				price = array.getString("price");
+				thumbnail = array.getString("thumbnail");
+				pic = thumbnail.replace("_v_I_f", "_v_T_f");
+				currency = array.getString("currency_id");
+				stop_time = array.getString("stop_time");
+				condition = array.getString("condition");
+				id=array.getString("id");
+				
+				identificadores=identificadores+ id+ "/";
+				
+				html = html + "<!-- id="+ id +" -->"
+						+ "<div>"
+						+ "<p><img src="
+						+ pic
+						+ " align=\"left\" class=\"img-rounded\"><div><br>"
+						+ titles
+						+ ".<br>"
+						+ subtitle
+						+ ".<br>"
+						+ price
+						+ " "						
+						+ currency
+						+ ". Estado "
+						+ condition
+						+ "<br><b>Oferta Valida: </b>"
+						+ stop_time
+						+ "</p><br>" +"<div id=\"gwtContainer\"><p align=\"right\"><button class=\"btn btn-warning\" input type=\"button\" >detalles</button></p></div>"
+						+"</div><hr> </div>";
+
+			}
+			System.out.println(html);
+
+			reader.close();
+
+			System.out.println("QUERY :" + site + " " + query);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return html;
+
+	}
+}
