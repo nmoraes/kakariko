@@ -44,8 +44,13 @@ public class Kakariko implements EntryPoint {
 	private HTML htmlNewHtml5= new HTML("", true);
 	private HTML htmlNewHtml6= new HTML("", true);
 	private HTML htmlNewHtml7= new HTML("", true);
+	
+	private HTML destacado1= new HTML(Destacados.DESTACADO_UNO, true);
+	private HTML destacado2= new HTML(Destacados.DESTACADO_DOS, true);
+	private HTML destacado3= new HTML(Destacados.DESTACADO_TRES, true);
 
-
+	
+	
 	private String producto1;
 	private String producto2;	
 	private String producto3;
@@ -154,6 +159,11 @@ public class Kakariko implements EntryPoint {
 		RootPanel.get("ayuda").add(btnNewButton_4);
 		btnNewButton_4.setStyleName("btn btn-link");
 
+		RootPanel.get("des1").add(destacado1);
+		RootPanel.get("des2").add(destacado2);
+		RootPanel.get("des3").add(destacado3);
+
+		
 
 		// Create the popup dialog box
 		final DialogBox dialogBox = new DialogBox();
