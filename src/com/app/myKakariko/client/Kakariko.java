@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -62,16 +63,18 @@ public class Kakariko implements EntryPoint {
 	private Button btnNewButton_1;
 	private HTML htmlInicio;
 	private ListBox comboBox;
-	private Button b =new Button();
 	
 	private Button btnNewButton_5;
+	
+	private Button btnNewButton_2; //iniciarSesion
+	//private HTML htmliniciarSesion= new HTML(IniciarSesionHTML.INICIAR_SESION, true);
+
 	
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
 
-	
 		final Label errorLabel = new Label();
 
 		// Add the nameField and sendButton to the RootPanel
@@ -145,7 +148,7 @@ public class Kakariko implements EntryPoint {
 		
 		RootPanel.get("combo").add(comboBox);
 		
-		Button btnNewButton_2 = new Button("iniciar sesion");
+		btnNewButton_2 = new Button("iniciar sesion");
 		rootPanel.add(btnNewButton_2, 20, 185);
 		RootPanel.get("iniciar").add(btnNewButton_2);
 		btnNewButton_2.setStyleName("btn btn-link");
@@ -167,72 +170,19 @@ public class Kakariko implements EntryPoint {
 		
 		btnNewButton_5 = new Button("pegar!");
 		rootPanel.add(btnNewButton_5, 382, 244);
+		btnNewButton_5.setVisible(false);
 
 		
 
-		// Create the popup dialog box
-		final DialogBox dialogBox = new DialogBox();
-		dialogBox.setText("Remote Procedure Call");
-		dialogBox.setAnimationEnabled(true);
-		final Button closeButton = new Button("Close");
-		// We can set the id of a widget by accessing its Element
-		closeButton.getElement().setId("closeButton");
-		final Label textToServerLabel = new Label();
-		final HTML serverResponseLabel = new HTML();
-		VerticalPanel dialogVPanel = new VerticalPanel();
-		dialogVPanel.addStyleName("dialogVPanel");
-		dialogVPanel.add(new HTML("<b>Sending item id to the server:</b>"));
-		dialogVPanel.add(textToServerLabel);
-		dialogVPanel.add(new HTML("<br><b>Los 10 articulos recomendados:</b>"));
-		dialogVPanel.add(serverResponseLabel);
-		dialogVPanel.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
-		dialogVPanel.add(closeButton);
-		dialogBox.setWidget(dialogVPanel);
-		
-		// Create the popup2 dialog box
-		final DialogBox dialogBox2 = new DialogBox();
-		dialogBox2.setText("Remote Procedure Call");
-		dialogBox2.setAnimationEnabled(true);
-		final Button closeButton2 = new Button("Close");
-		// We can set the id of a widget by accessing its Element
-		closeButton2.getElement().setId("closeButton");
-		final Label textToServerLabel2 = new Label();
-		final HTML serverResponseLabel2 = new HTML();
-		VerticalPanel dialogVPanel2 = new VerticalPanel();
-		dialogVPanel2.addStyleName("dialogVPanel");
-		dialogVPanel2.add(new HTML("<b>Sending query to the server:</b>"));
-		dialogVPanel2.add(textToServerLabel2);
-		dialogVPanel2.add(new HTML("<br><b>Server replies:</b>"));
-		dialogVPanel2.add(serverResponseLabel2);
-		dialogVPanel2.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
-		dialogVPanel2.add(closeButton2);
-		dialogBox2.setWidget(dialogVPanel2);
 		
 		
-		
-		closeButton2.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				dialogBox2.hide();
-				//sendButton2.setEnabled(true);
-				//sendButton2.setFocus(true);
-			}
-			
-		});
 		
 
-		// Add a handler to close the DialogBox
-		closeButton.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				dialogBox.hide();
-				//sendButton.setEnabled(true);
-				//sendButton.setFocus(true);
-			}
-		});
 		
 		
 		btnNewButton_1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				htmlInicio.setVisible(true);
+				htmlInicio.setVisible(false);
 				htmlNewHtml.setHTML("");
 				htmlNewHtml2.setHTML("");
 				htmlNewHtml3.setHTML("");
@@ -457,8 +407,8 @@ public class Kakariko implements EntryPoint {
 
 				// Then, we send the input to the server.
 				//sendButton.setEnabled(false);
-				textToServerLabel.setText(textToServer);
-				serverResponseLabel.setText("");
+			//	textToServerLabel.setText(textToServer);
+				//serverResponseLabel.setText("");
 				
 				
 				String username ="nmoraes";
@@ -521,7 +471,7 @@ public class Kakariko implements EntryPoint {
 
 							
 							public void onFailure(Throwable caught) {
-
+/*
 								// Show the RPC error message to the user
 								dialogBox2
 										.setText("Remote Procedure Call - Failure");
@@ -529,7 +479,7 @@ public class Kakariko implements EntryPoint {
 										.addStyleName("serverResponseLabelError");
 								serverResponseLabel2.setHTML(SERVER_ERROR);
 								dialogBox2.center();
-								closeButton2.setFocus(true);
+								closeButton2.setFocus(true); */
 								
 							}
 
@@ -559,8 +509,13 @@ public class Kakariko implements EntryPoint {
 								
 								producto7= result[6].substring(4, 18);
 								producto7=producto7.trim();
-
-								
+								htmlNewHtml.setVisible(true);
+								htmlNewHtml2.setVisible(true);
+								htmlNewHtml3.setVisible(true);
+								htmlNewHtml4.setVisible(true);
+								htmlNewHtml5.setVisible(true);
+								htmlNewHtml6.setVisible(true);
+								htmlNewHtml7.setVisible(true);
 								htmlNewHtml2.setHTML(result[1]);
 								htmlNewHtml3.setHTML(result[2]);
 								htmlNewHtml4.setHTML(result[3]);
@@ -571,7 +526,9 @@ public class Kakariko implements EntryPoint {
 								
 								btnNewButton_1.setVisible(true);
 								
-					
+								TextBox userName=TextBox.wrap(DOM.getElementById("nico"));
+								System.out.println("MIERCOLES: "+userName.getText());
+								
 								
 								
 								//prueba de criptografia
@@ -610,19 +567,41 @@ public class Kakariko implements EntryPoint {
 					@Override
 					public void onKeyUp(KeyUpEvent event) {
 						// TODO Auto-generated method stub
-						//inicio();
+						//login();
+						htmlNewHtml.setVisible(false);
+						htmlNewHtml2.setVisible(false);
+						htmlNewHtml3.setVisible(false);
+						htmlNewHtml4.setVisible(false);
+						htmlNewHtml5.setVisible(false);
+						htmlNewHtml6.setVisible(false);
+						htmlNewHtml7.setVisible(false);
+
+
+						btnNewButton_1.setVisible(true);
+						htmlInicio.setVisible(true);
+						htmlInicio.setHTML(IniciarSesionHTML.INICIAR_SESION);
+						RootPanel.get("htmlInicio").add(htmlInicio);
 					}
 
 					@Override
 					public void onClick(ClickEvent event) {
-						// TODO Auto-generated method stub
-						//inicio();
+						htmlNewHtml.setVisible(false);
+						htmlNewHtml2.setVisible(false);
+						htmlNewHtml3.setVisible(false);
+						htmlNewHtml4.setVisible(false);
+						htmlNewHtml5.setVisible(false);
+						htmlNewHtml6.setVisible(false);
+						htmlNewHtml7.setVisible(false);
+						btnNewButton_1.setVisible(true);
+						htmlInicio.setVisible(true);
+						htmlInicio.setHTML(IniciarSesionHTML.INICIAR_SESION);
+						RootPanel.get("htmlInicio").add(htmlInicio);
 					}
 				
 					
 					
 					
-					private void inicio(){
+					private void login(){
 						//gps garmin
 						String consulta= "";
 						greetingService.inicio(consulta, new AsyncCallback<String>(){
@@ -631,13 +610,13 @@ public class Kakariko implements EntryPoint {
 							public void onFailure(Throwable caught) {
 
 								// Show the RPC error message to the user
-								dialogBox2
+							/*	dialogBox2
 										.setText("Remote Procedure Call - Failure");
 								serverResponseLabel2
 										.addStyleName("serverResponseLabelError");
 								serverResponseLabel2.setHTML(SERVER_ERROR);
 								dialogBox2.center();
-								closeButton2.setFocus(true);
+								closeButton2.setFocus(true);*/
 								
 							}
 
@@ -657,7 +636,10 @@ public class Kakariko implements EntryPoint {
 				}
 				
 				
-				
+				 
+		MyHandler3 handlerLogin =new MyHandler3();		 
+		btnNewButton_2.addClickHandler(handlerLogin);
+		
 		MyHandler handlerPegar = new MyHandler();
 		btnNewButton_5.addClickHandler(handlerPegar);
 		//btnNewButton.addClickHandler(handler3);		
