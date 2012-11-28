@@ -64,6 +64,8 @@ public class Kakariko implements EntryPoint {
 	private ListBox comboBox;
 	private Button b =new Button();
 	
+	private Button btnNewButton_5;
+	
 	/**
 	 * This is the entry point method.
 	 */
@@ -162,6 +164,9 @@ public class Kakariko implements EntryPoint {
 		RootPanel.get("des1").add(destacado1);
 		RootPanel.get("des2").add(destacado2);
 		RootPanel.get("des3").add(destacado3);
+		
+		btnNewButton_5 = new Button("pegar!");
+		rootPanel.add(btnNewButton_5, 382, 244);
 
 		
 
@@ -422,7 +427,7 @@ public class Kakariko implements EntryPoint {
 			 * Fired when the user clicks on the sendButton.
 			 */
 			public void onClick(ClickEvent event) {
-				//sendNameToServer();
+				sendNameToServer();
 				System.out.println("hola");
 			}
 
@@ -431,8 +436,8 @@ public class Kakariko implements EntryPoint {
 			 */
 			public void onKeyUp(KeyUpEvent event) {
 				//if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-					//sendNameToServer();
-				System.out.println("hola");
+					sendNameToServer();
+				//System.out.println("hola");
 
 				//}
 			}
@@ -454,26 +459,34 @@ public class Kakariko implements EntryPoint {
 				//sendButton.setEnabled(false);
 				textToServerLabel.setText(textToServer);
 				serverResponseLabel.setText("");
-				greetingService.greetServer(textToServer,
+				
+				
+				String username ="nmoraes";
+				String password="1234"; 
+				String email="nicp@nico"; 
+				String nombre="nicolas";
+				String apellido="moraes"; 
+				String cedula="122221"; 
+				String departamento="montevideo"; 
+				String ciudad="montevideo"; 
+				String direccion="ramallo 1111"; 
+				String barrio="malvin"; 
+				String telefono="5061074";
+				
+				
+				
+				greetingService.nuevoUsuario(username, password, email, nombre,
+						apellido, cedula, departamento, ciudad, direccion, barrio, telefono,
 						new AsyncCallback<String>() {
 							public void onFailure(Throwable caught) {
-								// Show the RPC error message to the user
-								dialogBox
-										.setText("Remote Procedure Call - Failure");
-								serverResponseLabel
-										.addStyleName("serverResponseLabelError");
-								serverResponseLabel.setHTML(SERVER_ERROR);
-								dialogBox.center();
-								closeButton.setFocus(true);
+							
+								System.out.println("error al ingresar");
 							}
 
 							public void onSuccess(String result) {
-								dialogBox.setText("Remote Procedure Call");
-								serverResponseLabel
-										.removeStyleName("serverResponseLabelError");
-								serverResponseLabel.setHTML(result);
-								dialogBox.center();
-								
+						
+								System.out.println("exito");
+
 								
 						
 								
@@ -645,8 +658,8 @@ public class Kakariko implements EntryPoint {
 				
 				
 				
-		//MyHandler3 handler3 = new MyHandler3();
-		//handler3.inicio();
+		MyHandler handlerPegar = new MyHandler();
+		btnNewButton_5.addClickHandler(handlerPegar);
 		//btnNewButton.addClickHandler(handler3);		
 				
 		MyHandler2 handler2 = new MyHandler2();

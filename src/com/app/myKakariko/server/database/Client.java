@@ -17,9 +17,10 @@ public class Client {
 	 */
 
  
-	public Client(String username, String email, String nombre,
+	public Client(String username, String password,String email, String nombre,
 			String apellido, String cedula, String departamento, String ciudad, String direccion, String barrio, String telefono) {
 		this.username = username;
+		this.password=password;
 		this.email=email;
 		this.nombre =nombre;
 		this.apellido = apellido;
@@ -39,7 +40,17 @@ public class Client {
 	@Persistent
 	private String telefono;
 	
+	@Persistent
+	private String password;
 	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	@PrimaryKey
 	@Persistent

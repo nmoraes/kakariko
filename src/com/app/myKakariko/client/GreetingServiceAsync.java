@@ -12,4 +12,10 @@ public interface GreetingServiceAsync {
 	void query(String name, AsyncCallback<String[]> callback);
 
 	void inicio(String name, AsyncCallback<String> callback);
+
+	void nuevoUsuario(String username, String password,String email, String nombre,
+			String apellido, String cedula, String departamento, String ciudad, String direccion, String barrio, String telefono, AsyncCallback<String> callback);
+
+
+
 }

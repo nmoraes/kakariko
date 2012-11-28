@@ -9,9 +9,13 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("greet")
 public interface GreetingService extends RemoteService {
 	String greetServer(String name) throws IllegalArgumentException;
+
 	String[] query(String name) throws IllegalArgumentException;
+
 	String inicio(String name) throws IllegalArgumentException;
 
+	String nuevoUsuario(String username, String password, String email,
+			String nombre, String apellido, String cedula, String departamento,
+			String ciudad, String direccion, String barrio, String telefono);
 
 }
-

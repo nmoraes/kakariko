@@ -5,12 +5,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import javax.jdo.PersistenceManager;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
 import com.app.myKakariko.client.GreetingService;
+import com.app.myKakariko.server.database.Client;
+import com.app.myKakariko.server.database.PMF;
 import com.app.myKakariko.shared.FieldVerifier;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -312,4 +318,87 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return html;
 
 	}
+
+
+public String login(String user, String pass) throws IllegalArgumentException {
+
+	String conexion = "";
+
+	PersistenceManager pm = null;
+	try {
+		pm = PMF.get().getPersistenceManager();
+
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+
+	Client e = null;
+
+	e = pm.getObjectById(Client.class, user);
+
+	if (e.getPassword().equals(pass) == true) {
+		conexion = e.getNombre() + " " + e.getApellido();
+		pm.close();
+	}
+
+	else {
+		throw new IllegalArgumentException();
+	}
+	
+	return conexion;
+}
+
+
+public String nuevoUsuario(String username, String password,String email, String nombre,
+		String apellido, String cedula, String departamento, String ciudad, String direccion, String barrio, String telefono)
+		throws IllegalArgumentException {
+
+	PersistenceManager pm = null;
+	pm = PMF.get().getPersistenceManager();
+
+	Client users = new Client(username, password, email, nombre,
+			apellido, cedula, departamento, ciudad, direccion, barrio, telefono);
+	
+	Client e = null;
+	try {
+
+		Key k = KeyFactory.createKey(Client.class.getSimpleName(),
+				username);
+		e = pm.getObjectById(Client.class, k);
+	} catch (Exception ex) {
+		// Si el usuario no existe, salta una excpecion, por lo tanto se va
+		// a insertar el nuevo usuario.
+		System.out.println("se va a insertar......" + username);
+		pm.makePersistent(users);
+
+	}
+
+	if (e != null) {
+
+		throw new IllegalArgumentException();
+
+	}
+
+	pm.close();
+	//String serverInfo = getServletContext().getServerInfo();
+	//String userAgent = getThreadLocalRequest().getHeader("User-Agent");
+
+	// Escape data from the client to avoid cross-site script
+	// vulnerabilities.
+	nombre = escapeHtml(nombre);
+	apellido = escapeHtml(apellido);
+	//userAgent = escapeHtml(userAgent);
+
+//	return "Hello, " + nombre + " " + apellido + "!<br><br>I am running "
+//			+ serverInfo + ".<br><br>It looks like you are using:<br>"
+//			+ userAgent;
+
+	return username;
+}
+
+
+
+
+
+
 }
