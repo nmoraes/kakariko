@@ -18,4 +18,6 @@ public interface GreetingService extends RemoteService {
 			String nombre, String apellido, String cedula, String departamento,
 			String ciudad, String direccion, String barrio, String telefono);
 
+	boolean login(String user, String pass);
+
 }

@@ -320,9 +320,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 
-public String login(String user, String pass) throws IllegalArgumentException {
+public boolean login(String user, String pass) throws IllegalArgumentException {
 
 	String conexion = "";
+	Boolean entrar=false;
 
 	PersistenceManager pm = null;
 	try {
@@ -338,6 +339,7 @@ public String login(String user, String pass) throws IllegalArgumentException {
 
 	if (e.getPassword().equals(pass) == true) {
 		conexion = e.getNombre() + " " + e.getApellido();
+		entrar=true;
 		pm.close();
 	}
 
@@ -345,7 +347,7 @@ public String login(String user, String pass) throws IllegalArgumentException {
 		throw new IllegalArgumentException();
 	}
 	
-	return conexion;
+	return entrar;
 }
 
 

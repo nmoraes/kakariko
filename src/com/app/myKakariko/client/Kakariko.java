@@ -9,11 +9,13 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -49,6 +51,7 @@ public class Kakariko implements EntryPoint {
 	private HTML destacado1= new HTML(Destacados.DESTACADO_UNO, true);
 	private HTML destacado2= new HTML(Destacados.DESTACADO_DOS, true);
 	private HTML destacado3= new HTML(Destacados.DESTACADO_TRES, true);
+	private HTML sendBoxImg= new HTML(Destacados.SEND_BOX_PAY, true);
 
 	
 	
@@ -63,8 +66,6 @@ public class Kakariko implements EntryPoint {
 	private Button btnNewButton_1;
 	private HTML htmlInicio;
 	private ListBox comboBox;
-	
-	private Button btnNewButton_5;
 	
 	private Button btnNewButton_2; //iniciarSesion
 	//private HTML htmliniciarSesion= new HTML(IniciarSesionHTML.INICIAR_SESION, true);
@@ -89,18 +90,18 @@ public class Kakariko implements EntryPoint {
 		// We can add style names to widgets
 		//sendButton.addStyleName("sendButton");
 		btnNewButton.setStyleName("btn btn-success");
-		rootPanel.add(btnNewButton, 20, 0);
+		//rootPanel.add(btnNewButton, 20, 0);
 		btnNewButton.setSize("64px", "30px");
 		RootPanel.get("btnNewButton").add(btnNewButton);
 
 				
 		txtbxIpod = new TextBox();
-		rootPanel.add(txtbxIpod, 20, 32);
+		//rootPanel.add(txtbxIpod, 20, 32);
 		txtbxIpod.setSize("436px", "20px");
 		
 		RootPanel.get("txtbxIpod").add(txtbxIpod);
 		
-		rootPanel.add(htmlNewHtml, 365, 115);
+		//rootPanel.add(htmlNewHtml, 365, 115);
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml);
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml2);
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml3);
@@ -148,13 +149,13 @@ public class Kakariko implements EntryPoint {
 		
 		RootPanel.get("combo").add(comboBox);
 		
-		btnNewButton_2 = new Button("iniciar sesion");
+		btnNewButton_2 = new Button("registrarse");
 		rootPanel.add(btnNewButton_2, 20, 185);
 		RootPanel.get("iniciar").add(btnNewButton_2);
 		btnNewButton_2.setStyleName("btn btn-link");
 
 
-		Button btnNewButton_3 = new Button("registrarse");
+		Button btnNewButton_3 = new Button("envio de regalos");
 		rootPanel.add(btnNewButton_3, 109, 185);
 		RootPanel.get("registro").add(btnNewButton_3);
 		btnNewButton_3.setStyleName("btn btn-link");
@@ -167,11 +168,13 @@ public class Kakariko implements EntryPoint {
 		RootPanel.get("des1").add(destacado1);
 		RootPanel.get("des2").add(destacado2);
 		RootPanel.get("des3").add(destacado3);
+		RootPanel.get("pay").add(sendBoxImg);
+			
 		
-		btnNewButton_5 = new Button("pegar!");
-		rootPanel.add(btnNewButton_5, 382, 244);
-		btnNewButton_5.setVisible(false);
-
+		Button btnNewButton_5 = new Button("entrar");
+		RootPanel.get("login").add(btnNewButton_5);
+		btnNewButton_5.setSize("64px", "30px");
+		btnNewButton_5.setStyleName("btn btn-primary");
 		
 
 		
@@ -183,6 +186,7 @@ public class Kakariko implements EntryPoint {
 		btnNewButton_1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				htmlInicio.setVisible(false);
+
 				htmlNewHtml.setHTML("");
 				htmlNewHtml2.setHTML("");
 				htmlNewHtml3.setHTML("");
@@ -191,6 +195,8 @@ public class Kakariko implements EntryPoint {
 				htmlNewHtml6.setHTML("");
 				htmlNewHtml7.setHTML("");
 				btnNewButton_1.setVisible(false);
+				sendBoxImg.setVisible(true);
+
 			}
 		});
 		
@@ -450,7 +456,6 @@ public class Kakariko implements EntryPoint {
 
 					@Override
 					public void onKeyUp(KeyUpEvent event) {
-						
 						makeQuery();
 					}
 
@@ -509,6 +514,8 @@ public class Kakariko implements EntryPoint {
 								
 								producto7= result[6].substring(4, 18);
 								producto7=producto7.trim();
+								sendBoxImg.setVisible(false);
+								
 								htmlNewHtml.setVisible(true);
 								htmlNewHtml2.setVisible(true);
 								htmlNewHtml3.setVisible(true);
@@ -526,8 +533,10 @@ public class Kakariko implements EntryPoint {
 								
 								btnNewButton_1.setVisible(true);
 								
-								TextBox userName=TextBox.wrap(DOM.getElementById("nico"));
-								System.out.println("MIERCOLES: "+userName.getText());
+							
+								
+							//	TextBox userName=TextBox.wrap(DOM.getElementById("nico"));
+								//System.out.println("MIERCOLES: "+userName.getText());
 								
 								
 								
@@ -566,65 +575,55 @@ public class Kakariko implements EntryPoint {
 
 					@Override
 					public void onKeyUp(KeyUpEvent event) {
-						// TODO Auto-generated method stub
-						//login();
-						htmlNewHtml.setVisible(false);
-						htmlNewHtml2.setVisible(false);
-						htmlNewHtml3.setVisible(false);
-						htmlNewHtml4.setVisible(false);
-						htmlNewHtml5.setVisible(false);
-						htmlNewHtml6.setVisible(false);
-						htmlNewHtml7.setVisible(false);
-
-
-						btnNewButton_1.setVisible(true);
-						htmlInicio.setVisible(true);
-						htmlInicio.setHTML(IniciarSesionHTML.INICIAR_SESION);
-						RootPanel.get("htmlInicio").add(htmlInicio);
+						login();
 					}
 
 					@Override
 					public void onClick(ClickEvent event) {
-						htmlNewHtml.setVisible(false);
-						htmlNewHtml2.setVisible(false);
-						htmlNewHtml3.setVisible(false);
-						htmlNewHtml4.setVisible(false);
-						htmlNewHtml5.setVisible(false);
-						htmlNewHtml6.setVisible(false);
-						htmlNewHtml7.setVisible(false);
-						btnNewButton_1.setVisible(true);
-						htmlInicio.setVisible(true);
-						htmlInicio.setHTML(IniciarSesionHTML.INICIAR_SESION);
-						RootPanel.get("htmlInicio").add(htmlInicio);
+						login();
 					}
-				
-					
-					
-					
+		
 					private void login(){
-						//gps garmin
-						String consulta= "";
-						greetingService.inicio(consulta, new AsyncCallback<String>(){
+						
+						
+						System.out.println("aca");//htmlInicio
+						//nico
+						TextBox userName=TextBox.wrap(DOM.getElementById("hola123"));
+//nicolas
+					PasswordTextBox pass=PasswordTextBox.wrap(DOM.getElementById("hola1234"));
+
+						
+
+						
+						String username= userName.getText();
+						String passs= pass.getText();
+						
+						greetingService.login(username,passs, new AsyncCallback<Boolean>(){
 
 							
 							public void onFailure(Throwable caught) {
 
-								// Show the RPC error message to the user
-							/*	dialogBox2
-										.setText("Remote Procedure Call - Failure");
-								serverResponseLabel2
-										.addStyleName("serverResponseLabelError");
-								serverResponseLabel2.setHTML(SERVER_ERROR);
-								dialogBox2.center();
-								closeButton2.setFocus(true);*/
+							
+								System.out.println("PROHIBIDO PASAR");
+								
+								
 								
 							}
 
 							
-							public void onSuccess(String result) {				
-								htmlInicio.setHTML(result);
-								RootPanel.get("htmlInicio").add(htmlInicio);
+							
+							
+							public void onSuccess(Boolean result) {				
+								
+								System.out.println("Welcome Back");
 
+								
+								//htmlInicio.setHTML(result);
+								//RootPanel.get("htmlInicio").add(htmlInicio);
+
+								
+								
+								
 							}
 							
 							
@@ -634,14 +633,20 @@ public class Kakariko implements EntryPoint {
 					
 					
 				}
+				 
+				 
+				 
+				 
 				
 				
 				 
-		MyHandler3 handlerLogin =new MyHandler3();		 
-		btnNewButton_2.addClickHandler(handlerLogin);
+	 
+		MyHandler3 handlerLogin =new MyHandler3();
 		
-		MyHandler handlerPegar = new MyHandler();
-		btnNewButton_5.addClickHandler(handlerPegar);
+	
+		
+		//MyHandler handlerPegar = new MyHandler();
+		//btnNewButton_5.addClickHandler(handlerPegar);
 		//btnNewButton.addClickHandler(handler3);		
 				
 		MyHandler2 handler2 = new MyHandler2();
