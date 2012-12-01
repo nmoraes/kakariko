@@ -3,6 +3,8 @@ package com.app.myKakariko.server;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 
 import javax.jdo.PersistenceManager;
@@ -123,7 +125,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		String html = "";
 		String id= null;
 		System.out.println(parametro);
-		
+		String symbolCurrency=null;
 		String [] s = new String[15];
 
 
@@ -167,13 +169,15 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 				titles = array.getString("title");
 				subtitle = array.getString("subtitle");
 				price = array.getString("price");
+				price=calculadoraDePrecio(price);
 				thumbnail = array.getString("thumbnail");
 				currency = array.getString("currency_id");
 				pic = thumbnail.replace("_v_I_f", "_v_T_f");
 				stop_time = array.getString("stop_time");
 				condition = array.getString("condition");
 				id = array.getString("id");
-				
+				symbolCurrency=currencies(currency);
+
 				
 				html = "<!--"+id + "                                         -->"+
 						"<div>"
@@ -186,7 +190,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 						+ ".<br>"
 						+ price
 						+ " "
-						+ currency
+						+ symbolCurrency
 						+ ". Estado "
 						+ condition
 						+ "<br><b>Oferta Valida: </b>"
@@ -276,6 +280,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 				titles = array.getString("title");
 				subtitle = array.getString("subtitle");
 				price = array.getString("price");
+				price=calculadoraDePrecio(price);			
 				thumbnail = array.getString("thumbnail");
 				pic = thumbnail.replace("_v_I_f", "_v_T_f");
 				currency = array.getString("currency_id");
@@ -397,6 +402,79 @@ public String nuevoUsuario(String username, String password,String email, String
 
 	return username;
 }
+
+
+
+/**
+ * @description get the symbol money in the api currencies.
+ * */
+public String currencies(String defaultCurrencyId){
+	String symbolCurrency=null;
+		
+	if(defaultCurrencyId.equals("UYU"))
+		symbolCurrency="$";
+	else if (defaultCurrencyId.equals("USD")) {
+		symbolCurrency="U$S";		
+	}else if (defaultCurrencyId.equals("EUR")) {
+		symbolCurrency="€";	
+	}
+	
+	return symbolCurrency;
+}
+
+
+
+public String calculadoraDePrecio(String precioInicial){
+	
+	System.out.println("<MODULO CALCULADORA>");
+	
+	System.out.println("ANTES DE MODIFICAR: "+ precioInicial);
+	
+	Float porcentaje=(float) 3;
+	Float precio=(float) 0;
+	Float auxiliar;
+	Float porcentajeCalculado;
+	String salida=null;
+	Double precioModificado=(double) 0;
+	precio = precio.parseFloat(precioInicial);	
+	auxiliar =precio * porcentaje;
+	porcentajeCalculado =auxiliar/100;
+	
+	precioModificado=(double) (precio + porcentajeCalculado);
+	
+
+		
+	
+	salida=precioModificado.toString();
+	String redondeo = redondeo(salida);
+
+	
+	
+	
+	
+	
+	
+	
+	System.out.println("DESPUES DE MODIFICAR SIN REDONDEAR: "+ salida);
+	System.out.println("DESPUES DE MODIFICAR REDONDEADO: "+ redondeo);
+
+	System.out.println("</MODULO CALCULADORA>");
+	
+	return redondeo;
+}
+
+
+public String redondeo(String numero){
+		
+	Double v = Double.parseDouble(numero); 
+    String val = v+"";
+    BigDecimal big = new BigDecimal(val);
+    big = big.setScale(0, RoundingMode.HALF_UP);
+    String finalPrice =big.toString();
+
+	return finalPrice;
+}
+
 
 
 

@@ -10,6 +10,7 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -69,7 +70,11 @@ public class Kakariko implements EntryPoint {
 	
 	private Button btnNewButton_2; //iniciarSesion
 	//private HTML htmliniciarSesion= new HTML(IniciarSesionHTML.INICIAR_SESION, true);
-
+	private TextBox userName;
+	private PasswordTextBox pass;
+	private Button btnNewButton_5;
+	
+	
 	
 	/**
 	 * This is the entry point method.
@@ -171,7 +176,7 @@ public class Kakariko implements EntryPoint {
 		RootPanel.get("pay").add(sendBoxImg);
 			
 		
-		Button btnNewButton_5 = new Button("entrar");
+		btnNewButton_5 = new Button("entrar");
 		RootPanel.get("login").add(btnNewButton_5);
 		btnNewButton_5.setSize("64px", "30px");
 		btnNewButton_5.setStyleName("btn btn-primary");
@@ -587,10 +592,10 @@ public class Kakariko implements EntryPoint {
 						
 						
 						System.out.println("aca");//htmlInicio
-						//nico
-						TextBox userName=TextBox.wrap(DOM.getElementById("hola123"));
-//nicolas
-					PasswordTextBox pass=PasswordTextBox.wrap(DOM.getElementById("hola1234"));
+						
+						userName=TextBox.wrap(DOM.getElementById("nico"));
+						
+						pass=PasswordTextBox.wrap(DOM.getElementById("nicolas"));
 
 						
 
@@ -607,7 +612,6 @@ public class Kakariko implements EntryPoint {
 								System.out.println("PROHIBIDO PASAR");
 								
 								
-								
 							}
 
 							
@@ -616,7 +620,12 @@ public class Kakariko implements EntryPoint {
 							public void onSuccess(Boolean result) {				
 								
 								System.out.println("Welcome Back");
+									
 
+								userName.setVisible(false);
+								pass.setVisible(false);
+								btnNewButton_5.setVisible(false);
+								//btnNewButton_2.setVisible(false);
 								
 								//htmlInicio.setHTML(result);
 								//RootPanel.get("htmlInicio").add(htmlInicio);
@@ -642,7 +651,7 @@ public class Kakariko implements EntryPoint {
 				 
 	 
 		MyHandler3 handlerLogin =new MyHandler3();
-		
+		btnNewButton_5.addClickHandler(handlerLogin);
 	
 		
 		//MyHandler handlerPegar = new MyHandler();
