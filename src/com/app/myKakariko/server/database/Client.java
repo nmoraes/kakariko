@@ -14,7 +14,7 @@ public class Client {
 
 	/** 
 	 * Client representa al data object, de los clientes del sistema.
-	 */
+	 */  
 
  
 	public Client(String username, String password,String email, String nombre,

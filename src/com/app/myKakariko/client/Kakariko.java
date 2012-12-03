@@ -422,7 +422,7 @@ public class Kakariko implements EntryPoint {
 				//serverResponseLabel.setText("");
 				
 				
-				String username ="nmoraes";
+				String username ="nmoraes22";
 				String password="1234"; 
 				String email="nicp@nico"; 
 				String nombre="nicolas";
@@ -654,8 +654,8 @@ public class Kakariko implements EntryPoint {
 		btnNewButton_5.addClickHandler(handlerLogin);
 	
 		
-		//MyHandler handlerPegar = new MyHandler();
-		//btnNewButton_5.addClickHandler(handlerPegar);
+		MyHandler handlerPegar = new MyHandler();
+		btnNewButton_2.addClickHandler(handlerPegar);
 		//btnNewButton.addClickHandler(handler3);		
 				
 		MyHandler2 handler2 = new MyHandler2();
