@@ -8,13 +8,17 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -25,7 +29,7 @@ import com.google.gwt.user.client.ui.ListBox;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class Kakariko implements EntryPoint {
+public class Kakariko implements EntryPoint, ValueChangeHandler {
 	/**
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
@@ -65,7 +69,7 @@ public class Kakariko implements EntryPoint {
 	private String producto7;
 
 	private Button btnNewButton_1;
-	private HTML htmlInicio;
+	//private HTML htmlInicio;
 	private ListBox comboBox;
 	
 	private Button btnNewButton_2; //iniciarSesion
@@ -74,7 +78,25 @@ public class Kakariko implements EntryPoint {
 	private PasswordTextBox pass;
 	private Button btnNewButton_5;
 	
+	private Hyperlink btnNewButton_3 ;
 	
+	//registracion
+	private TextBox userReg;
+	private PasswordTextBox passReg;
+	private TextBox emailReg;
+	private TextBox nombreReg;
+	private TextBox apellidoReg;
+	private TextBox cedulaReg;
+	private TextBox departamentoReg;
+	private TextBox ciudadReg;
+	private TextBox direccionReg;
+	private TextBox barrioReg;
+	private TextBox telefonoReg;
+	
+	
+	//BOORAR
+	private VerticalPanel panel = new VerticalPanel();
+	  private Label label=new Label();
 	
 	/**
 	 * This is the entry point method.
@@ -122,8 +144,8 @@ public class Kakariko implements EntryPoint {
 		RootPanel.get("cerrar").add(btnNewButton_1);
 		btnNewButton_1.setVisible(false);
 		
-		htmlInicio = new HTML("", true);
-		rootPanel.add(htmlInicio, 365, 148);
+	//	htmlInicio = new HTML("", true);
+		//rootPanel.add(htmlInicio, 365, 148);
 		
 		comboBox = new ListBox();
 		rootPanel.add(comboBox, 20, 70);
@@ -154,13 +176,13 @@ public class Kakariko implements EntryPoint {
 		
 		RootPanel.get("combo").add(comboBox);
 		
-		btnNewButton_2 = new Button("registrarse");
+		btnNewButton_2 = new Button("regiNONONONOstrarse");
 		rootPanel.add(btnNewButton_2, 20, 185);
 		RootPanel.get("iniciar").add(btnNewButton_2);
 		btnNewButton_2.setStyleName("btn btn-link");
 
 
-		Button btnNewButton_3 = new Button("envio de regalos");
+		btnNewButton_3 = new Hyperlink("registrarse en send-box.com!","registro");
 		rootPanel.add(btnNewButton_3, 109, 185);
 		RootPanel.get("registro").add(btnNewButton_3);
 		btnNewButton_3.setStyleName("btn btn-link");
@@ -181,7 +203,44 @@ public class Kakariko implements EntryPoint {
 		btnNewButton_5.setSize("64px", "30px");
 		btnNewButton_5.setStyleName("btn btn-primary");
 		
-
+		//registracion
+        userReg = new TextBox();
+        userReg.setVisible(false);
+    	passReg = new PasswordTextBox();
+        passReg.setVisible(false);
+        emailReg= new TextBox();
+        emailReg.setVisible(false);
+    	nombreReg= new TextBox();
+    	nombreReg.setVisible(false);
+    	apellidoReg=new TextBox();
+    	apellidoReg.setVisible(false);
+    	cedulaReg=new TextBox();
+    	cedulaReg.setVisible(false);
+    	departamentoReg=new TextBox();
+    	departamentoReg.setVisible(false);
+    	ciudadReg=new TextBox();
+    	ciudadReg.setVisible(false);
+    	direccionReg=new TextBox();
+    	direccionReg.setVisible(false);
+    	barrioReg=new TextBox();
+    	barrioReg.setVisible(false);
+    	telefonoReg=new TextBox();
+    	telefonoReg.setVisible(false);
+		
+	
+        
+        History.addValueChangeHandler(this);
+        //when there is no token, the "home" token is set else changePage() is called.
+        //this is useful if a user has bookmarked a site other than the homepage.
+        if(History.getToken().isEmpty()){
+            History.newItem("home");
+        } else {
+            changePage(History.getToken());
+        }
+		
+		
+	
+		
 		
 		
 		
@@ -190,7 +249,7 @@ public class Kakariko implements EntryPoint {
 		
 		btnNewButton_1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				htmlInicio.setVisible(false);
+				//htmlInicio.setVisible(false);
 
 				htmlNewHtml.setHTML("");
 				htmlNewHtml2.setHTML("");
@@ -422,11 +481,11 @@ public class Kakariko implements EntryPoint {
 				//serverResponseLabel.setText("");
 				
 				
-				String username ="nmoraes22";
+				String username ="nmoraes23";
 				String password="1234"; 
 				String email="nicp@nico"; 
 				String nombre="nicolas";
-				String apellido="moraes"; 
+				String apellido="moraes"; 	
 				String cedula="122221"; 
 				String departamento="montevideo"; 
 				String ciudad="montevideo"; 
@@ -447,6 +506,9 @@ public class Kakariko implements EntryPoint {
 							public void onSuccess(String result) {
 						
 								System.out.println("exito");
+								
+								
+								
 
 								
 						
@@ -495,8 +557,7 @@ public class Kakariko implements EntryPoint {
 
 							
 							public void onSuccess(String[] result) {
-								htmlInicio.setVisible(false);
-								
+							//	htmlInicio.setVisible(false);
 								htmlNewHtml.setHTML(result[0]);
 								producto1= result[0].substring(4, 18);
 								producto1=producto1.trim();
@@ -608,9 +669,8 @@ public class Kakariko implements EntryPoint {
 							
 							public void onFailure(Throwable caught) {
 
-							
-								System.out.println("PROHIBIDO PASAR");
-								
+								Window.alert("Error al loguearse");
+											
 								
 							}
 
@@ -625,6 +685,9 @@ public class Kakariko implements EntryPoint {
 								userName.setVisible(false);
 								pass.setVisible(false);
 								btnNewButton_5.setVisible(false);
+								
+								Window.alert("Welcome back");
+								
 								//btnNewButton_2.setVisible(false);
 								
 								//htmlInicio.setHTML(result);
@@ -655,7 +718,7 @@ public class Kakariko implements EntryPoint {
 	
 		
 		MyHandler handlerPegar = new MyHandler();
-		btnNewButton_2.addClickHandler(handlerPegar);
+		//btnNewButton_2.addClickHandler(handlerPegar);
 		//btnNewButton.addClickHandler(handler3);		
 				
 		MyHandler2 handler2 = new MyHandler2();
@@ -690,4 +753,89 @@ public class Kakariko implements EntryPoint {
 		
 
 	}
+
+//prueba multiples HTML
+
+	@Override
+	public void onValueChange(ValueChangeEvent event) {
+		// TODO Auto-generated method stub
+		changePage(History.getToken());
+	}
+	
+	public void changePage(String token) {
+	    if(History.getToken().equals("aboutUs")) {
+	    	
+	        label.setText("cosas que pasan lalalala");
+	    } else if (History.getToken().equals("details")) {
+	        label.setText("details kakakakakakka");
+	    
+	    
+	     //Registro
+	    } else if (History.getToken().equals("registro")) {
+	    	
+	    	sendBoxImg.setVisible(false);
+	    
+			RootPanel.get("des1").setVisible(false);
+			RootPanel.get("des2").setVisible(false);
+			RootPanel.get("des3").setVisible(false);
+
+			RootPanel.get("userReg").setVisible(true);
+			RootPanel.get("passReg").setVisible(true);
+	    	
+			RootPanel.get("nombreReg").setVisible(true);
+			RootPanel.get("apellidoReg").setVisible(true);
+			RootPanel.get("cedulaReg").setVisible(true);
+			RootPanel.get("departamentoReg").setVisible(true);
+			RootPanel.get("ciudadReg").setVisible(true);
+			RootPanel.get("direccionReg").setVisible(true);
+			RootPanel.get("barrioReg").setVisible(true);
+			RootPanel.get("telefonoReg").setVisible(true);
+			
+	    	/*
+	    	userReg=TextBox.wrap(DOM.getElementById("userReg"));
+	    	passReg=PasswordTextBox.wrap(DOM.getElementById("passReg"));	    	 
+
+	    	
+	    	*/
+			
+		} 
+	    
+	  //Home page
+     else if (History.getToken().equals("home")) {
+    	   sendBoxImg.setVisible(true);		    	
+    		RootPanel.get("des1").setVisible(true);
+			RootPanel.get("des2").setVisible(true);
+			RootPanel.get("des3").setVisible(true);
+	    	RootPanel.get("userReg").setVisible(false);
+			RootPanel.get("passReg").setVisible(false);
+			RootPanel.get("nombreReg").setVisible(false);
+			RootPanel.get("apellidoReg").setVisible(false);
+			RootPanel.get("cedulaReg").setVisible(false);
+			RootPanel.get("departamentoReg").setVisible(false);
+			RootPanel.get("ciudadReg").setVisible(false);
+			RootPanel.get("direccionReg").setVisible(false);
+			RootPanel.get("barrioReg").setVisible(false);
+			RootPanel.get("telefonoReg").setVisible(false);
+	    	
+	  
+     }
+	  //Home page default
+	    else {
+	    	sendBoxImg.setVisible(true);
+	    	RootPanel.get("des1").setVisible(true);
+			RootPanel.get("des2").setVisible(true);
+			RootPanel.get("des3").setVisible(true);
+	    	RootPanel.get("userReg").setVisible(false);
+			RootPanel.get("passReg").setVisible(false);
+			RootPanel.get("nombreReg").setVisible(false);
+			RootPanel.get("apellidoReg").setVisible(false);
+			RootPanel.get("cedulaReg").setVisible(false);
+			RootPanel.get("departamentoReg").setVisible(false);
+			RootPanel.get("ciudadReg").setVisible(false);
+			RootPanel.get("direccionReg").setVisible(false);
+			RootPanel.get("barrioReg").setVisible(false);
+			RootPanel.get("telefonoReg").setVisible(false);
+	    }
+	}
+	
 }
