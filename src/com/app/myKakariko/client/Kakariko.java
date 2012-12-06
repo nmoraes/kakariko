@@ -81,7 +81,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private Hyperlink btnNewButton_3 ;
 	
 	//registracion
-	private TextBox userReg;
+	
+	private TextBox usernameText;
 	private PasswordTextBox passReg;
 	private TextBox emailReg;
 	private TextBox nombreReg;
@@ -92,17 +93,50 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private TextBox direccionReg;
 	private TextBox barrioReg;
 	private TextBox telefonoReg;
+
+
+	private Button confirmar=new Button("enviar");
+	private Button cancelar=new Button("cancelar");
 	
 	
-	//BOORAR
-	private VerticalPanel panel = new VerticalPanel();
 	  private Label label=new Label();
 	
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+	 	
+  
+		RootPanel.get("userReg").setVisible(false);
+		RootPanel.get("passReg").setVisible(false);
+		RootPanel.get("emailReg").setVisible(false);
+		RootPanel.get("nombreReg").setVisible(false);
+		RootPanel.get("apellidoReg").setVisible(false);
+		RootPanel.get("cedulaReg").setVisible(false);
+		RootPanel.get("departamentoReg").setVisible(false);
+		RootPanel.get("ciudadReg").setVisible(false);
+		RootPanel.get("direccionReg").setVisible(false);
+		RootPanel.get("barrioReg").setVisible(false);
+		RootPanel.get("telefonoReg").setVisible(false);
+		
+       
+        confirmar.setVisible(false);
+        confirmar.setStyleName("btn btn-primary");
+		RootPanel.get("confirmar").add(confirmar);
 
+        
+        cancelar.setVisible(false);
+        cancelar.setStyleName("btn");
+		RootPanel.get("cancelar").add(cancelar);
+		
+
+        
+        
+        
+        
+        
+		
+		
 		final Label errorLabel = new Label();
 
 		// Add the nameField and sendButton to the RootPanel
@@ -182,7 +216,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		btnNewButton_2.setStyleName("btn btn-link");
 
 
-		btnNewButton_3 = new Hyperlink("registrarse en send-box.com!","registro");
+		btnNewButton_3 = new Hyperlink("registrarse","registro");
 		rootPanel.add(btnNewButton_3, 109, 185);
 		RootPanel.get("registro").add(btnNewButton_3);
 		btnNewButton_3.setStyleName("btn btn-link");
@@ -204,29 +238,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		btnNewButton_5.setStyleName("btn btn-primary");
 		
 		//registracion
-        userReg = new TextBox();
-        userReg.setVisible(false);
-    	passReg = new PasswordTextBox();
-        passReg.setVisible(false);
-        emailReg= new TextBox();
-        emailReg.setVisible(false);
-    	nombreReg= new TextBox();
-    	nombreReg.setVisible(false);
-    	apellidoReg=new TextBox();
-    	apellidoReg.setVisible(false);
-    	cedulaReg=new TextBox();
-    	cedulaReg.setVisible(false);
-    	departamentoReg=new TextBox();
-    	departamentoReg.setVisible(false);
-    	ciudadReg=new TextBox();
-    	ciudadReg.setVisible(false);
-    	direccionReg=new TextBox();
-    	direccionReg.setVisible(false);
-    	barrioReg=new TextBox();
-    	barrioReg.setVisible(false);
-    	telefonoReg=new TextBox();
-    	telefonoReg.setVisible(false);
-		
+       
 	
         
         History.addValueChangeHandler(this);
@@ -474,24 +486,37 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					errorLabel.setText("Please enter at least four characters");
 					return;
 				}
+/*
+				userName=TextBox.wrap(DOM.getElementById("nico"));
+				
+				pass=PasswordTextBox.wrap(DOM.getElementById("nicolas"));
+*/
+				
+				
+				usernameText=TextBox.wrap(DOM.getElementById("userReg"));
+				PasswordTextBox passwordText=PasswordTextBox.wrap(DOM.getElementById("passReg"));
+				TextBox emailText=TextBox.wrap(DOM.getElementById("emailReg"));
+				TextBox nombreText=TextBox.wrap(DOM.getElementById("nombreReg"));
+				TextBox apellidoText=TextBox.wrap(DOM.getElementById("apellidoReg"));
+				TextBox cedulaText=TextBox.wrap(DOM.getElementById("cedulaReg"));
+				TextBox departamentoText=TextBox.wrap(DOM.getElementById("departamentoReg"));
+				TextBox ciudadText=TextBox.wrap(DOM.getElementById("ciudadReg"));
+				TextBox direccionText=TextBox.wrap(DOM.getElementById("direccionReg"));
+				TextBox barrioText=TextBox.wrap(DOM.getElementById("barrioReg"));
+				TextBox telefonoText=TextBox.wrap(DOM.getElementById("telefonoReg"));
 
-				// Then, we send the input to the server.
-				//sendButton.setEnabled(false);
-			//	textToServerLabel.setText(textToServer);
-				//serverResponseLabel.setText("");
 				
-				
-				String username ="nmoraes23";
-				String password="1234"; 
-				String email="nicp@nico"; 
-				String nombre="nicolas";
-				String apellido="moraes"; 	
-				String cedula="122221"; 
-				String departamento="montevideo"; 
-				String ciudad="montevideo"; 
-				String direccion="ramallo 1111"; 
-				String barrio="malvin"; 
-				String telefono="5061074";
+				String username =usernameText.getText();
+				String password=passwordText.getText();
+				String email=emailText.getText();
+				String nombre=nombreText.getText();
+				String apellido=apellidoText.getText(); 	
+				String cedula=cedulaText.getText();
+				String departamento=departamentoText.getText();
+				String ciudad=ciudadText.getText();
+				String direccion=direccionText.getText(); 
+				String barrio=barrioText.getText();
+				String telefono=telefonoText.getText();
 				
 				
 				
@@ -543,15 +568,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 							
 							public void onFailure(Throwable caught) {
-/*
-								// Show the RPC error message to the user
-								dialogBox2
-										.setText("Remote Procedure Call - Failure");
-								serverResponseLabel2
-										.addStyleName("serverResponseLabelError");
-								serverResponseLabel2.setHTML(SERVER_ERROR);
-								dialogBox2.center();
-								closeButton2.setFocus(true); */
+
 								
 							}
 
@@ -716,10 +733,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		MyHandler3 handlerLogin =new MyHandler3();
 		btnNewButton_5.addClickHandler(handlerLogin);
 	
-		
+		//Lanza evento para registrar nuevo usuario en el sistema.
 		MyHandler handlerPegar = new MyHandler();
-		//btnNewButton_2.addClickHandler(handlerPegar);
-		//btnNewButton.addClickHandler(handler3);		
+		confirmar.addClickHandler(handlerPegar);
 				
 		MyHandler2 handler2 = new MyHandler2();
 		btnNewButton.addClickHandler(handler2);
@@ -774,14 +790,23 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	    } else if (History.getToken().equals("registro")) {
 	    	
 	    	sendBoxImg.setVisible(false);
-	    
+	    	btnNewButton_1.setVisible(false);
+	    	htmlNewHtml.setVisible(false);
+			htmlNewHtml2.setVisible(false);
+			htmlNewHtml3.setVisible(false);
+			htmlNewHtml4.setVisible(false);
+			htmlNewHtml5.setVisible(false);
+			htmlNewHtml6.setVisible(false);
+			htmlNewHtml7.setVisible(false);
+	    	
+	    	
 			RootPanel.get("des1").setVisible(false);
 			RootPanel.get("des2").setVisible(false);
 			RootPanel.get("des3").setVisible(false);
-
+    		
 			RootPanel.get("userReg").setVisible(true);
 			RootPanel.get("passReg").setVisible(true);
-	    	
+			RootPanel.get("emailReg").setVisible(true);
 			RootPanel.get("nombreReg").setVisible(true);
 			RootPanel.get("apellidoReg").setVisible(true);
 			RootPanel.get("cedulaReg").setVisible(true);
@@ -790,7 +815,11 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			RootPanel.get("direccionReg").setVisible(true);
 			RootPanel.get("barrioReg").setVisible(true);
 			RootPanel.get("telefonoReg").setVisible(true);
+
+			confirmar.setVisible(true);
+			cancelar.setVisible(true);
 			
+		
 	    	/*
 	    	userReg=TextBox.wrap(DOM.getElementById("userReg"));
 	    	passReg=PasswordTextBox.wrap(DOM.getElementById("passReg"));	    	 
@@ -802,12 +831,24 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	    
 	  //Home page
      else if (History.getToken().equals("home")) {
-    	   sendBoxImg.setVisible(true);		    	
+    	   sendBoxImg.setVisible(true);	
+    	   	
+    	    htmlNewHtml.setHTML("");
+    	    htmlNewHtml2.setHTML("");
+			htmlNewHtml3.setHTML("");
+			htmlNewHtml4.setHTML("");
+			htmlNewHtml5.setHTML("");
+			htmlNewHtml6.setHTML("");
+			htmlNewHtml7.setHTML("");
+			
+    	   
     		RootPanel.get("des1").setVisible(true);
 			RootPanel.get("des2").setVisible(true);
 			RootPanel.get("des3").setVisible(true);
-	    	RootPanel.get("userReg").setVisible(false);
+			
+    		RootPanel.get("userReg").setVisible(false);
 			RootPanel.get("passReg").setVisible(false);
+			RootPanel.get("emailReg").setVisible(false);
 			RootPanel.get("nombreReg").setVisible(false);
 			RootPanel.get("apellidoReg").setVisible(false);
 			RootPanel.get("cedulaReg").setVisible(false);
@@ -816,17 +857,31 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			RootPanel.get("direccionReg").setVisible(false);
 			RootPanel.get("barrioReg").setVisible(false);
 			RootPanel.get("telefonoReg").setVisible(false);
+
+
+			//usernameText.setVisible(false);
+			/*
+			passReg.setVisible(false);
+			emailReg.setVisible(false);
+			nombreReg.setVisible(false);
+			apellidoReg.setVisible(false);
+			cedulaReg.setVisible(false);
+			departamentoReg.setVisible(false);
+			ciudadReg.setVisible(false);
+			direccionReg.setVisible(false);
+			barrioReg.setVisible(false);
+			telefonoReg.setVisible(false);
+			*/
+			confirmar.setVisible(false);
+			cancelar.setVisible(false);
 	    	
 	  
      }
 	  //Home page default
 	    else {
-	    	sendBoxImg.setVisible(true);
-	    	RootPanel.get("des1").setVisible(true);
-			RootPanel.get("des2").setVisible(true);
-			RootPanel.get("des3").setVisible(true);
 	    	RootPanel.get("userReg").setVisible(false);
 			RootPanel.get("passReg").setVisible(false);
+			RootPanel.get("emailReg").setVisible(false);
 			RootPanel.get("nombreReg").setVisible(false);
 			RootPanel.get("apellidoReg").setVisible(false);
 			RootPanel.get("cedulaReg").setVisible(false);
@@ -835,6 +890,11 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			RootPanel.get("direccionReg").setVisible(false);
 			RootPanel.get("barrioReg").setVisible(false);
 			RootPanel.get("telefonoReg").setVisible(false);
+	    	sendBoxImg.setVisible(true);
+	    	RootPanel.get("des1").setVisible(true);
+			RootPanel.get("des2").setVisible(true);
+			RootPanel.get("des3").setVisible(true);
+	
 	    }
 	}
 	
