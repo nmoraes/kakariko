@@ -80,26 +80,12 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	
 	private Hyperlink btnNewButton_3 ;
 	
-	//registracion
-	
-	private TextBox usernameText;
-	private PasswordTextBox passReg;
-	private TextBox emailReg;
-	private TextBox nombreReg;
-	private TextBox apellidoReg;
-	private TextBox cedulaReg;
-	private TextBox departamentoReg;
-	private TextBox ciudadReg;
-	private TextBox direccionReg;
-	private TextBox barrioReg;
-	private TextBox telefonoReg;
-
-
+	//Botones de registracion
 	private Button confirmar=new Button("enviar");
 	private Button cancelar=new Button("cancelar");
 	
 	
-	  private Label label=new Label();
+	 private Label label=new Label();
 	
 	/**
 	 * This is the entry point method.
@@ -459,6 +445,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			 * Fired when the user clicks on the sendButton.
 			 */
 			public void onClick(ClickEvent event) {
+				confirmar.setEnabled(false);
+				cancelar.setEnabled(false);
 				sendNameToServer();
 				System.out.println("hola");
 			}
@@ -468,7 +456,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			 */
 			public void onKeyUp(KeyUpEvent event) {
 				//if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-					sendNameToServer();
+				confirmar.setEnabled(false);
+				cancelar.setEnabled(false);
+				sendNameToServer();
 				//System.out.println("hola");
 
 				//}
@@ -486,14 +476,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					errorLabel.setText("Please enter at least four characters");
 					return;
 				}
-/*
-				userName=TextBox.wrap(DOM.getElementById("nico"));
-				
-				pass=PasswordTextBox.wrap(DOM.getElementById("nicolas"));
-*/
-				
-				
-				usernameText=TextBox.wrap(DOM.getElementById("userReg"));
+
+								
+				TextBox usernameText=TextBox.wrap(DOM.getElementById("userReg"));
 				PasswordTextBox passwordText=PasswordTextBox.wrap(DOM.getElementById("passReg"));
 				TextBox emailText=TextBox.wrap(DOM.getElementById("emailReg"));
 				TextBox nombreText=TextBox.wrap(DOM.getElementById("nombreReg"));
@@ -504,7 +489,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 				TextBox direccionText=TextBox.wrap(DOM.getElementById("direccionReg"));
 				TextBox barrioText=TextBox.wrap(DOM.getElementById("barrioReg"));
 				TextBox telefonoText=TextBox.wrap(DOM.getElementById("telefonoReg"));
-
 				
 				String username =usernameText.getText();
 				String password=passwordText.getText();
@@ -525,19 +509,30 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						new AsyncCallback<String>() {
 							public void onFailure(Throwable caught) {
 							
-								System.out.println("error al ingresar");
+								Window.alert("Error al registrarte");
+							
+								confirmar.setEnabled(true);
+								cancelar.setEnabled(true);
 							}
 
 							public void onSuccess(String result) {
 						
-								System.out.println("exito");
+								Window.alert("Gracias por registrarte en send-box.com");
 								
-								
-								
-
-								
-						
-								
+								DOM.getElementById("userReg").setPropertyString("value", "");
+								DOM.getElementById("passReg").setPropertyString("value", "");
+								DOM.getElementById("emailReg").setPropertyString("value", "");
+								DOM.getElementById("nombreReg").setPropertyString("value", "");
+								DOM.getElementById("apellidoReg").setPropertyString("value", "");
+								DOM.getElementById("cedulaReg").setPropertyString("value", "");
+								DOM.getElementById("departamentoReg").setPropertyString("value", "");
+								DOM.getElementById("ciudadReg").setPropertyString("value", "");
+								DOM.getElementById("direccionReg").setPropertyString("value", "");
+								DOM.getElementById("barrioReg").setPropertyString("value", "");
+								DOM.getElementById("telefonoReg").setPropertyString("value", "");
+							
+								confirmar.setEnabled(true);
+								cancelar.setEnabled(true);
 							}
 						});
 			}
@@ -858,20 +853,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			RootPanel.get("barrioReg").setVisible(false);
 			RootPanel.get("telefonoReg").setVisible(false);
 
-
-			//usernameText.setVisible(false);
-			/*
-			passReg.setVisible(false);
-			emailReg.setVisible(false);
-			nombreReg.setVisible(false);
-			apellidoReg.setVisible(false);
-			cedulaReg.setVisible(false);
-			departamentoReg.setVisible(false);
-			ciudadReg.setVisible(false);
-			direccionReg.setVisible(false);
-			barrioReg.setVisible(false);
-			telefonoReg.setVisible(false);
-			*/
 			confirmar.setVisible(false);
 			cancelar.setVisible(false);
 	    	

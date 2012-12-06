@@ -10,13 +10,13 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Client {
-
+    
 
 	/** 
 	 * Client representa al data object, de los clientes del sistema.
 	 */  
 
- 
+      
 	public Client(String username, String password,String email, String nombre,
 			String apellido, String cedula, String departamento, String ciudad, String direccion, String barrio, String telefono) {
 		this.username = username;
