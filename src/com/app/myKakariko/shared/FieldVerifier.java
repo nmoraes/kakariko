@@ -1,5 +1,6 @@
 package com.app.myKakariko.shared;
 
+
 /**
  * <p>
  * FieldVerifier validates that the name the user enters is valid.
@@ -30,13 +31,38 @@ public class FieldVerifier {
 	 * that usernames, passwords, email addresses, URLs, and other fields have the
 	 * proper syntax.
 	 * 
-	 * @param name the name to validate
-	 * @return true if valid, false if invalid
+	 * @param name the name to validate				rvm use 1.9.3
+	 * @return true if valid, false if invalid jekyll --pygments --safe --auto
 	 */
-	public static boolean isValidName(String name) {
-		if (name == null) {
+	public static boolean isValidPass(String name) {
+		if (name == null || name.equals("")) {
 			return false;
 		}
-		return name.length() > 3;
+		return name.length() > 4;
 	}
+	
+	/**
+	 * Validacion de emails.
+	 */
+	
+	   public static boolean isEmail(String value) {
+           if(value == null) return true;
+           
+           String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.(?:[a-zA-Z]{2,6})$";
+           
+           boolean valid = false;
+           
+           if(value.getClass().toString().equals(String.class.toString())) {
+                   valid = ((String)value).matches(emailPattern);
+           } else {
+                   valid = ((Object)value).toString().matches(emailPattern);
+           }
+
+           return valid;
+   }
+
+	
+	
+	
+	
 }

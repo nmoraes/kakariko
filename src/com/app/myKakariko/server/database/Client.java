@@ -26,9 +26,9 @@ public class Client {
 		this.apellido = apellido;
 		this.cedula = cedula;
 		this.departamento = departamento;
-		this.ciudad =ciudad;
+		this.ciudad =ciudad;                 //campo innecesario.
 		this.direccion = direccion;
-		this.barrio = barrio;
+		this.barrio = barrio;				//campo innecesario.
 		this.telefono = telefono;
 		this.date =  new Date();
 

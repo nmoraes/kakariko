@@ -45,6 +45,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			.create(GreetingService.class);
 
 	private TextBox txtbxIpod;
+	private Button btnNewButton;
 	private HTML htmlNewHtml= new HTML("", true);
 	private HTML htmlNewHtml2= new HTML("", true);
 	private HTML htmlNewHtml3= new HTML("", true);
@@ -53,13 +54,14 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private HTML htmlNewHtml6= new HTML("", true);
 	private HTML htmlNewHtml7= new HTML("", true);
 	
+	private HTML htmlRegistration= new HTML("", true);
+	
 	private HTML destacado1= new HTML(Destacados.DESTACADO_UNO, true);
 	private HTML destacado2= new HTML(Destacados.DESTACADO_DOS, true);
 	private HTML destacado3= new HTML(Destacados.DESTACADO_TRES, true);
 	private HTML sendBoxImg= new HTML(Destacados.SEND_BOX_PAY, true);
 
-	
-	
+		
 	private String producto1;
 	private String producto2;	
 	private String producto3;
@@ -115,13 +117,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
         cancelar.setStyleName("btn");
 		RootPanel.get("cancelar").add(cancelar);
 		
-
-        
-        
-        
-        
-        
-		
 		
 		final Label errorLabel = new Label();
 
@@ -132,7 +127,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("errorLabelContainer").add(errorLabel);
 		
 		
-		Button btnNewButton = new Button("New button");
+		btnNewButton = new Button("New button");
 		btnNewButton.setText("buscar");
 		// We can add style names to widgets
 		//sendButton.addStyleName("sendButton");
@@ -164,8 +159,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("cerrar").add(btnNewButton_1);
 		btnNewButton_1.setVisible(false);
 		
-	//	htmlInicio = new HTML("", true);
-		//rootPanel.add(htmlInicio, 365, 148);
 		
 		comboBox = new ListBox();
 		rootPanel.add(comboBox, 20, 70);
@@ -173,22 +166,20 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		comboBox.setSize("173px", "30px");
 		comboBox.addItem("Todas las categorias");
 		comboBox.addItem("Animales y Mascotas");
-		comboBox.addItem("Arte y Antigüedades");
-		comboBox.addItem("Cámaras y Accesorios");
+		comboBox.addItem("Arte y Antiguedades");
+		comboBox.addItem("Camaras y Accesorios");
 		comboBox.addItem("Celulares y Telefonía");
 		comboBox.addItem("Coleccionables");
-		comboBox.addItem("Computación");
+		comboBox.addItem("Computacion");
 		comboBox.addItem("Consolas y Videojuegos");
 		comboBox.addItem("Deportes y Fitness");
-		comboBox.addItem("Electrodomésticos y Aires Ac.");
-		comboBox.addItem("Electrónica, Audio y Video");
-		comboBox.addItem("Hogar, Muebles y Jardín");
-		comboBox.addItem("Industrias y Oficinas");
-		
+		comboBox.addItem("Electrodomesticos y Aires Ac.");
+		comboBox.addItem("Electronica, Audio y Video");
+		comboBox.addItem("Hogar, Muebles y Jardin");
+		comboBox.addItem("Industrias y Oficinas");	
 		comboBox.addItem("Instrumentos Musicales");
-		comboBox.addItem("Juegos y Juguetes");
-		
-		comboBox.addItem("Música, Libros y Películas");
+		comboBox.addItem("Juegos y Juguetes");	
+		comboBox.addItem("Musica, Libros y Peliculas");
 		comboBox.addItem("Ropa, Joyas y Relojes");
 		comboBox.addItem("Industrias y Oficinas");
 		
@@ -222,10 +213,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("login").add(btnNewButton_5);
 		btnNewButton_5.setSize("64px", "30px");
 		btnNewButton_5.setStyleName("btn btn-primary");
-		
-		//registracion
-       
-	
+			
         
         History.addValueChangeHandler(this);
         //when there is no token, the "home" token is set else changePage() is called.
@@ -236,15 +224,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
             changePage(History.getToken());
         }
 		
-		
-	
-		
-		
-		
-		
 
-		
-		
 		btnNewButton_1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				//htmlInicio.setVisible(false);
@@ -470,13 +450,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			private void sendNameToServer() {
 				// First, we validate the input.
 				errorLabel.setText("");
-				String textToServer = "basura";
 				//String textToServer = textBox.getText();
-				if (!FieldVerifier.isValidName(textToServer)) {
-					errorLabel.setText("Please enter at least four characters");
-					return;
-				}
-
 								
 				TextBox usernameText=TextBox.wrap(DOM.getElementById("userReg"));
 				PasswordTextBox passwordText=PasswordTextBox.wrap(DOM.getElementById("passReg"));
@@ -502,6 +476,21 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 				String barrio=barrioText.getText();
 				String telefono=telefonoText.getText();
 				
+				if (!FieldVerifier.isEmail(username)) {
+					errorLabel.setText("Debes ingresar un email valido.");
+					DOM.getElementById("userReg").setPropertyString("value", "");
+					confirmar.setEnabled(true);
+					cancelar.setEnabled(true);
+					return;
+				}
+				
+				if (!FieldVerifier.isValidPass(password)) {
+					errorLabel.setText("El password no puede ser vacio, y debe tener al menos 5 caracteres");
+					DOM.getElementById("passReg").setPropertyString("value", "");
+					confirmar.setEnabled(true);
+					cancelar.setEnabled(true);
+					return;
+				}
 				
 				
 				greetingService.nuevoUsuario(username, password, email, nombre,
@@ -537,6 +526,28 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						});
 			}
 		}
+		
+		
+		class MyHandler1 implements ClickHandler, KeyUpHandler {
+
+			@Override
+			public void onKeyUp(KeyUpEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			
+		}
+
+		
+		
+		
 		
 		// Create a handler for the sendButton and nameField
 				class MyHandler2 implements ClickHandler, KeyUpHandler {
@@ -662,10 +673,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					}
 		
 					private void login(){
-						
-						
-						System.out.println("aca");//htmlInicio
-						
+								
 						userName=TextBox.wrap(DOM.getElementById("nico"));
 						
 						pass=PasswordTextBox.wrap(DOM.getElementById("nicolas"));
@@ -717,21 +725,19 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					
 					
 				}
-				 
-				 
-				 
-				 
-				
-				
-				 
-	 
+				 						 
+		//Login en SendBox.		 
 		MyHandler3 handlerLogin =new MyHandler3();
 		btnNewButton_5.addClickHandler(handlerLogin);
 	
 		//Lanza evento para registrar nuevo usuario en el sistema.
 		MyHandler handlerPegar = new MyHandler();
 		confirmar.addClickHandler(handlerPegar);
-				
+		
+		//Limpia registros de ingreso
+		MyHandler1 handlerLimpiarRegistro = new MyHandler1();
+		cancelar.addClickHandler(handlerLimpiarRegistro);
+		
 		MyHandler2 handler2 = new MyHandler2();
 		btnNewButton.addClickHandler(handler2);
 
@@ -765,7 +771,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 	}
 
-//prueba multiples HTML
+//Navegacion.
 
 	@Override
 	public void onValueChange(ValueChangeEvent event) {
@@ -784,7 +790,14 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	     //Registro
 	    } else if (History.getToken().equals("registro")) {
 	    	
+	    	
+	    	htmlRegistration.setVisible(true);
+	    	htmlRegistration.setHTML("<strong>Registrate en send-box.com</strong> le brindamos la facilidad de que Ud pueda comprar desde internet, lo que quiera y nosotros <br>llevamos el paquete a la puerta de su casa, un servicio unico en Uruguay.");
+	 		RootPanel.get("htmlRegistro").add(htmlRegistration);
+	    	txtbxIpod.setVisible(false);
+	    	btnNewButton.setVisible(false);
 	    	sendBoxImg.setVisible(false);
+	    	comboBox.setVisible(false);
 	    	btnNewButton_1.setVisible(false);
 	    	htmlNewHtml.setVisible(false);
 			htmlNewHtml2.setVisible(false);
@@ -826,7 +839,13 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	    
 	  //Home page
      else if (History.getToken().equals("home")) {
-    	   sendBoxImg.setVisible(true);	
+
+    	 htmlRegistration.setVisible(false);
+    	    txtbxIpod.setVisible(true);
+  
+    	    sendBoxImg.setVisible(true);	
+	    	btnNewButton.setVisible(true);
+	    	comboBox.setVisible(true);
     	   	
     	    htmlNewHtml.setHTML("");
     	    htmlNewHtml2.setHTML("");
@@ -860,6 +879,12 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
      }
 	  //Home page default
 	    else {
+	    	txtbxIpod.setVisible(true);
+	    	btnNewButton.setVisible(true);
+	    	comboBox.setVisible(true);
+	    	 htmlRegistration.setVisible(false);
+
+
 	    	RootPanel.get("userReg").setVisible(false);
 			RootPanel.get("passReg").setVisible(false);
 			RootPanel.get("emailReg").setVisible(false);
@@ -878,5 +903,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	
 	    }
 	}
+	
+	
 	
 }
