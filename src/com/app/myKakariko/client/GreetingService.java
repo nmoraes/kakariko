@@ -14,9 +14,9 @@ public interface GreetingService extends RemoteService {
 
 	String inicio(String name) throws IllegalArgumentException;
 
-	String nuevoUsuario(String username, String password, String email,
+	String nuevoUsuario(String username, String password,
 			String nombre, String apellido, String cedula, String departamento,
-			String ciudad, String direccion, String barrio, String telefono);
+			String ciudad, String direccion, String telefono);
 
 	boolean login(String user, String pass);
 

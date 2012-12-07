@@ -13,8 +13,8 @@ public interface GreetingServiceAsync {
 
 	void inicio(String name, AsyncCallback<String> callback);
 
-	void nuevoUsuario(String username, String password,String email, String nombre,
-			String apellido, String cedula, String departamento, String ciudad, String direccion, String barrio, String telefono, AsyncCallback<String> callback);
+	void nuevoUsuario(String username, String password, String nombre,
+			String apellido, String cedula, String departamento, String ciudad, String direccion, String telefono, AsyncCallback<String> callback);
 
 	void login(String user, String pass,AsyncCallback<Boolean> callback);
 

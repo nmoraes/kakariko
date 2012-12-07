@@ -22,7 +22,7 @@ public class Ventas {
 		this.entregaEstimada= null;				//calculada a partir del pago en abitab
 		this.precio=precio;						//precio del item + shipping
 		this.dateShiped = null;
- 
+  
 	}
 
 	public String getUsername() {

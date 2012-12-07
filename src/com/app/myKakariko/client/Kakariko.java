@@ -97,14 +97,12 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
   
 		RootPanel.get("userReg").setVisible(false);
 		RootPanel.get("passReg").setVisible(false);
-		RootPanel.get("emailReg").setVisible(false);
 		RootPanel.get("nombreReg").setVisible(false);
 		RootPanel.get("apellidoReg").setVisible(false);
 		RootPanel.get("cedulaReg").setVisible(false);
 		RootPanel.get("departamentoReg").setVisible(false);
 		RootPanel.get("ciudadReg").setVisible(false);
 		RootPanel.get("direccionReg").setVisible(false);
-		RootPanel.get("barrioReg").setVisible(false);
 		RootPanel.get("telefonoReg").setVisible(false);
 		
        
@@ -454,26 +452,22 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								
 				TextBox usernameText=TextBox.wrap(DOM.getElementById("userReg"));
 				PasswordTextBox passwordText=PasswordTextBox.wrap(DOM.getElementById("passReg"));
-				TextBox emailText=TextBox.wrap(DOM.getElementById("emailReg"));
 				TextBox nombreText=TextBox.wrap(DOM.getElementById("nombreReg"));
 				TextBox apellidoText=TextBox.wrap(DOM.getElementById("apellidoReg"));
 				TextBox cedulaText=TextBox.wrap(DOM.getElementById("cedulaReg"));
 				TextBox departamentoText=TextBox.wrap(DOM.getElementById("departamentoReg"));
 				TextBox ciudadText=TextBox.wrap(DOM.getElementById("ciudadReg"));
 				TextBox direccionText=TextBox.wrap(DOM.getElementById("direccionReg"));
-				TextBox barrioText=TextBox.wrap(DOM.getElementById("barrioReg"));
 				TextBox telefonoText=TextBox.wrap(DOM.getElementById("telefonoReg"));
 				
 				String username =usernameText.getText();
 				String password=passwordText.getText();
-				String email=emailText.getText();
 				String nombre=nombreText.getText();
 				String apellido=apellidoText.getText(); 	
 				String cedula=cedulaText.getText();
 				String departamento=departamentoText.getText();
 				String ciudad=ciudadText.getText();
 				String direccion=direccionText.getText(); 
-				String barrio=barrioText.getText();
 				String telefono=telefonoText.getText();
 				
 				if (!FieldVerifier.isEmail(username)) {
@@ -493,8 +487,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 				}
 				
 				
-				greetingService.nuevoUsuario(username, password, email, nombre,
-						apellido, cedula, departamento, ciudad, direccion, barrio, telefono,
+				greetingService.nuevoUsuario(username, password, nombre,
+						apellido, cedula, departamento, ciudad, direccion, telefono,
 						new AsyncCallback<String>() {
 							public void onFailure(Throwable caught) {
 							
@@ -510,14 +504,12 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								
 								DOM.getElementById("userReg").setPropertyString("value", "");
 								DOM.getElementById("passReg").setPropertyString("value", "");
-								DOM.getElementById("emailReg").setPropertyString("value", "");
 								DOM.getElementById("nombreReg").setPropertyString("value", "");
 								DOM.getElementById("apellidoReg").setPropertyString("value", "");
 								DOM.getElementById("cedulaReg").setPropertyString("value", "");
 								DOM.getElementById("departamentoReg").setPropertyString("value", "");
 								DOM.getElementById("ciudadReg").setPropertyString("value", "");
 								DOM.getElementById("direccionReg").setPropertyString("value", "");
-								DOM.getElementById("barrioReg").setPropertyString("value", "");
 								DOM.getElementById("telefonoReg").setPropertyString("value", "");
 							
 								confirmar.setEnabled(true);
@@ -814,14 +806,12 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
     		
 			RootPanel.get("userReg").setVisible(true);
 			RootPanel.get("passReg").setVisible(true);
-			RootPanel.get("emailReg").setVisible(true);
 			RootPanel.get("nombreReg").setVisible(true);
 			RootPanel.get("apellidoReg").setVisible(true);
 			RootPanel.get("cedulaReg").setVisible(true);
 			RootPanel.get("departamentoReg").setVisible(true);
 			RootPanel.get("ciudadReg").setVisible(true);
 			RootPanel.get("direccionReg").setVisible(true);
-			RootPanel.get("barrioReg").setVisible(true);
 			RootPanel.get("telefonoReg").setVisible(true);
 
 			confirmar.setVisible(true);
@@ -862,14 +852,12 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			
     		RootPanel.get("userReg").setVisible(false);
 			RootPanel.get("passReg").setVisible(false);
-			RootPanel.get("emailReg").setVisible(false);
 			RootPanel.get("nombreReg").setVisible(false);
 			RootPanel.get("apellidoReg").setVisible(false);
 			RootPanel.get("cedulaReg").setVisible(false);
 			RootPanel.get("departamentoReg").setVisible(false);
 			RootPanel.get("ciudadReg").setVisible(false);
 			RootPanel.get("direccionReg").setVisible(false);
-			RootPanel.get("barrioReg").setVisible(false);
 			RootPanel.get("telefonoReg").setVisible(false);
 
 			confirmar.setVisible(false);
@@ -887,14 +875,12 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 	    	RootPanel.get("userReg").setVisible(false);
 			RootPanel.get("passReg").setVisible(false);
-			RootPanel.get("emailReg").setVisible(false);
 			RootPanel.get("nombreReg").setVisible(false);
 			RootPanel.get("apellidoReg").setVisible(false);
 			RootPanel.get("cedulaReg").setVisible(false);
 			RootPanel.get("departamentoReg").setVisible(false);
 			RootPanel.get("ciudadReg").setVisible(false);
 			RootPanel.get("direccionReg").setVisible(false);
-			RootPanel.get("barrioReg").setVisible(false);
 			RootPanel.get("telefonoReg").setVisible(false);
 	    	sendBoxImg.setVisible(true);
 	    	RootPanel.get("des1").setVisible(true);

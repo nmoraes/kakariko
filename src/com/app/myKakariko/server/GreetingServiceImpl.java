@@ -356,15 +356,15 @@ public boolean login(String user, String pass) throws IllegalArgumentException {
 }
 
 
-public String nuevoUsuario(String username, String password,String email, String nombre,
-		String apellido, String cedula, String departamento, String ciudad, String direccion, String barrio, String telefono)
+public String nuevoUsuario(String username, String password, String nombre,
+		String apellido, String cedula, String departamento, String ciudad, String direccion, String telefono)
 		throws IllegalArgumentException {
 
 	PersistenceManager pm = null;
 	pm = PMF.get().getPersistenceManager();
 
-	Client users = new Client(username, password, email, nombre,
-			apellido, cedula, departamento, ciudad, direccion, barrio, telefono);
+	Client users = new Client(username, password, nombre,
+			apellido, cedula, departamento, ciudad, direccion, telefono);
 	
 	Client e = null;
 	try {

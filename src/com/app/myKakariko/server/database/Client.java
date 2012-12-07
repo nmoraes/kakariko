@@ -15,27 +15,22 @@ public class Client {
 	/** 
 	 * Client representa al data object, de los clientes del sistema.
 	 */  
-
+ 
       
-	public Client(String username, String password,String email, String nombre,
-			String apellido, String cedula, String departamento, String ciudad, String direccion, String barrio, String telefono) {
+	public Client(String username, String password, String nombre,
+			String apellido, String cedula, String departamento, String ciudad, String direccion, String telefono) {
 		this.username = username;
 		this.password=password;
-		this.email=email;
 		this.nombre =nombre;
 		this.apellido = apellido;
 		this.cedula = cedula;
 		this.departamento = departamento;
 		this.ciudad =ciudad;                 //campo innecesario.
 		this.direccion = direccion;
-		this.barrio = barrio;				//campo innecesario.
 		this.telefono = telefono;
 		this.date =  new Date();
 
 	}
-
-	@Persistent
-	private String barrio;
 	
 	@Persistent
 	private String telefono;
@@ -55,18 +50,6 @@ public class Client {
 	@PrimaryKey
 	@Persistent
 	private String username;
-	
-	@Persistent
-	private String email;
-	
-	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	@Persistent
 	private String apellido;
@@ -89,14 +72,7 @@ public class Client {
 	@Persistent
 	private Date date;
 
-	public String getBarrio() {
-		return barrio;
-	}
-
-	public void setBarrio(String barrio) {
-		this.barrio = barrio;
-	}
-
+	
 	public String getTelefono() {
 		return telefono;
 	}
