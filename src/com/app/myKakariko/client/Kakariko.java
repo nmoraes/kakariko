@@ -84,7 +84,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	
 	//Botones de registracion
 	private Button confirmar=new Button("enviar");
-	private Button cancelar=new Button("cancelar");
+	private Hyperlink cancelar;
 	
 	
 	 private Label label=new Label();
@@ -110,7 +110,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
         confirmar.setStyleName("btn btn-primary");
 		RootPanel.get("confirmar").add(confirmar);
 
-        
+        cancelar = new Hyperlink("cancelar","home");
         cancelar.setVisible(false);
         cancelar.setStyleName("btn");
 		RootPanel.get("cancelar").add(cancelar);
@@ -424,7 +424,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			 */
 			public void onClick(ClickEvent event) {
 				confirmar.setEnabled(false);
-				cancelar.setEnabled(false);
+				//cancelar.setEnabled(false);
 				sendNameToServer();
 				System.out.println("hola");
 			}
@@ -435,7 +435,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			public void onKeyUp(KeyUpEvent event) {
 				//if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
 				confirmar.setEnabled(false);
-				cancelar.setEnabled(false);
+				//cancelar.setEnabled(false);
 				sendNameToServer();
 				//System.out.println("hola");
 
@@ -474,7 +474,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					errorLabel.setText("Debes ingresar un email valido.");
 					DOM.getElementById("userReg").setPropertyString("value", "");
 					confirmar.setEnabled(true);
-					cancelar.setEnabled(true);
+					//cancelar.setEnabled(true);
 					return;
 				}
 				
@@ -482,7 +482,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					errorLabel.setText("El password no puede ser vacio, y debe tener al menos 5 caracteres");
 					DOM.getElementById("passReg").setPropertyString("value", "");
 					confirmar.setEnabled(true);
-					cancelar.setEnabled(true);
+				//	cancelar.setEnabled(true);
 					return;
 				}
 				
@@ -495,7 +495,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								Window.alert("Error al registrarte");
 							
 								confirmar.setEnabled(true);
-								cancelar.setEnabled(true);
+								//cancelar.setEnabled(true);
 							}
 
 							public void onSuccess(String result) {
@@ -513,7 +513,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								DOM.getElementById("telefonoReg").setPropertyString("value", "");
 							
 								confirmar.setEnabled(true);
-								cancelar.setEnabled(true);
+								//cancelar.setEnabled(true);
 							}
 						});
 			}
