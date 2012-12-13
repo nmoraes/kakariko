@@ -86,7 +86,10 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private Button confirmar=new Button("enviar");
 	private Hyperlink cancelar;
 	
+	private Hyperlink miCuenta;
+	private Button salir= new Button("salir");
 	
+	final Label errorLabel = new Label();
 	 private Label label=new Label();
 	
 	/**
@@ -109,6 +112,13 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
         confirmar.setVisible(false);
         confirmar.setStyleName("btn btn-primary");
 		RootPanel.get("confirmar").add(confirmar);
+		
+		miCuenta= new Hyperlink("mi cuenta","home"); //cambiar el token !!!
+		miCuenta.setVisible(false);
+		miCuenta.setStyleName("btn btn-link");
+		RootPanel.get("miCuenta").add(miCuenta);
+
+		
 
         cancelar = new Hyperlink("cancelar","home");
         cancelar.setVisible(false);
@@ -116,7 +126,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("cancelar").add(cancelar);
 		
 		
-		final Label errorLabel = new Label();
+		
 
 		// Add the nameField and sendButton to the RootPanel
 		// Use RootPanel.get() to get the entire body element
@@ -695,7 +705,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 									
 
 								userName.setVisible(false);
+								btnNewButton_3.setVisible(false);
 								pass.setVisible(false);
+								miCuenta.setVisible(true);
 								btnNewButton_5.setVisible(false);
 								
 								Window.alert("Welcome back");
@@ -781,8 +793,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	    
 	     //Registro
 	    } else if (History.getToken().equals("registro")) {
-	    	
-	    	
+	    	errorLabel.setText("");
+	    	errorLabel.setVisible(true);
 	    	htmlRegistration.setVisible(true);
 	    	htmlRegistration.setHTML("<strong>Registrate en send-box.com</strong> le brindamos la facilidad de que Ud pueda comprar desde internet, lo que quiera y nosotros <br>llevamos el paquete a la puerta de su casa, un servicio unico en Uruguay.");
 	 		RootPanel.get("htmlRegistro").add(htmlRegistration);
@@ -829,7 +841,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	    
 	  //Home page
      else if (History.getToken().equals("home")) {
-
+    	 errorLabel.setVisible(false);
     	 htmlRegistration.setVisible(false);
     	    txtbxIpod.setVisible(true);
   
