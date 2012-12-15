@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 
@@ -16,7 +18,6 @@ import net.sf.json.JSONSerializer;
 import com.app.myKakariko.client.GreetingService;
 import com.app.myKakariko.server.database.Client;
 import com.app.myKakariko.server.database.PMF;
-import com.app.myKakariko.shared.FieldVerifier;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
@@ -28,16 +29,14 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 @SuppressWarnings("serial")
 public class GreetingServiceImpl extends RemoteServiceServlet implements
 		GreetingService {
+	
+   // private static final Logger log = Logger.getLogger(GreetingServiceImpl.class.getName());
 
+	
+
+    
 	public String greetServer(String input) throws IllegalArgumentException {
-		// Verify that the input is valid.
-		//if (!FieldVerifier.isValidName(input)) {
-			// If the input is not valid, throw an IllegalArgumentException back
-			// to
-			// the client.
-			//throw new IllegalArgumentException(
-		//			"Name must be at least 4 characters long");
-	//	}
+		
 
 		String pictures = null;
 		String price = null;
@@ -110,6 +109,9 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public String[] query(String name) throws IllegalArgumentException {
 
+		 //log.log(Level.INFO, "AHORA SEEEE CARAJO consulta :" +name);
+		 //log.info("HOLA");
+		 
 		String site = null;
 		String query = null;
 		String currency = null;

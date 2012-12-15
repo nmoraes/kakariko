@@ -10,6 +10,7 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.History;
@@ -82,12 +83,22 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	
 	private Hyperlink btnNewButton_3 ;
 	
-	//Botones de registracion
+	//Botones de registracion.
 	private Button confirmar=new Button("enviar");
 	private Hyperlink cancelar;
 	
+	
+	//panel de usuario.
 	private Hyperlink miCuenta;
+	private MiCuenta panelDeControl;
+
+	
+	
 	private Button salir= new Button("salir");
+	
+	
+	
+	
 	
 	final Label errorLabel = new Label();
 	 private Label label=new Label();
@@ -97,6 +108,83 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	 */
 	public void onModuleLoad() {
 	 	
+		// Add the nameField and sendButton to the RootPanel
+		// Use RootPanel.get() to get the entire body element
+		RootPanel rootPanel = RootPanel.get("nameFieldContainer");
+		//RootPanel.get("sendButtonContainer").add(sendButton, 238, 200);
+		RootPanel.get("errorLabelContainer").add(errorLabel);
+		
+		//miCuenta
+		miCuenta= new Hyperlink("mi cuenta","miCuenta");
+		miCuenta.setStyleName("btn btn-link");
+		RootPanel.get("miCuenta").add(miCuenta);
+		miCuenta.setVisible(false);
+		
+		//login in send-box.com
+		userName = new TextBox();
+		pass = new PasswordTextBox();
+		btnNewButton_5 = new Button("entrar");
+		RootPanel.get("login").add(btnNewButton_5);
+		btnNewButton_5.setSize("64px", "30px");
+		btnNewButton_5.setStyleName("btn");
+		
+		//register in send-box.com
+		btnNewButton_3 = new Hyperlink("registrarse","registro");
+		RootPanel.get("registro").add(btnNewButton_3);
+		btnNewButton_3.setStyleName("btn btn-link");
+        confirmar.setVisible(false);
+        confirmar.setStyleName("btn btn-primary");
+		RootPanel.get("confirmar").add(confirmar);
+		
+        cancelar = new Hyperlink("cancelar","home");
+        cancelar.setVisible(false);
+        cancelar.setStyleName("btn");
+		RootPanel.get("cancelar").add(cancelar);
+		
+		//logout send-box.com
+		btnNewButton_2 = new Button("salir");
+		RootPanel.get("salir").add(btnNewButton_2);
+		btnNewButton_2.setStyleName("btn btn-link");
+		btnNewButton_2.setVisible(false);
+		
+		
+		// /////////galletitas///////////////
+				if (Cookies.getCookie("login") != null) {
+
+					System.out.println("hay cookie");
+					btnNewButton_5.setVisible(false);
+					userName=TextBox.wrap(DOM.getElementById("nico"));
+					userName.setVisible(false);
+					pass=PasswordTextBox.wrap(DOM.getElementById("nicolas"));
+				    pass.setVisible(false);
+					miCuenta.setVisible(true);
+					btnNewButton_3.setVisible(false);
+					btnNewButton_2.setVisible(true);
+					confirmar.setVisible(false);
+					cancelar.setVisible(false);
+					
+
+
+
+				} else {
+					//miCuenta.setVisible(false);
+
+					System.out.println("NO hay cookie");
+
+				
+					
+					
+					
+					
+				}
+		
+		
+		
+		
+		
+		panelDeControl=new MiCuenta();
+		RootPanel.get("panelDeControl").add(panelDeControl);
+		panelDeControl.setVisible(false);
   
 		RootPanel.get("userReg").setVisible(false);
 		RootPanel.get("passReg").setVisible(false);
@@ -109,37 +197,19 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("telefonoReg").setVisible(false);
 		
        
-        confirmar.setVisible(false);
-        confirmar.setStyleName("btn btn-primary");
-		RootPanel.get("confirmar").add(confirmar);
-		
-		miCuenta= new Hyperlink("mi cuenta","home"); //cambiar el token !!!
-		miCuenta.setVisible(false);
-		miCuenta.setStyleName("btn btn-link");
-		RootPanel.get("miCuenta").add(miCuenta);
 
-		
-
-        cancelar = new Hyperlink("cancelar","home");
-        cancelar.setVisible(false);
-        cancelar.setStyleName("btn");
-		RootPanel.get("cancelar").add(cancelar);
 		
 		
 		
 
-		// Add the nameField and sendButton to the RootPanel
-		// Use RootPanel.get() to get the entire body element
-		RootPanel rootPanel = RootPanel.get("nameFieldContainer");
-		//RootPanel.get("sendButtonContainer").add(sendButton, 238, 200);
-		RootPanel.get("errorLabelContainer").add(errorLabel);
+	
 		
 		
 		btnNewButton = new Button("New button");
 		btnNewButton.setText("buscar");
 		// We can add style names to widgets
 		//sendButton.addStyleName("sendButton");
-		btnNewButton.setStyleName("btn btn-success");
+		btnNewButton.setStyleName("btn btn-primary");
 		//rootPanel.add(btnNewButton, 20, 0);
 		btnNewButton.setSize("64px", "30px");
 		RootPanel.get("btnNewButton").add(btnNewButton);
@@ -195,16 +265,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		
 		RootPanel.get("combo").add(comboBox);
 		
-		btnNewButton_2 = new Button("regiNONONONOstrarse");
-		rootPanel.add(btnNewButton_2, 20, 185);
-		RootPanel.get("iniciar").add(btnNewButton_2);
-		btnNewButton_2.setStyleName("btn btn-link");
 
 
-		btnNewButton_3 = new Hyperlink("registrarse","registro");
-		rootPanel.add(btnNewButton_3, 109, 185);
-		RootPanel.get("registro").add(btnNewButton_3);
-		btnNewButton_3.setStyleName("btn btn-link");
 
 		Button btnNewButton_4 = new Button("ayuda");
 		rootPanel.add(btnNewButton_4, 198, 185);
@@ -217,10 +279,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("pay").add(sendBoxImg);
 			
 		
-		btnNewButton_5 = new Button("entrar");
-		RootPanel.get("login").add(btnNewButton_5);
-		btnNewButton_5.setSize("64px", "30px");
-		btnNewButton_5.setStyleName("btn btn-primary");
+		
 			
         
         History.addValueChangeHandler(this);
@@ -249,6 +308,31 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 			}
 		});
+		
+		
+		// Handler para eliminacion de cookies.
+				class MyHandlerCookie implements ClickHandler, KeyUpHandler {
+
+					@Override
+					public void onClick(ClickEvent event) {
+						// rootPanel.setVisible(false);
+						Cookies.removeCookie("login");
+						Window.Location.reload();
+					}
+
+					@Override
+					public void onKeyUp(KeyUpEvent event) {
+						Cookies.removeCookie("login");
+						Window.Location.reload();
+					}
+
+				}
+
+		
+		
+		
+		
+		
 		
 		
 
@@ -701,6 +785,20 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 							
 							public void onSuccess(Boolean result) {				
 								
+								
+								
+								// ////////////////COOKIES////////////////////////
+
+								final long DURATION = 180000; // duration
+								// remembering login.3 minutos
+
+								java.util.Date expires = new java.util.Date(
+										System.currentTimeMillis() + DURATION);
+								Cookies.setCookie("login", "nico", expires);
+
+								// cokies
+								
+								
 								System.out.println("Welcome Back");
 									
 
@@ -709,16 +807,10 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								pass.setVisible(false);
 								miCuenta.setVisible(true);
 								btnNewButton_5.setVisible(false);
+								btnNewButton_2.setVisible(true);
 								
 								Window.alert("Welcome back");
-								
-								//btnNewButton_2.setVisible(false);
-								
-								//htmlInicio.setHTML(result);
-								//RootPanel.get("htmlInicio").add(htmlInicio);
 
-								
-								
 								
 							}
 							
@@ -744,7 +836,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		
 		MyHandler2 handler2 = new MyHandler2();
 		btnNewButton.addClickHandler(handler2);
-
+		
+		MyHandlerCookie killingCookies = new MyHandlerCookie();
+		btnNewButton_2.addClickHandler(killingCookies);
 		
 		//Define handler to manage the click event on the product list
 		MyHandlerProducto1 p1 = new MyHandlerProducto1();
@@ -787,12 +881,19 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	    if(History.getToken().equals("aboutUs")) {
 	    	
 	        label.setText("cosas que pasan lalalala");
-	    } else if (History.getToken().equals("details")) {
-	        label.setText("details kakakakakakka");
-	    
+	    } else if (History.getToken().equals("miCuenta") &&	(Cookies.getCookie("login") != null)){
+
+	    	System.out.println("estoy en mi cuenta");
+	    	sendBoxImg.setVisible(false);
+
+			panelDeControl.setVisible(true);
+
+	    	
+	    	
 	    
 	     //Registro
-	    } else if (History.getToken().equals("registro")) {
+	    } else if (History.getToken().equals("registro") && (Cookies.getCookie("login") == null)) {
+	    	panelDeControl.setVisible(false);
 	    	errorLabel.setText("");
 	    	errorLabel.setVisible(true);
 	    	htmlRegistration.setVisible(true);
@@ -828,76 +929,51 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 			confirmar.setVisible(true);
 			cancelar.setVisible(true);
-			
-		
-	    	/*
-	    	userReg=TextBox.wrap(DOM.getElementById("userReg"));
-	    	passReg=PasswordTextBox.wrap(DOM.getElementById("passReg"));	    	 
-
-	    	
-	    	*/
+	
 			
 		} 
 	    
-	  //Home page
-     else if (History.getToken().equals("home")) {
-    	 errorLabel.setVisible(false);
-    	 htmlRegistration.setVisible(false);
-    	    txtbxIpod.setVisible(true);
-  
-    	    sendBoxImg.setVisible(true);	
-	    	btnNewButton.setVisible(true);
-	    	comboBox.setVisible(true);
-    	   	
-    	    htmlNewHtml.setHTML("");
-    	    htmlNewHtml2.setHTML("");
-			htmlNewHtml3.setHTML("");
-			htmlNewHtml4.setHTML("");
-			htmlNewHtml5.setHTML("");
-			htmlNewHtml6.setHTML("");
-			htmlNewHtml7.setHTML("");
-			
-    	   
-    		RootPanel.get("des1").setVisible(true);
-			RootPanel.get("des2").setVisible(true);
-			RootPanel.get("des3").setVisible(true);
-			
-    		RootPanel.get("userReg").setVisible(false);
-			RootPanel.get("passReg").setVisible(false);
-			RootPanel.get("nombreReg").setVisible(false);
-			RootPanel.get("apellidoReg").setVisible(false);
-			RootPanel.get("cedulaReg").setVisible(false);
-			RootPanel.get("departamentoReg").setVisible(false);
-			RootPanel.get("ciudadReg").setVisible(false);
-			RootPanel.get("direccionReg").setVisible(false);
-			RootPanel.get("telefonoReg").setVisible(false);
-
-			confirmar.setVisible(false);
-			cancelar.setVisible(false);
-	    	
-	  
-     }
+	 
 	  //Home page default
 	    else {
-	    	txtbxIpod.setVisible(true);
-	    	btnNewButton.setVisible(true);
-	    	comboBox.setVisible(true);
+	    	System.out.println("JAJAJA");
+	    	
+	    	panelDeControl.setVisible(false);
+
+	    	 errorLabel.setVisible(false);
 	    	 htmlRegistration.setVisible(false);
+	    	    txtbxIpod.setVisible(true);
+	  
+	    	    sendBoxImg.setVisible(true);	
+		    	btnNewButton.setVisible(true);
+		    	comboBox.setVisible(true);
+	    	   	
+	    	    htmlNewHtml.setHTML("");
+	    	    htmlNewHtml2.setHTML("");
+				htmlNewHtml3.setHTML("");
+				htmlNewHtml4.setHTML("");
+				htmlNewHtml5.setHTML("");
+				htmlNewHtml6.setHTML("");
+				htmlNewHtml7.setHTML("");
+				
+	    	   
+	    		RootPanel.get("des1").setVisible(true);
+				RootPanel.get("des2").setVisible(true);
+				RootPanel.get("des3").setVisible(true);
+				
+	    		RootPanel.get("userReg").setVisible(false);
+				RootPanel.get("passReg").setVisible(false);
+				RootPanel.get("nombreReg").setVisible(false);
+				RootPanel.get("apellidoReg").setVisible(false);
+				RootPanel.get("cedulaReg").setVisible(false);
+				RootPanel.get("departamentoReg").setVisible(false);
+				RootPanel.get("ciudadReg").setVisible(false);
+				RootPanel.get("direccionReg").setVisible(false);
+				RootPanel.get("telefonoReg").setVisible(false);
 
-
-	    	RootPanel.get("userReg").setVisible(false);
-			RootPanel.get("passReg").setVisible(false);
-			RootPanel.get("nombreReg").setVisible(false);
-			RootPanel.get("apellidoReg").setVisible(false);
-			RootPanel.get("cedulaReg").setVisible(false);
-			RootPanel.get("departamentoReg").setVisible(false);
-			RootPanel.get("ciudadReg").setVisible(false);
-			RootPanel.get("direccionReg").setVisible(false);
-			RootPanel.get("telefonoReg").setVisible(false);
-	    	sendBoxImg.setVisible(true);
-	    	RootPanel.get("des1").setVisible(true);
-			RootPanel.get("des2").setVisible(true);
-			RootPanel.get("des3").setVisible(true);
+				confirmar.setVisible(false);
+				cancelar.setVisible(false);
+		    	
 	
 	    }
 	}
