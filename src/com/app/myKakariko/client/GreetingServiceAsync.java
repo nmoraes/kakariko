@@ -19,4 +19,5 @@ public interface GreetingServiceAsync {
 	void login(String user, String pass,AsyncCallback<Boolean> callback);
 
 
+
 }

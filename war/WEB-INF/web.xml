@@ -29,5 +29,19 @@
     <servlet-name>SystemServiceServlet</servlet-name>
     <url-pattern>/_ah/spi/*</url-pattern>
   </servlet-mapping>
+  
+  
+  
+  <servlet>
+  	<servlet-name>MiCuentaService</servlet-name>
+  	<servlet-class>com.app.myKakariko.server.MiCuentaServicesImpl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MiCuentaService</servlet-name>
+  	<url-pattern>/kakariko/MiCuentaService</url-pattern>
+  </servlet-mapping>
+ 
+  
+  
 
 </web-app>

@@ -45,6 +45,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private final GreetingServiceAsync greetingService = GWT
 			.create(GreetingService.class);
 
+	
+	private static String userlog=null;
 	private TextBox txtbxIpod;
 	private Button btnNewButton;
 	private HTML htmlNewHtml= new HTML("", true);
@@ -149,7 +151,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		
 		
 		// /////////galletitas///////////////
-				if (Cookies.getCookie("login") != null) {
+				if (Cookies.getCookie("13051983ntmp") != null) {
 
 					System.out.println("hay cookie");
 					btnNewButton_5.setVisible(false);
@@ -316,13 +318,13 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					@Override
 					public void onClick(ClickEvent event) {
 						// rootPanel.setVisible(false);
-						Cookies.removeCookie("login");
+						Cookies.removeCookie("13051983ntmp");
 						Window.Location.reload();
 					}
 
 					@Override
 					public void onKeyUp(KeyUpEvent event) {
-						Cookies.removeCookie("login");
+						Cookies.removeCookie("13051983ntmp");
 						Window.Location.reload();
 					}
 
@@ -765,9 +767,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						pass=PasswordTextBox.wrap(DOM.getElementById("nicolas"));
 
 						
-
 						
 						String username= userName.getText();
+						userlog=username;
 						String passs= pass.getText();
 						
 						greetingService.login(username,passs, new AsyncCallback<Boolean>(){
@@ -794,7 +796,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 								java.util.Date expires = new java.util.Date(
 										System.currentTimeMillis() + DURATION);
-								Cookies.setCookie("login", "nico", expires);
+								Cookies.setCookie("13051983ntmp", userlog, expires);
 
 								// cokies
 								
@@ -881,18 +883,57 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	    if(History.getToken().equals("aboutUs")) {
 	    	
 	        label.setText("cosas que pasan lalalala");
-	    } else if (History.getToken().equals("miCuenta") &&	(Cookies.getCookie("login") != null)){
+	    } else if (History.getToken().equals("miCuenta") &&	(Cookies.getCookie("13051983ntmp") != null)){
+
 
 	    	System.out.println("estoy en mi cuenta");
-	    	sendBoxImg.setVisible(false);
+	    	String user = Cookies.getCookie("13051983ntmp");
+	    	
+	    	/* greetingService.miCuenta(user, new AsyncCallback<String[]>(){
 
+				
+				public void onFailure(Throwable caught) {
+
+					System.out.println("error al traer data.......al estoy en capa 1");
+
+				}
+		
+	
+
+				@Override
+				public void onSuccess(String[] result) {
+					// TODO Auto-generated method stub
+					
+						
+					System.out.println("hola: "+ result[0] + " " +result[1]);
+					
+					/*panelDeControl.setUsername(result[0]);
+					panelDeControl.setPassword(result[1]);
+					panelDeControl.setDireccion(result[2]);
+					panelDeControl.setTelefono(result[3]);
+					panelDeControl.setCi(result[4]);
+					panelDeControl.setDepartamento(result[5]);
+					panelDeControl.setCiudad(result[6]);*/
+
+			/*				
+				
+				}
+				
+				
+			});
+			
+			*/
+			
+			
+	    	sendBoxImg.setVisible(false);
 			panelDeControl.setVisible(true);
+
 
 	    	
 	    	
 	    
 	     //Registro
-	    } else if (History.getToken().equals("registro") && (Cookies.getCookie("login") == null)) {
+	    } else if (History.getToken().equals("registro") && (Cookies.getCookie("13051983ntmp") == null)) {
 	    	panelDeControl.setVisible(false);
 	    	errorLabel.setText("");
 	    	errorLabel.setVisible(true);
