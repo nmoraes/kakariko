@@ -37,6 +37,7 @@ public class MiCuenta extends Composite {
 		private TextBox textBox_4;
 		private TextBox textBox_5;
 		private TextBox textBox_6;
+		private TextBox textBox_8;
 
 		// boton para modificacion
 		private Button btnBuscar;
@@ -115,13 +116,15 @@ public class MiCuenta extends Composite {
 			Label lblIngresoDeNuevo = new Label("datos personales");
 			absolutePanel.add(lblIngresoDeNuevo, 75, 10);
 
-			btnEnviar = new Button("enviar");
+			btnEnviar = new Button("cancelar");
+			btnEnviar.setStyleName("btn btn-large");
 			absolutePanel.add(btnEnviar, 357, 200);
 
 			btnBuscar = new Button("buscar");
+			btnBuscar.setStyleName("btn btn-large btn-primary");
 			absolutePanel.add(btnBuscar, 440, 82);
 			
-			TextBox textBox_8 = new TextBox();
+			textBox_8 = new TextBox();
 			absolutePanel.add(textBox_8, 82, 55);
 			
 			Label lblUsername = new Label("username");
@@ -190,17 +193,33 @@ public class MiCuenta extends Composite {
 
 			@Override
 			public void onClick(ClickEvent event) {
-			    btnEnviar.setEnabled(false);
+			    
+				if (Cookies.getCookie("13051983ntmp")!=null){
+				btnEnviar.setEnabled(false);
 				findClient();
+				}else{
+
+					  Window.Location.assign("http://www.send-box.com");
+				
+				}
+				
 			}
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-			    btnEnviar.setEnabled(false);
-				findClient();
+				if (Cookies.getCookie("13051983ntmp")!=null){
+					btnEnviar.setEnabled(false);
+					findClient();
+					}else{
+					    Window.Location.assign("http://www.send-box.com");							}
+						
+					
+					
 			}
 
 			private void findClient() {
+				
+				
 				String username =Cookies.getCookie("13051983ntmp");
 
 				
@@ -219,8 +238,10 @@ public class MiCuenta extends Composite {
 						 btnEnviar.setEnabled(true);
 						 
 						 System.out.println("hola Mi cuento: "+ result[0] + " " +result[1]);
-
-
+						 textBox_8.setText(result[0] );
+						 
+						 
+						 
 					}
 
 				});

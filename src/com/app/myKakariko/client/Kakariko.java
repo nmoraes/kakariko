@@ -93,14 +93,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	//panel de usuario.
 	private Hyperlink miCuenta;
 	private MiCuenta panelDeControl;
-
-	
-	
-	private Button salir= new Button("salir");
-	
-	
-	
-	
 	
 	final Label errorLabel = new Label();
 	 private Label label=new Label();
@@ -149,6 +141,11 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		btnNewButton_2.setStyleName("btn btn-link");
 		btnNewButton_2.setVisible(false);
 		
+		//mi cuenta
+		panelDeControl=new MiCuenta();
+		RootPanel.get("panelDeControl").add(panelDeControl);
+		panelDeControl.setVisible(false);
+		
 		
 		// /////////galletitas///////////////
 				if (Cookies.getCookie("13051983ntmp") != null) {
@@ -170,7 +167,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 				} else {
 					//miCuenta.setVisible(false);
-
+					//changePage(null);
 					System.out.println("NO hay cookie");
 
 				
@@ -184,9 +181,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		
 		
 		
-		panelDeControl=new MiCuenta();
-		RootPanel.get("panelDeControl").add(panelDeControl);
-		panelDeControl.setVisible(false);
+		
   
 		RootPanel.get("userReg").setVisible(false);
 		RootPanel.get("passReg").setVisible(false);
@@ -198,32 +193,20 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("direccionReg").setVisible(false);
 		RootPanel.get("telefonoReg").setVisible(false);
 		
-       
-
-		
-		
-		
-
-	
-		
-		
 		btnNewButton = new Button("New button");
 		btnNewButton.setText("buscar");
 		// We can add style names to widgets
 		//sendButton.addStyleName("sendButton");
 		btnNewButton.setStyleName("btn btn-primary");
-		//rootPanel.add(btnNewButton, 20, 0);
 		btnNewButton.setSize("64px", "30px");
 		RootPanel.get("btnNewButton").add(btnNewButton);
 
 				
 		txtbxIpod = new TextBox();
-		//rootPanel.add(txtbxIpod, 20, 32);
 		txtbxIpod.setSize("436px", "20px");
 		
 		RootPanel.get("txtbxIpod").add(txtbxIpod);
 		
-		//rootPanel.add(htmlNewHtml, 365, 115);
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml);
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml2);
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml3);
@@ -319,13 +302,18 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					public void onClick(ClickEvent event) {
 						// rootPanel.setVisible(false);
 						Cookies.removeCookie("13051983ntmp");
+						changePage(null);
 						Window.Location.reload();
+
 					}
 
 					@Override
 					public void onKeyUp(KeyUpEvent event) {
 						Cookies.removeCookie("13051983ntmp");
+						changePage(null);
 						Window.Location.reload();
+
+
 					}
 
 				}
@@ -863,11 +851,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		
 		MyHandlerProducto7 p7 = new MyHandlerProducto7();
 		htmlNewHtml7.addClickHandler(p7);
-		
-		
-		
-		
-		
+			
 
 	}
 
@@ -875,7 +859,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 	@Override
 	public void onValueChange(ValueChangeEvent event) {
-		// TODO Auto-generated method stub
 		changePage(History.getToken());
 	}
 	
@@ -883,54 +866,16 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	    if(History.getToken().equals("aboutUs")) {
 	    	
 	        label.setText("cosas que pasan lalalala");
+	   
+	     //Mi Cuenta   
 	    } else if (History.getToken().equals("miCuenta") &&	(Cookies.getCookie("13051983ntmp") != null)){
 
 
 	    	System.out.println("estoy en mi cuenta");
-	    	String user = Cookies.getCookie("13051983ntmp");
-	    	
-	    	/* greetingService.miCuenta(user, new AsyncCallback<String[]>(){
-
-				
-				public void onFailure(Throwable caught) {
-
-					System.out.println("error al traer data.......al estoy en capa 1");
-
-				}
-		
-	
-
-				@Override
-				public void onSuccess(String[] result) {
-					// TODO Auto-generated method stub
-					
-						
-					System.out.println("hola: "+ result[0] + " " +result[1]);
-					
-					/*panelDeControl.setUsername(result[0]);
-					panelDeControl.setPassword(result[1]);
-					panelDeControl.setDireccion(result[2]);
-					panelDeControl.setTelefono(result[3]);
-					panelDeControl.setCi(result[4]);
-					panelDeControl.setDepartamento(result[5]);
-					panelDeControl.setCiudad(result[6]);*/
-
-			/*				
-				
-				}
-				
-				
-			});
-			
-			*/
-			
-			
 	    	sendBoxImg.setVisible(false);
 			panelDeControl.setVisible(true);
 
-
-	    	
-	    	
+	
 	    
 	     //Registro
 	    } else if (History.getToken().equals("registro") && (Cookies.getCookie("13051983ntmp") == null)) {
