@@ -89,10 +89,12 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private Button confirmar=new Button("enviar");
 	private Hyperlink cancelar;
 	
-	
+	//inicio
+	private Hyperlink home;
+
 	//panel de usuario.
 	private Hyperlink miCuenta;
-	private MiCuenta panelDeControl;
+	private MiCuenta panelDeControl=new MiCuenta();
 	
 	final Label errorLabel = new Label();
 	 private Label label=new Label();
@@ -102,6 +104,13 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	 */
 	public void onModuleLoad() {
 	 	
+		
+		Window.alert("Hola, Gracias por llegar a Send-box.com, en este" +
+				" momento estamos terminando el desarrollo del site, y en pocos dias" +
+				 " estaremos ya opertativos, gracias, send-box team.");
+		
+		
+		
 		// Add the nameField and sendButton to the RootPanel
 		// Use RootPanel.get() to get the entire body element
 		RootPanel rootPanel = RootPanel.get("nameFieldContainer");
@@ -113,6 +122,12 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		miCuenta.setStyleName("btn btn-link");
 		RootPanel.get("miCuenta").add(miCuenta);
 		miCuenta.setVisible(false);
+				
+		//home
+		home= new Hyperlink("inicio","home");
+		home.setStyleName("btn btn-link");
+		RootPanel.get("inicio").add(home);
+		home.setVisible(true);
 		
 		//login in send-box.com
 		userName = new TextBox();
@@ -128,8 +143,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		btnNewButton_3.setStyleName("btn btn-link");
         confirmar.setVisible(false);
         confirmar.setStyleName("btn btn-primary");
-		RootPanel.get("confirmar").add(confirmar);
-		
+		RootPanel.get("confirmar").add(confirmar);	
         cancelar = new Hyperlink("cancelar","home");
         cancelar.setVisible(false);
         cancelar.setStyleName("btn");
@@ -141,15 +155,10 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		btnNewButton_2.setStyleName("btn btn-link");
 		btnNewButton_2.setVisible(false);
 		
-		//mi cuenta
-		panelDeControl=new MiCuenta();
-		RootPanel.get("panelDeControl").add(panelDeControl);
-		panelDeControl.setVisible(false);
-		
 		
 		// /////////galletitas///////////////
 				if (Cookies.getCookie("13051983ntmp") != null) {
-
+					home.setVisible(false);
 					System.out.println("hay cookie");
 					btnNewButton_5.setVisible(false);
 					userName=TextBox.wrap(DOM.getElementById("nico"));
@@ -170,19 +179,13 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					//changePage(null);
 					System.out.println("NO hay cookie");
 
-				
+					History.newItem("home");
 					
 					
 					
 					
 				}
 		
-		
-		
-		
-		
-		
-  
 		RootPanel.get("userReg").setVisible(false);
 		RootPanel.get("passReg").setVisible(false);
 		RootPanel.get("nombreReg").setVisible(false);
@@ -302,15 +305,16 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					public void onClick(ClickEvent event) {
 						// rootPanel.setVisible(false);
 						Cookies.removeCookie("13051983ntmp");
-						changePage(null);
 						Window.Location.reload();
+						// Window.Location.assign("http://www.send-box.com/#home");
 
 					}
 
 					@Override
 					public void onKeyUp(KeyUpEvent event) {
 						Cookies.removeCookie("13051983ntmp");
-						changePage(null);
+						//changePage(History.getToken());
+						// Window.Location.assign("http://www.send-box.com/#home");
 						Window.Location.reload();
 
 
@@ -870,7 +874,27 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	     //Mi Cuenta   
 	    } else if (History.getToken().equals("miCuenta") &&	(Cookies.getCookie("13051983ntmp") != null)){
 
+	    	home.setVisible(true);
 
+	    	//mi cuenta
+	    	
+	    	RootPanel.get("userReg").setVisible(false);
+			RootPanel.get("passReg").setVisible(false);
+			RootPanel.get("nombreReg").setVisible(false);
+			RootPanel.get("apellidoReg").setVisible(false);
+			RootPanel.get("cedulaReg").setVisible(false);
+			RootPanel.get("departamentoReg").setVisible(false);
+			RootPanel.get("ciudadReg").setVisible(false);
+			RootPanel.get("direccionReg").setVisible(false);
+			RootPanel.get("telefonoReg").setVisible(false);
+
+			confirmar.setVisible(false);
+			cancelar.setVisible(false);
+	    	
+	    	
+			panelDeControl=new MiCuenta();
+			RootPanel.get("panelDeControl").add(panelDeControl);
+			panelDeControl.setVisible(false);
 	    	System.out.println("estoy en mi cuenta");
 	    	sendBoxImg.setVisible(false);
 			panelDeControl.setVisible(true);
@@ -914,6 +938,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			RootPanel.get("telefonoReg").setVisible(true);
 
 			confirmar.setVisible(true);
+			confirmar.setEnabled(false); //borrar
 			cancelar.setVisible(true);
 	
 			
@@ -923,7 +948,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	  //Home page default
 	    else {
 	    	System.out.println("JAJAJA");
-	    	
+				    	
 	    	panelDeControl.setVisible(false);
 
 	    	 errorLabel.setVisible(false);
