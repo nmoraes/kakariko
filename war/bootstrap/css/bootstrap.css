@@ -5898,7 +5898,7 @@ a.badge:hover {
 
 
 /* FOOTER */
-footer {
+/* footer {
 	border-top: 3px solid #EFEFEF;
 	color: #666666;
 	font-size: 11px;
@@ -5908,7 +5908,22 @@ footer {
 	height: 100px;
 	
 	
+}*/
+footer {
+padding: 40px 0;
+text-align: center;
+margin-top: 40px;
+color: #777;
 }
+
+footer a {
+margin: 0 0.5em;
+color: #777;
+}
+
+
+
+
 
 hr {
 border-top: 3px solid #EFEFEF;
