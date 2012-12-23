@@ -59,8 +59,6 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 				result = result + line;
 			}
 
-			System.out.println("result: " + result);
-
 			JSONObject json = (JSONObject) JSONSerializer.toJSON(result);
 
 			// String id = json.getString( "id" );
@@ -75,7 +73,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			pictures = json.getString("thumbnail");
 			System.out.println("id pic: " + pictures);
 
-			s = pictures.replace("_v_I_f", "_v_T_f");
+			s = pictures.replace("_v_I_f", "_v_O_f");
 
 			reader.close();
 
@@ -87,7 +85,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return "Item, " + input + "!<br>" + title + "<br>Precio: " + price
 				+ " " + currency/* serverInfo */
 				+ ".<br><br>Cantidad: " + sold_quantity + "<br>" + "<img src="
-				+ s + ">";
+				+ s + "> <hr>";
 	}
 
 	/**

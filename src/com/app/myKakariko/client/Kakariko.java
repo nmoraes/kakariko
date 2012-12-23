@@ -56,7 +56,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private HTML htmlNewHtml5= new HTML("", true);
 	private HTML htmlNewHtml6= new HTML("", true);
 	private HTML htmlNewHtml7= new HTML("", true);
-	
+		
 	private HTML htmlRegistration= new HTML("", true);
 	
 	private HTML destacado1= new HTML(Destacados.DESTACADO_UNO, true);
@@ -72,6 +72,17 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private String producto5;
 	private String producto6;
 	private String producto7;
+	
+	private Button p1=new Button("comprar");;
+	private Button p2=new Button("comprar");;
+	private Button p3=new Button("comprar");;
+	private Button p4=new Button("comprar");;
+	private Button p5=new Button("comprar");;
+	private Button p6=new Button("comprar");;
+	private Button p7=new Button("comprar");;
+	
+	
+	
 
 	private Button btnNewButton_1;
 	//private HTML htmlInicio;
@@ -109,6 +120,14 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 				" momento estamos terminando el desarrollo del site, y en pocos dias" +
 				 " estaremos ya opertativos, gracias, send-box team.");
 		
+		p1.setVisible(false);
+		p2.setVisible(false);
+		p3.setVisible(false);
+		p4.setVisible(false);
+		p5.setVisible(false);
+		p6.setVisible(false);
+		p7.setVisible(false);
+
 		
 		
 		// Add the nameField and sendButton to the RootPanel
@@ -209,7 +228,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		txtbxIpod.setSize("436px", "20px");
 		
 		RootPanel.get("txtbxIpod").add(txtbxIpod);
-		
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml);
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml2);
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml3);
@@ -282,7 +300,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 		btnNewButton_1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				//htmlInicio.setVisible(false);
 
 				htmlNewHtml.setHTML("");
 				htmlNewHtml2.setHTML("");
@@ -293,7 +310,13 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 				htmlNewHtml7.setHTML("");
 				btnNewButton_1.setVisible(false);
 				sendBoxImg.setVisible(true);
-
+				p1.setVisible(false);
+				p2.setVisible(false);
+				p3.setVisible(false);
+				p4.setVisible(false);
+				p5.setVisible(false);
+				p6.setVisible(false);
+				p7.setVisible(false);
 			}
 		});
 		
@@ -322,27 +345,55 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 				}
 
-		
-		
-		
-		
-		
-		
-		
 
 		class MyHandlerProducto1 implements ClickHandler, KeyUpHandler{
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-				// TODO Auto-generated method stub
-				System.out.println("prod1");
+				viewItem();				
+				
 			}
 
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
-				System.out.println("prod1");
+				viewItem();
 
+			}
+
+			private void viewItem() {
+				
+				htmlNewHtml.setVisible(false);
+				htmlNewHtml2.setVisible(false);
+				htmlNewHtml3.setVisible(false);
+				htmlNewHtml4.setVisible(false);
+				htmlNewHtml5.setVisible(false);
+				htmlNewHtml6.setVisible(false);
+				htmlNewHtml7.setVisible(false);
+				p1.setVisible(false);
+				p2.setVisible(false);
+				p3.setVisible(false);
+				p4.setVisible(false);
+				p5.setVisible(false);
+				p6.setVisible(false);
+				p7.setVisible(false);
+					
+				 greetingService.greetServer(producto1,
+						new AsyncCallback<String>() {
+							public void onFailure(Throwable caught) {
+								//TODO
+							}
+
+							public void onSuccess(String result) {
+								htmlNewHtml.setHTML(result);
+								htmlNewHtml.setVisible(true);
+								RootPanel.get("botonComprar").add(p1);
+								p1.setStyleName("btn btn-danger");
+								p1.setVisible(true);
+
+								
+								}	
+							
+						});
 			}
 			
 			
@@ -353,74 +404,110 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
 				// TODO Auto-generated method stub
-				//viewItem();
+				viewItem();
 			}
 
 			@Override
 			public void onClick(ClickEvent event) {
 				// TODO Auto-generated method stub
-				//viewItem();
+				viewItem();
 
 			}
-			
-			
-			
 			
 			/**
 			 * Send the name from the nameField to the server and wait for a response.
 			 */
 			private void viewItem() {
-			/*
-				 greetingService.viewItem(producto2,
+				
+				htmlNewHtml.setVisible(false);
+				htmlNewHtml2.setVisible(false);
+				htmlNewHtml3.setVisible(false);
+				htmlNewHtml4.setVisible(false);
+				htmlNewHtml5.setVisible(false);
+				htmlNewHtml6.setVisible(false);
+				htmlNewHtml7.setVisible(false);
+				
+				p1.setVisible(false);
+				p2.setVisible(false);
+				p3.setVisible(false);
+				p4.setVisible(false);
+				p5.setVisible(false);
+				p6.setVisible(false);
+				p7.setVisible(false);
+			
+				 greetingService.greetServer(producto2,
 						new AsyncCallback<String>() {
 							public void onFailure(Throwable caught) {
-								// Show the RPC error message to the user
-								dialogBox
-										.setText("API say's ...... Error");
-								serverResponseLabel
-										.addStyleName("serverResponseLabelError");
-								serverResponseLabel.setHTML(SERVER_ERROR);
-								dialogBox.center();
-								closeButton.setFocus(true);
+								//TODO							
 							}
 
 							public void onSuccess(String result) {
-							
-	
-								
-																
-								}
-								
-								
+								htmlNewHtml2.setHTML(result);
+								htmlNewHtml2.setVisible(true);
+								RootPanel.get("botonComprar").add(p2);
+								p2.setStyleName("btn btn-danger");
+								p2.setVisible(true);
 
 								
-								
-								
+								}	
 							
-							
-						});*/
+						});
 			}
-			
-			
-			
-			
-			
+	
 		}
 		
 		class MyHandlerProducto3 implements ClickHandler, KeyUpHandler{
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-				// TODO Auto-generated method stub
-				System.out.println("prod 3");
+				 viewItem();
+
 			}
 
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
-				System.out.println("prod 3");
+				 viewItem();
 
 			}
+			
+			private void viewItem() {
+				
+				htmlNewHtml.setVisible(false);
+				htmlNewHtml2.setVisible(false);
+				htmlNewHtml3.setVisible(false);
+				htmlNewHtml4.setVisible(false);
+				htmlNewHtml5.setVisible(false);
+				htmlNewHtml6.setVisible(false);
+				htmlNewHtml7.setVisible(false);
+				
+				p1.setVisible(false);
+				p2.setVisible(false);
+				p3.setVisible(false);
+				p4.setVisible(false);
+				p5.setVisible(false);
+				p6.setVisible(false);
+				p7.setVisible(false);
+			
+				 greetingService.greetServer(producto3,
+						new AsyncCallback<String>() {
+							public void onFailure(Throwable caught) {
+								//TODO							
+							}
+
+							public void onSuccess(String result) {
+								htmlNewHtml3.setHTML(result);
+								htmlNewHtml3.setVisible(true);
+								RootPanel.get("botonComprar").add(p3);
+								p3.setStyleName("btn btn-danger");
+								p3.setVisible(true);
+
+								
+								}	
+							
+						});
+			}
+			
+			
 			
 			
 		}
@@ -429,15 +516,49 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-				// TODO Auto-generated method stub
-				System.out.println("prod 4");
+				viewItem();
 			}
 
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
-				System.out.println("prod 4");
+				viewItem();
 
+			}
+	
+			private void viewItem() {
+				
+				htmlNewHtml.setVisible(false);
+				htmlNewHtml2.setVisible(false);
+				htmlNewHtml3.setVisible(false);
+				htmlNewHtml4.setVisible(false);
+				htmlNewHtml5.setVisible(false);
+				htmlNewHtml6.setVisible(false);
+				htmlNewHtml7.setVisible(false);
+				
+				p1.setVisible(false);
+				p2.setVisible(false);
+				p3.setVisible(false);
+				p4.setVisible(false);
+				p5.setVisible(false);
+				p6.setVisible(false);
+				p7.setVisible(false);
+			
+				 greetingService.greetServer(producto4,
+						new AsyncCallback<String>() {
+							public void onFailure(Throwable caught) {
+								//TODO							
+							}
+
+							public void onSuccess(String result) {
+								htmlNewHtml4.setHTML(result);
+								htmlNewHtml4.setVisible(true);
+								RootPanel.get("botonComprar").add(p4);
+								p4.setStyleName("btn btn-danger");
+								p4.setVisible(true);
+								
+								}	
+							
+						});
 			}
 			
 			
@@ -625,10 +746,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			
 		}
 
-		
-		
-		
-		
 		// Create a handler for the sendButton and nameField
 				class MyHandler2 implements ClickHandler, KeyUpHandler {
 
@@ -642,11 +759,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						makeQuery();
 						
 					}
-				
-				
-					
-					
-					
+
 					private void makeQuery(){
 						
 						String consulta= txtbxIpod.getText();
@@ -664,10 +777,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								htmlNewHtml.setHTML(result[0]);
 								producto1= result[0].substring(4, 18);
 								producto1=producto1.trim();
-								
+								System.out.println("HOLAAAAA producto 1 : "+producto1);
 								producto2= result[1].substring(4, 18);
 								producto2=producto2.trim();
-								System.out.println("hola :" +producto2);
 								
 								producto3= result[2].substring(4, 18);
 								producto3=producto3.trim();
@@ -697,38 +809,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								htmlNewHtml4.setHTML(result[3]);
 								htmlNewHtml5.setHTML(result[4]);
 								htmlNewHtml6.setHTML(result[5]);
-								htmlNewHtml7.setHTML(result[6]);
-
-								
+								htmlNewHtml7.setHTML(result[6]);	
 								btnNewButton_1.setVisible(true);
 								
-							
-								
-							//	TextBox userName=TextBox.wrap(DOM.getElementById("nico"));
-								//System.out.println("MIERCOLES: "+userName.getText());
-								
-								
-								
-								//prueba de criptografia
-								/*
-								String pass ="nicolasmoraes";
-								// Hash a password for the first time
-								//String hashed = BCrypt.hashpw(pass, BCrypt.gensalt());
-
-								// gensalt's log_rounds parameter determines the complexity
-								// the work factor is 2**log_rounds, and the default is 10
-								String hashed = BCrypt.hashpw(pass, BCrypt.gensalt(12));
-
-								System.out.println("hash: "+hashed );
-								
-								// Check that an unencrypted password matches one that has
-								// previously been hashed
-								if (BCrypt.checkpw("nicolasmoraes", hashed))
-									System.out.println("It matches");
-								else
-									System.out.println("It does not match");
-								
-							*/
 							
 							}
 							
@@ -778,24 +861,18 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 							
 							
 							public void onSuccess(Boolean result) {				
-								
-								
-								
-								// ////////////////COOKIES////////////////////////
 
+								// ////////////////COOKIES////////////////////////
 								final long DURATION = 180000; // duration
 								// remembering login.3 minutos
 
 								java.util.Date expires = new java.util.Date(
 										System.currentTimeMillis() + DURATION);
 								Cookies.setCookie("13051983ntmp", userlog, expires);
-
 								// cokies
-								
-								
+															
 								System.out.println("Welcome Back");
 									
-
 								userName.setVisible(false);
 								btnNewButton_3.setVisible(false);
 								pass.setVisible(false);
@@ -876,6 +953,14 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 	    	home.setVisible(true);
 
+	    	p1.setVisible(false);
+			p2.setVisible(false);
+			p3.setVisible(false);
+			p4.setVisible(false);
+			p5.setVisible(false);
+			p6.setVisible(false);
+			p7.setVisible(false);
+			
 	    	//mi cuenta
 	    	
 	    	RootPanel.get("userReg").setVisible(false);
@@ -903,6 +988,15 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	    
 	     //Registro
 	    } else if (History.getToken().equals("registro") && (Cookies.getCookie("13051983ntmp") == null)) {
+	    	
+	    	p1.setVisible(false);
+			p2.setVisible(false);
+			p3.setVisible(false);
+			p4.setVisible(false);
+			p5.setVisible(false);
+			p6.setVisible(false);
+			p7.setVisible(false);
+	    	
 	    	panelDeControl.setVisible(false);
 	    	errorLabel.setText("");
 	    	errorLabel.setVisible(true);
@@ -947,8 +1041,15 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	 
 	  //Home page default
 	    else {
-	    	System.out.println("JAJAJA");
-				    	
+	    	
+	    	p1.setVisible(false);
+			p2.setVisible(false);
+			p3.setVisible(false);
+			p4.setVisible(false);
+			p5.setVisible(false);
+			p6.setVisible(false);
+			p7.setVisible(false);
+	    					    	
 	    	panelDeControl.setVisible(false);
 
 	    	 errorLabel.setVisible(false);
