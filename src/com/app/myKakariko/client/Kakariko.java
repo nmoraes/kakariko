@@ -384,8 +384,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 							}
 
 							public void onSuccess(String result) {
-								htmlNewHtml.setHTML(result);
-								htmlNewHtml.setVisible(true);
+								htmlNewHtml2.setHTML(result);
+								htmlNewHtml2.setVisible(true);
 								RootPanel.get("botonComprar").add(p1);
 								p1.setStyleName("btn btn-danger");
 								p1.setVisible(true);
@@ -442,8 +442,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 							}
 
 							public void onSuccess(String result) {
-								htmlNewHtml2.setHTML(result);
-								htmlNewHtml2.setVisible(true);
+								htmlNewHtml3.setHTML(result);
+								htmlNewHtml3.setVisible(true);
 								RootPanel.get("botonComprar").add(p2);
 								p2.setStyleName("btn btn-danger");
 								p2.setVisible(true);
@@ -495,8 +495,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 							}
 
 							public void onSuccess(String result) {
-								htmlNewHtml3.setHTML(result);
-								htmlNewHtml3.setVisible(true);
+								htmlNewHtml4.setHTML(result);
+								htmlNewHtml4.setVisible(true);
 								RootPanel.get("botonComprar").add(p3);
 								p3.setStyleName("btn btn-danger");
 								p3.setVisible(true);
@@ -550,8 +550,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 							}
 
 							public void onSuccess(String result) {
-								htmlNewHtml4.setHTML(result);
-								htmlNewHtml4.setVisible(true);
+								htmlNewHtml5.setHTML(result);
+								htmlNewHtml5.setVisible(true);
 								RootPanel.get("botonComprar").add(p4);
 								p4.setStyleName("btn btn-danger");
 								p4.setVisible(true);
@@ -568,19 +568,52 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-				// TODO Auto-generated method stub
-				
-		
-				
-				
-				
-				
+				viewItem();				
+	
 			}
 
 			@Override
 			public void onClick(ClickEvent event) {
-	
+				viewItem();
 			}
+				
+				private void viewItem() {
+				
+				htmlNewHtml.setVisible(false);
+				htmlNewHtml2.setVisible(false);
+				htmlNewHtml3.setVisible(false);
+				htmlNewHtml4.setVisible(false);
+				htmlNewHtml5.setVisible(false);
+				htmlNewHtml6.setVisible(false);
+				htmlNewHtml7.setVisible(false);
+				
+				p1.setVisible(false);
+				p2.setVisible(false);
+				p3.setVisible(false);
+				p4.setVisible(false);
+				p5.setVisible(false);
+				p6.setVisible(false);
+				p7.setVisible(false);
+			
+				 greetingService.greetServer(producto5,
+						new AsyncCallback<String>() {
+							public void onFailure(Throwable caught) {
+								//TODO							
+							}
+
+							public void onSuccess(String result) {
+								htmlNewHtml6.setHTML(result);
+								htmlNewHtml6.setVisible(true);
+								RootPanel.get("botonComprar").add(p5);
+								p5.setStyleName("btn btn-danger");
+								p5.setVisible(true);
+								
+								}	
+							
+						});
+			}
+			
+			
 			
 			
 		}
@@ -590,15 +623,48 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-				// TODO Auto-generated method stub
-				System.out.println("prod 6");
+				viewItem();
 			}
 
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
-				System.out.println("prod 6");
+				viewItem() ;
+			}
+			
+				private void viewItem() {
+				
+				htmlNewHtml.setVisible(false);
+				htmlNewHtml2.setVisible(false);
+				htmlNewHtml3.setVisible(false);
+				htmlNewHtml4.setVisible(false);
+				htmlNewHtml5.setVisible(false);
+				htmlNewHtml6.setVisible(false);
+				htmlNewHtml7.setVisible(false);
+				
+				p1.setVisible(false);
+				p2.setVisible(false);
+				p3.setVisible(false);
+				p4.setVisible(false);
+				p5.setVisible(false);
+				p6.setVisible(false);
+				p7.setVisible(false);
+			
+				 greetingService.greetServer(producto6,
+						new AsyncCallback<String>() {
+							public void onFailure(Throwable caught) {
+								//TODO							
+							}
 
+							public void onSuccess(String result) {
+								htmlNewHtml7.setHTML(result);
+								htmlNewHtml7.setVisible(true);
+								RootPanel.get("botonComprar").add(p6);
+								p6.setStyleName("btn btn-danger");
+								p6.setVisible(true);
+								
+								}	
+							
+						});
 			}
 			
 			
@@ -608,17 +674,49 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-				// TODO Auto-generated method stub
-				System.out.println("prod 7");
+				viewItem();
 			}
 
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
-				System.out.println("prod 7");
-
+				viewItem();
 			}
 			
+				private void viewItem() {
+				
+				htmlNewHtml.setVisible(false);
+				htmlNewHtml2.setVisible(false);
+				htmlNewHtml3.setVisible(false);
+				htmlNewHtml4.setVisible(false);
+				htmlNewHtml5.setVisible(false);
+				htmlNewHtml6.setVisible(false);
+				htmlNewHtml7.setVisible(false);
+				
+				p1.setVisible(false);
+				p2.setVisible(false);
+				p3.setVisible(false);
+				p4.setVisible(false);
+				p5.setVisible(false);
+				p6.setVisible(false);
+				p7.setVisible(false);
+			
+				 greetingService.greetServer(producto7,
+						new AsyncCallback<String>() {
+							public void onFailure(Throwable caught) {
+								//TODO							
+							}
+
+							public void onSuccess(String result) {
+								htmlNewHtml.setHTML(result);
+								htmlNewHtml.setVisible(true);
+								RootPanel.get("botonComprar").add(p7);
+								p7.setStyleName("btn btn-danger");
+								p7.setVisible(true);
+								
+								}	
+							
+						});
+			}
 			
 		}
 		
