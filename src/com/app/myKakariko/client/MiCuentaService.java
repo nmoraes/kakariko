@@ -8,6 +8,8 @@ public interface MiCuentaService  extends RemoteService  {
 
 	
 	String[] miCuenta(String user);
+	
+	String calcularPrecioFinal(String precio, String shipping, String moneda);
 
 	
 	

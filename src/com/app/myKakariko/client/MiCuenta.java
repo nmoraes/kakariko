@@ -190,8 +190,8 @@ public class MiCuenta extends Composite {
 			}
 			
 			// Handler para la busqueda de datos personales.
-			MyHandler2 handler2 = new MyHandler2();
-			btnBuscar.addClickHandler(handler2);
+		//	MyHandler2 handler2 = new MyHandler2();
+			//btnBuscar.addClickHandler(handler2);
 
 		}
 		
@@ -199,7 +199,7 @@ public class MiCuenta extends Composite {
 		
 
 		// controlador de eventos para buscar datos personales.
-		class MyHandler2 implements ClickHandler, KeyUpHandler {
+	/*	class MyHandler2 implements ClickHandler, KeyUpHandler {
 
 			@Override
 			public void onClick(ClickEvent event) {
@@ -258,7 +258,7 @@ public class MiCuenta extends Composite {
 
 			}
 
-		}
+		}*/
 		
 		public void findClient() {
 			
@@ -280,7 +280,6 @@ public class MiCuenta extends Composite {
 				public void onSuccess(String[] result) {
 					 btnEnviar.setEnabled(true);
 					 
-					 System.out.println("hola Mi cuento: "+ result[0] + " " +result[1]);
 					 textBox_8.setText(result[0]);
 					 textBox_2.setText(result[1]);
 					 textBox_3.setText(result[2]);
@@ -288,13 +287,7 @@ public class MiCuenta extends Composite {
 					 textBox_5.setText(result[4]);
 					 textBox_6.setText(result[5]);
 					 textBox_9.setText(result[6]);
-
-
-
-
-
-					 
-					 
+	 
 					 
 				}
 

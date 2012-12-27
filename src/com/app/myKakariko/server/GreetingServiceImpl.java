@@ -30,10 +30,54 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 public class GreetingServiceImpl extends RemoteServiceServlet implements
 		GreetingService {
 	
-   // private static final Logger log = Logger.getLogger(GreetingServiceImpl.class.getName());
-
 	
+public String[] precio(String input, String shipping)throws IllegalArgumentException {
+	System.out.println(shipping);
+	String [] s = new String[5];
+	String price = null;
+	String currency =null;
+	String pictures=null;
+	String title =null;
+	URL url;
+	try {
+		url = new URL("https://api.mercadolibre.com/items/" + input);
+		InputStream response = url.openStream();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+				response));
+		String result = "";
 
+		for (String line; (line = reader.readLine()) != null;) {
+			System.out.println(line);
+			result = result + line;
+		}
+
+		JSONObject json = (JSONObject) JSONSerializer.toJSON(result);
+
+		price = json.getString("price");
+		currency = json.getString("currency_id");
+		currency = currencies(currency);
+		pictures = json.getString("thumbnail");
+		pictures=pictures.replace("_v_I_f", "_v_T_f");
+		title = json.getString("title");
+		reader.close();
+
+		s[0]=price;
+		s[1]=currency;
+		s[2]=pictures;
+		s[3]=title;
+
+
+		
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+	return s;
+
+}
+	
+	
     
 	public String greetServer(String input) throws IllegalArgumentException {
 		
@@ -169,7 +213,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 				titles = array.getString("title");
 				subtitle = array.getString("subtitle");
 				price = array.getString("price");
-				price=calculadoraDePrecio(price);
+				//price=calculadoraDePrecio(price);
 				thumbnail = array.getString("thumbnail");
 				currency = array.getString("currency_id");
 				pic = thumbnail.replace("_v_I_f", "_v_T_f");
@@ -280,7 +324,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 				titles = array.getString("title");
 				subtitle = array.getString("subtitle");
 				price = array.getString("price");
-				price=calculadoraDePrecio(price);			
+				//price=calculadoraDePrecio(price);			
 				thumbnail = array.getString("thumbnail");
 				pic = thumbnail.replace("_v_I_f", "_v_T_f");
 				currency = array.getString("currency_id");
@@ -387,18 +431,11 @@ public String nuevoUsuario(String username, String password, String nombre,
 	}
 
 	pm.close();
-	//String serverInfo = getServletContext().getServerInfo();
-	//String userAgent = getThreadLocalRequest().getHeader("User-Agent");
 
 	// Escape data from the client to avoid cross-site script
 	// vulnerabilities.
 	nombre = escapeHtml(nombre);
 	apellido = escapeHtml(apellido);
-	//userAgent = escapeHtml(userAgent);
-
-//	return "Hello, " + nombre + " " + apellido + "!<br><br>I am running "
-//			+ serverInfo + ".<br><br>It looks like you are using:<br>"
-//			+ userAgent;
 
 	return username;
 }
@@ -422,7 +459,7 @@ public String currencies(String defaultCurrencyId){
 	return symbolCurrency;
 }
 
-
+/*
 
 public String calculadoraDePrecio(String precioInicial){
 	
@@ -474,7 +511,7 @@ public String redondeo(String numero){
 
 	return finalPrice;
 }
-
+*/
 
 
 	

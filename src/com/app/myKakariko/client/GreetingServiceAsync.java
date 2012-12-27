@@ -19,6 +19,8 @@ public interface GreetingServiceAsync {
 
 	void login(String user, String pass,AsyncCallback<Boolean> callback);
 
+	void precio(String input, String shipping, AsyncCallback<String[]> callback)throws IllegalArgumentException;;
+
 
 
 }

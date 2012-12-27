@@ -20,6 +20,8 @@ public interface GreetingService extends RemoteService {
 
 	boolean login(String user, String pass);
 	
+	String[] precio(String input, String shipping)throws IllegalArgumentException;;
+	
 	
 
 }

@@ -1,6 +1,8 @@
 package com.app.myKakariko.client;
 
 
+import java.awt.Dialog;
+
 import com.app.myKakariko.shared.FieldVerifier;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -12,19 +14,16 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 
 /**
@@ -109,6 +108,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	
 	final Label errorLabel = new Label();
 	 private Label label=new Label();
+	 	
+	private Comprar comprando;
 	
 	/**
 	 * This is the entry point method.
@@ -127,6 +128,10 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		p5.setVisible(false);
 		p6.setVisible(false);
 		p7.setVisible(false);
+		
+		comprando= new Comprar(null,null,null,null);
+		comprando.setVisible(false);
+		RootPanel.get("comprando").add(comprando);
 
 		
 		
@@ -283,11 +288,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("des2").add(destacado2);
 		RootPanel.get("des3").add(destacado3);
 		RootPanel.get("pay").add(sendBoxImg);
-			
 		
-		
-			
-        
+
         History.addValueChangeHandler(this);
         //when there is no token, the "home" token is set else changePage() is called.
         //this is useful if a user has bookmarked a site other than the homepage.
@@ -361,7 +363,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			}
 
 			private void viewItem() {
-				
 				htmlNewHtml.setVisible(false);
 				htmlNewHtml2.setVisible(false);
 				htmlNewHtml3.setVisible(false);
@@ -389,7 +390,74 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								RootPanel.get("botonComprar").add(p1);
 								p1.setStyleName("btn btn-danger");
 								p1.setVisible(true);
+								
+								
+								
+							p1.addClickHandler(new ClickHandler() {
+								public void onClick(ClickEvent event) {
+									
+									//validar aca que exita cookie
 
+							greetingService.precio(producto1, "", new AsyncCallback<String[]>() {
+
+								@Override
+								public void onFailure(Throwable caught) {
+									// TODO Auto-generated method stub
+									p1.setVisible(false);
+
+								}
+
+								@Override
+								public void onSuccess(String[] result) {
+									p1.setVisible(false);
+									htmlNewHtml.setVisible(false);
+									htmlNewHtml2.setVisible(false);
+									htmlNewHtml3.setVisible(false);
+									htmlNewHtml4.setVisible(false);
+									htmlNewHtml5.setVisible(false);
+									htmlNewHtml6.setVisible(false);
+									htmlNewHtml7.setVisible(false);
+									
+										System.out.println(result[0]);	
+										System.out.println(result[1]);	
+										comprando = new Comprar(result[0],result[1],result[2],result[3]);
+										comprando.setVisible(true);
+										RootPanel.get("comprando").add(comprando);
+
+										
+										
+								}	 
+
+									
+									
+									
+									
+									
+									
+									
+									
+								});
+									
+									
+									
+									
+									
+									
+									
+									
+								}
+							});
+							
+
+								
+								
+								
+								
+								
+								
+								
+								
+								
 								
 								}	
 							
@@ -1048,9 +1116,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	   
 	     //Mi Cuenta   
 	    } else if (History.getToken().equals("miCuenta") &&	(Cookies.getCookie("13051983ntmp") != null)){
-
+	    	comprando.setVisible(false);
 	    	home.setVisible(true);
-
 	    	p1.setVisible(false);
 			p2.setVisible(false);
 			p3.setVisible(false);
@@ -1086,7 +1153,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	    
 	     //Registro
 	    } else if (History.getToken().equals("registro") && (Cookies.getCookie("13051983ntmp") == null)) {
-	    	
+	    	comprando.setVisible(false);
 	    	p1.setVisible(false);
 			p2.setVisible(false);
 			p3.setVisible(false);
@@ -1130,7 +1197,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			RootPanel.get("telefonoReg").setVisible(true);
 
 			confirmar.setVisible(true);
-			confirmar.setEnabled(false); //borrar
 			cancelar.setVisible(true);
 	
 			
@@ -1139,7 +1205,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	 
 	  //Home page default
 	    else {
-	    	
+	    	comprando.setVisible(false);
 	    	p1.setVisible(false);
 			p2.setVisible(false);
 			p3.setVisible(false);
@@ -1187,7 +1253,4 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	
 	    }
 	}
-	
-	
-	
 }

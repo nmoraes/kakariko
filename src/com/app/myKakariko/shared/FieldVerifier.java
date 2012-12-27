@@ -61,7 +61,19 @@ public class FieldVerifier {
            return valid;
    }
 
-	
+	   public static String currencies(String defaultCurrencyId){
+			String symbolCurrency=null;
+				
+			if(defaultCurrencyId.equals("UYU"))
+				symbolCurrency="$";
+			else if (defaultCurrencyId.equals("USD")) {
+				symbolCurrency="U$S";		
+			}else if (defaultCurrencyId.equals("EUR")) {
+				symbolCurrency="€";	
+			}
+			
+			return symbolCurrency;
+		}
 	
 	
 	
