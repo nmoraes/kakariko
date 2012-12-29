@@ -109,7 +109,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	final Label errorLabel = new Label();
 	 private Label label=new Label();
 	 	
-	private Comprar comprando;
+	private Comprar comprando; //=new Comprar(null,null,null,null);
 	
 	/**
 	 * This is the entry point method.
@@ -129,9 +129,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		p6.setVisible(false);
 		p7.setVisible(false);
 		
-		comprando= new Comprar(null,null,null,null);
-		comprando.setVisible(false);
-		RootPanel.get("comprando").add(comprando);
+		//comprando= new Comprar(null,null,null,null);
+		//comprando.setVisible(false);
+		//RootPanel.get("comprando").add(comprando);
 
 		
 		
@@ -302,7 +302,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 		btnNewButton_1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-
+				RootPanel.get("comprando").clear();
 				htmlNewHtml.setHTML("");
 				htmlNewHtml2.setHTML("");
 				htmlNewHtml3.setHTML("");
@@ -397,19 +397,23 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								public void onClick(ClickEvent event) {
 									
 									//validar aca que exita cookie
-
-							greetingService.precio(producto1, "", new AsyncCallback<String[]>() {
+							if(Cookies.getCookie("13051983ntmp") != null){			
+								
+								greetingService.precio(producto1, "", new AsyncCallback<String[]>() {
 
 								@Override
 								public void onFailure(Throwable caught) {
 									// TODO Auto-generated method stub
+									//RootPanel.get("comprando").remove(comprando);
 									p1.setVisible(false);
+									
 
 								}
 
 								@Override
 								public void onSuccess(String[] result) {
 									p1.setVisible(false);
+									RootPanel.get("comprando").clear();
 									htmlNewHtml.setVisible(false);
 									htmlNewHtml2.setVisible(false);
 									htmlNewHtml3.setVisible(false);
@@ -417,34 +421,25 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 									htmlNewHtml5.setVisible(false);
 									htmlNewHtml6.setVisible(false);
 									htmlNewHtml7.setVisible(false);
-									
 										System.out.println(result[0]);	
 										System.out.println(result[1]);	
 										comprando = new Comprar(result[0],result[1],result[2],result[3]);
-										comprando.setVisible(true);
-										RootPanel.get("comprando").add(comprando);
+
+											comprando.setVisible(true);
+											RootPanel.get("comprando").add(comprando);
 
 										
 										
 								}	 
-
-									
-									
-									
-									
-									
-									
-									
+		
 									
 								});
+				
+								}else{
+									Window.alert("Para comprar, debes estar registrado en send-box.com, gracias");
 									
-									
-									
-									
-									
-									
-									
-									
+								}	
+							
 								}
 							});
 							
@@ -939,7 +934,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 							
 							public void onSuccess(String[] result) {
-							//	htmlInicio.setVisible(false);
+								RootPanel.get("comprando").clear();
 								htmlNewHtml.setHTML(result[0]);
 								producto1= result[0].substring(4, 18);
 								producto1=producto1.trim();
@@ -1029,7 +1024,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 							public void onSuccess(Boolean result) {				
 
 								// ////////////////COOKIES////////////////////////
-								final long DURATION = 180000; // duration
+								final long DURATION = 1800000; // duration
 								// remembering login.3 minutos
 
 								java.util.Date expires = new java.util.Date(
@@ -1037,7 +1032,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								Cookies.setCookie("13051983ntmp", userlog, expires);
 								// cokies
 															
-								System.out.println("Welcome Back");
+								System.out.println("Welcome Back " +userlog);
 									
 								userName.setVisible(false);
 								btnNewButton_3.setVisible(false);
@@ -1047,7 +1042,10 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								btnNewButton_2.setVisible(true);
 								
 								Window.alert("Welcome back");
-
+								
+								
+								if (History.getToken().equals("registro"))
+								   History.newItem("home");
 								
 							}
 							
@@ -1110,14 +1108,10 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	}
 	
 	public void changePage(String token) {
-	    if(History.getToken().equals("aboutUs")) {
-	    	
-	        label.setText("cosas que pasan lalalala");
-	   
-	     //Mi Cuenta   
-	    } else if (History.getToken().equals("miCuenta") &&	(Cookies.getCookie("13051983ntmp") != null)){
-	    	comprando.setVisible(false);
-	    	home.setVisible(true);
+		//Mi Cuenta con cookie valida 
+		if (History.getToken().equals("miCuenta") &&	(Cookies.getCookie("13051983ntmp") != null)){
+	    	RootPanel.get("comprando").clear();
+	    	home.setVisible(true);  
 	    	p1.setVisible(false);
 			p2.setVisible(false);
 			p3.setVisible(false);
@@ -1151,9 +1145,14 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 	
 	    
+			//mi cuenta con token vencido
+	    }else if (History.getToken().equals("miCuenta") &&	(Cookies.getCookie("13051983ntmp") == null)){	
+	    	
+	    	Window.Location.reload();
+	    	
 	     //Registro
 	    } else if (History.getToken().equals("registro") && (Cookies.getCookie("13051983ntmp") == null)) {
-	    	comprando.setVisible(false);
+	    	RootPanel.get("comprando").clear();
 	    	p1.setVisible(false);
 			p2.setVisible(false);
 			p3.setVisible(false);
@@ -1205,7 +1204,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	 
 	  //Home page default
 	    else {
-	    	comprando.setVisible(false);
+	    	home.setVisible(false);
+	    	RootPanel.get("comprando").clear();
 	    	p1.setVisible(false);
 			p2.setVisible(false);
 			p3.setVisible(false);

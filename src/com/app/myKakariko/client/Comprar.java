@@ -42,6 +42,7 @@ public class Comprar extends Composite {
 	
 	
 	
+
 	public Comprar(String precio, String moneda, String imagen, String descripcion) {
 		
 		image= new HTML("<div><p><img src="+imagen+ " align=\"center\" class=\"img-rounded\"><div></p",true);
@@ -52,8 +53,7 @@ public class Comprar extends Composite {
 		
 		
 		comboBox_1 = new ListBox();
-		comboBox_1.setName("hola");
-		comboBox_1.addItem("--");
+		comboBox_1.addItem("precio sin impuesto de entrega");
 		comboBox_1.addItem("Entrega hasta 24 Hrs");
 		comboBox_1.addItem("Entrega hasta 48 Hrs");
 		comboBox_1.addItem("Entrega hasta 72 Hrs");
@@ -68,7 +68,7 @@ public class Comprar extends Composite {
 		
 		decoratedTabPanel.add(absolutePanel_1, "mi compra",
 				false);
-		absolutePanel_1.setSize("798px", "258px");
+		absolutePanel_1.setSize("880px", "258px");
 
 		absolutePanel_1.add(image, 544, 10)	;
 		image.setSize("232px", "183px");
@@ -115,11 +115,10 @@ public class Comprar extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				int indexCat= comboBox_1.getSelectedIndex();
 				final String comboBoxValue =comboBox_1.getValue(indexCat);
-				if(!comboBoxValue.equals("--"))
+				if(!comboBoxValue.equals("precio sin impuesto de entrega"))
 					recalculo(comboBoxValue,Comprar.precio,Comprar.moneda);	
 				else
-					Window.alert("Debes seleccionar en cuanto tiempo va a ser el envio");
-
+					textBox_3.setText(Comprar.moneda+" "+Comprar.precio);
 			}
 			
 
@@ -127,11 +126,10 @@ public class Comprar extends Composite {
 			public void onChange(ChangeEvent event) {
 				int indexCat= comboBox_1.getSelectedIndex();
 				final String comboBoxValue =comboBox_1.getValue(indexCat);
-				if(!comboBoxValue.equals("--"))
+				if(!comboBoxValue.equals("precio sin impuesto de entrega"))
 					recalculo(comboBoxValue,Comprar.precio,Comprar.moneda);	
 				else
-					Window.alert("Debes seleccionar en cuanto tiempo va a ser el envio");
-
+					textBox_3.setText(Comprar.moneda+" "+Comprar.precio);
 			}
 
 

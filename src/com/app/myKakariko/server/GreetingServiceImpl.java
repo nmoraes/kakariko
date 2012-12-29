@@ -86,8 +86,10 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 		String price = null;
 		String sold_quantity = null;
 		String title = null;
+		String subtitle = null;
 		String s = null;
 		String currency = null;
+		String cantidadInicial =null;
 
 		// http://answers.oreilly.com/topic/257-how-to-parse-json-in-java/
 		URL url;
@@ -110,9 +112,9 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 			sold_quantity = json.getString("sold_quantity");
 			title = json.getString("title");
 			currency = json.getString("currency_id");
-
-			// https://api.mercadolibre.com/items/MLA421101451/pictures?access_token=$ACCESS_TOKEN
-			// T O
+			currency = currencies(currency);
+			subtitle =json.getString("subtitle");
+			cantidadInicial =json.getString("initial_quantity");
 
 			pictures = json.getString("thumbnail");
 			System.out.println("id pic: " + pictures);
@@ -125,11 +127,13 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	
+		
 
-		return "Item, " + input + "!<br>" + title + "<br>Precio: " + price
-				+ " " + currency/* serverInfo */
-				+ ".<br><br>Cantidad: " + sold_quantity + "<br>" + "<img src="
-				+ s + "> <hr>";
+		return  "<div><p><img src="+s+ "align=\"left\" class=\"img-rounded\"><div><br><strong>" +title + " "+ subtitle+ "</strong><br><p class=\"text-error\">Precio: " + price +  " "+currency + " (el precio NO incluye el envio)</p> " 
+				+ "Cantidad inicial de articulos: "
+				+cantidadInicial  + "<br>Cantidad disponible a la venta: " + sold_quantity + "<br></p></div><hr>";
 	}
 
 	/**
@@ -185,7 +189,6 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 			String result = "";
 
 			for (String line; (line = reader.readLine()) != null;) {
-				//System.out.println(line);
 				result = result + line;
 			}
 
@@ -243,9 +246,8 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 						"<div id=\"gwtContainer\"><p align=\"right\"><button class=\"btn btn-warning\" input type=\"button\" >detalles</button></p></div>"
 						+"</div><hr> </div>";
 						
-					System.out.println(html);	
+					//System.out.println(html);	
 						
-						//"<hr> </div>";
 				s[i]=html;
 				
 			}
@@ -459,59 +461,7 @@ public String currencies(String defaultCurrencyId){
 	return symbolCurrency;
 }
 
-/*
 
-public String calculadoraDePrecio(String precioInicial){
-	
-	System.out.println("<MODULO CALCULADORA>");
-	
-	System.out.println("ANTES DE MODIFICAR: "+ precioInicial);
-	
-	Float porcentaje=(float) 3;
-	Float precio=(float) 0;
-	Float auxiliar;
-	Float porcentajeCalculado;
-	String salida=null;
-	Double precioModificado=(double) 0;
-	precio = precio.parseFloat(precioInicial);	
-	auxiliar =precio * porcentaje;
-	porcentajeCalculado =auxiliar/100;
-	
-	precioModificado=(double) (precio + porcentajeCalculado);
-	
-
-		
-	
-	salida=precioModificado.toString();
-	String redondeo = redondeo(salida);
-
-	
-	
-	
-	
-	
-	
-	
-	System.out.println("DESPUES DE MODIFICAR SIN REDONDEAR: "+ salida);
-	System.out.println("DESPUES DE MODIFICAR REDONDEADO: "+ redondeo);
-
-	System.out.println("</MODULO CALCULADORA>");
-	
-	return redondeo;
-}
-
-
-public String redondeo(String numero){
-		
-	Double v = Double.parseDouble(numero); 
-    String val = v+"";
-    BigDecimal big = new BigDecimal(val);
-    big = big.setScale(0, RoundingMode.HALF_UP);
-    String finalPrice =big.toString();
-
-	return finalPrice;
-}
-*/
 
 
 	

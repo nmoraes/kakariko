@@ -13,16 +13,44 @@ public class Ventas {
 	 * Ventas representa al data object, de las ventas del sistema
 	 */
  
-	public Ventas(String username, String itemId, int precio) {
+	public Ventas(String username, String itemId, int precioFinal, int precioOriginal, String shippingType) {
 		this.username = username;
 		this.itemId = itemId;
 		this.estado = "Esperando confirmacion de Abitab"; 
 		this.dateCompra =  new Date();			// cuadno compra el cliente
 		this.dateTransactionCompleted = null;	//cuando pago en abitab
 		this.entregaEstimada= null;				//calculada a partir del pago en abitab
-		this.precio=precio;						//precio del item + shipping
+		this.precioFinal=precioFinal;			//precio del item + shipping
 		this.dateShiped = null;
+		this.regalo= false;
+		this.shipping= shippingType;
+		this.ganancia=null;  					 //precio - precio original
+		
   
+	}
+
+	public int getPrecioFinal() {
+		return precioFinal;
+	}
+
+	public void setPrecioFinal(int precioFinal) {
+		this.precioFinal = precioFinal;
+	}
+
+	public boolean isRegalo() {
+		return regalo;
+	}
+
+	public void setRegalo(boolean regalo) {
+		this.regalo = regalo;
+	}
+
+	public String getShipping() {
+		return shipping;
+	}
+
+	public void setShipping(String shipping) {
+		this.shipping = shipping;
 	}
 
 	public String getUsername() {
@@ -74,11 +102,11 @@ public class Ventas {
 	}
 
 	public int getPrecio() {
-		return precio;
+		return precioFinal;
 	}
 
 	public void setPrecio(int precio) {
-		this.precio = precio;
+		this.precioFinal = precio;
 	}
 
 	public Date getDateShiped() {
@@ -110,10 +138,26 @@ public class Ventas {
 	private Date entregaEstimada;
 	
 	@Persistent
-	private int precio;
+	private int precioFinal;
 	
 	@Persistent
 	private Date dateShiped;
+	
+	@Persistent
+	private boolean regalo;
+	
+	@Persistent
+	private String shipping;
+	
+	@Persistent
+	private String ganancia;
 
+	public String getGanancia() {
+		return ganancia;
+	}
+
+	public void setGanancia(String ganancia) {
+		this.ganancia = ganancia;
+	}
 
 }

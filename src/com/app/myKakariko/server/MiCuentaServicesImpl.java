@@ -111,10 +111,12 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 		System.out.println("este es el shipping :"+shipping);
 		System.out.println("este es el precio :"+precio);
 		System.out.println("este es el moneda :"+moneda);
+		System.out.println("este es el precio redondeado porque viene float :"+precio);
+
 		
 		Float total=(float) 0;
 		Float valor=(float) 0;	
-		valor=valor.parseFloat(precio);
+		valor=valor.parseFloat(redondeo(precio));
 		
 		String salida=null;
 		
@@ -177,19 +179,19 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 					System.out.println("PRECIO MAYOR IGUAL A 1000: valor = " +valor);
 
 					if(shipping.equals(SHIPPING_1)){
-						salida=calculadoraDePrecio(precio,15);						
+						salida=calculadoraDePrecio(precio,12);						
 						System.out.println("24 hrs "+salida);
 					}
 					else if(shipping.equals(SHIPPING_2)){
-						salida=calculadoraDePrecio(precio,12);						
+						salida=calculadoraDePrecio(precio,11);						
 						System.out.println("48 hrs "+salida);
 					}
 					else if(shipping.equals(SHIPPING_3)){
-						salida=calculadoraDePrecio(precio,11);						
+						salida=calculadoraDePrecio(precio,10);						
 						System.out.println("72 hrs "+salida);
 						
 					}else if(shipping.equals(SHIPPING_4)){
-						salida=calculadoraDePrecio(precio,10);						
+						salida=calculadoraDePrecio(precio,9);						
 						System.out.println("despues 72 hrs: "+salida);
 						
 					}
@@ -200,20 +202,20 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 			System.out.println("PRECIO en DOLARES: valor = " +valor);
 
 			if(shipping.equals(SHIPPING_1)){
-				salida=calculadoraDePrecio(precio,15);						
+				salida=calculadoraDePrecio(precio,10);						
 				System.out.println("24 hrs "+salida);				
 			}
 			else if(shipping.equals(SHIPPING_2)){
-				salida=calculadoraDePrecio(precio,12);						
+				salida=calculadoraDePrecio(precio,9);						
 				System.out.println("48 hrs "+salida);
 			
 			}
 			else if(shipping.equals(SHIPPING_3)){
-				salida=calculadoraDePrecio(precio,11);						
+				salida=calculadoraDePrecio(precio,8);						
 				System.out.println("72 hrs "+salida);
 				
 			}else if(shipping.equals(SHIPPING_4)){
-				salida=calculadoraDePrecio(precio,10);						
+				salida=calculadoraDePrecio(precio,7);						
 				System.out.println("despues 72 hrs: "+salida);
 				
 			}
