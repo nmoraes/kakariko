@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
 
@@ -90,6 +92,8 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 		String s = null;
 		String currency = null;
 		String cantidadInicial =null;
+		String estado = null;
+		String stopTime= null;
 
 		// http://answers.oreilly.com/topic/257-how-to-parse-json-in-java/
 		URL url;
@@ -115,8 +119,9 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 			currency = currencies(currency);
 			subtitle =json.getString("subtitle");
 			cantidadInicial =json.getString("initial_quantity");
-
+			estado=estado(json.getString("condition"));
 			pictures = json.getString("thumbnail");
+			stopTime= json.getString("stop_time");
 			System.out.println("id pic: " + pictures);
 
 			s = pictures.replace("_v_I_f", "_v_O_f");
@@ -131,9 +136,11 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 	
 		
 
-		return  "<div><p><img src="+s+ "align=\"left\" class=\"img-rounded\"><div><br><strong>" +title + " "+ subtitle+ "</strong><br><p class=\"text-error\">Precio: " + price +  " "+currency + " (el precio NO incluye el envio)</p> " 
+		return  "<div><p><img src="+s+ "align=\"left\" class=\"img-rounded\"><div><br><strong>" +title + " "+ subtitle+ "</strong><br><p class=\"text-error\">Precio: <strong>" + price +  "</strong> "+currency + " (el precio NO incluye el envio)</p> " 
 				+ "Cantidad inicial de articulos: "
-				+cantidadInicial  + "<br>Cantidad disponible a la venta: " + sold_quantity + "<br></p></div><hr>";
+				+cantidadInicial  + "<br>Cantidad disponible a la venta: " + sold_quantity + "<br>" +
+				" Estado del producto : "+estado+"</p></div>" +
+				"<hr>";
 	}
 
 	/**
@@ -221,7 +228,7 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 				currency = array.getString("currency_id");
 				pic = thumbnail.replace("_v_I_f", "_v_T_f");
 				stop_time = array.getString("stop_time");
-				condition = array.getString("condition");
+				condition = estado(array.getString("condition"));
 				id = array.getString("id");
 				symbolCurrency=currencies(currency);
 
@@ -238,7 +245,7 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 						+ price
 						+ " "
 						+ symbolCurrency
-						+ ". Estado "
+						+ ". Estado: "
 						+ condition
 						+ "<br><b>Oferta Valida: </b>"
 						+ stop_time
@@ -460,6 +467,23 @@ public String currencies(String defaultCurrencyId){
 	
 	return symbolCurrency;
 }
+
+/**
+ * @description get the condition item
+ * */
+public String estado(String condition){
+	String estado="";	
+	if(condition.equals("new"))
+		estado="Nuevo";
+	else if (condition.equals("used")) {
+		estado="Usado";		
+	}else if (condition.equals("not_specified")) {
+		estado="El vendedor no especifico si el producto es nuevo o usado, ante la duda, comuniquese con nosotros";	
+	}
+	
+	return estado;
+}
+
 
 
 

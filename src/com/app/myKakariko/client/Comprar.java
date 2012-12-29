@@ -39,6 +39,8 @@ public class Comprar extends Composite {
 	private static String precio;
 	private static String moneda;
 	private String desc;
+	private Button btnComprar;
+	private HTML htmlNewHtml;
 	
 	
 	
@@ -62,15 +64,16 @@ public class Comprar extends Composite {
 		
 		decoratedTabPanel = new DecoratedTabPanel();
 		initWidget(decoratedTabPanel);
+		decoratedTabPanel.setHeight("447px");
 		decoratedTabPanel.setAnimationEnabled(true);
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 	
 		
 		decoratedTabPanel.add(absolutePanel_1, "mi compra",
 				false);
-		absolutePanel_1.setSize("880px", "258px");
+		absolutePanel_1.setSize("880px", "421px");
 
-		absolutePanel_1.add(image, 544, 10)	;
+		absolutePanel_1.add(image, 638, 10)	;
 		image.setSize("232px", "183px");
 		
 		absolutePanel_1.add(comboBox_1, 8, 96);
@@ -88,12 +91,15 @@ public class Comprar extends Composite {
 		textBox_2.setSize("435px", "20px");
 		textBox_2.setEnabled(false);
 		
-		Button button = new Button("comprar ahora !");
-		absolutePanel_1.add(button, 294, 198);
-		button.setSize("152px", "28px");
+		btnComprar = new Button("comprar");
+		btnComprar.setVisible(false);
+		btnComprar.setStyleName("btn btn-success");
+		absolutePanel_1.add(btnComprar, 703, 259);
+		btnComprar.setSize("82", "30");
 		
-		Button button_1 = new Button("cancelar compra");
-		absolutePanel_1.add(button_1, 171, 198);
+		Button btnCancelar = new Button("cancelar");
+		btnCancelar.setStyleName("btn btn-danger");
+		absolutePanel_1.add(btnCancelar, 789, 259);
 		
 		textBox_3 = new TextBox();
 		textBox_3.setText(moneda+" "+precio);
@@ -102,6 +108,10 @@ public class Comprar extends Composite {
 		
 		textBox_4 = new TextBox();
 		absolutePanel_1.add(textBox_4, 8, 142);
+		
+		htmlNewHtml = new HTML("<div class=\"alert alert-block\"><h4>Atencion!</h4>Usted esta por comprar 1(uno) producto, al momento de comprar, Ud genera una compra fictisia que se hace real al momento de abonar en Abitab, en el momento que abone, se calcula el tiempo de envio seleccionado.Ej. Ud compra un Lunes, con envio 24Hrs y abona un martes, el producto le llegar el Miercoles.</div>", true);
+		absolutePanel_1.add(htmlNewHtml, 8, 295);
+		htmlNewHtml.setSize("863px", "110px");
 		
 		if (Cookies.getCookie("13051983ntmp")!=null){
 			findClient();
@@ -115,22 +125,30 @@ public class Comprar extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				int indexCat= comboBox_1.getSelectedIndex();
 				final String comboBoxValue =comboBox_1.getValue(indexCat);
-				if(!comboBoxValue.equals("precio sin impuesto de entrega"))
+				if(!comboBoxValue.equals("precio sin impuesto de entrega")){
 					recalculo(comboBoxValue,Comprar.precio,Comprar.moneda);	
-				else
+					btnComprar.setVisible(true);
+			}
+				else{
+					btnComprar.setVisible(false);
 					textBox_3.setText(Comprar.moneda+" "+Comprar.precio);
 			}
+				}
 			
 
 			@Override
 			public void onChange(ChangeEvent event) {
 				int indexCat= comboBox_1.getSelectedIndex();
 				final String comboBoxValue =comboBox_1.getValue(indexCat);
-				if(!comboBoxValue.equals("precio sin impuesto de entrega"))
+				if(!comboBoxValue.equals("precio sin impuesto de entrega")){
 					recalculo(comboBoxValue,Comprar.precio,Comprar.moneda);	
-				else
+					btnComprar.setVisible(true);
+			}
+				else{
+					btnComprar.setVisible(false);
 					textBox_3.setText(Comprar.moneda+" "+Comprar.precio);
 			}
+				}
 
 
 			
