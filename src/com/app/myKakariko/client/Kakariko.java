@@ -1528,17 +1528,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 										
 											}
 										});
-										
 
-											
-											
-											
-											
-											
-											
-											
-											
-											
 											
 											}	
 										
@@ -1548,11 +1538,888 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						
 					}		 
 				 
+				 class MyHandlerDestacados2 implements ClickHandler, KeyUpHandler{
+
+						@Override
+						public void onKeyUp(KeyUpEvent event) {
+							viewItem();				
+							
+						}
+
+						@Override
+						public void onClick(ClickEvent event) {
+							viewItem();
+
+						}
+
+						private void viewItem() {
+							btnNewButton_1.setVisible(true);
+							htmlNewHtml.setVisible(false);
+							htmlNewHtml2.setVisible(false);
+							htmlNewHtml3.setVisible(false);
+							htmlNewHtml4.setVisible(false);
+							htmlNewHtml5.setVisible(false);
+							htmlNewHtml6.setVisible(false);
+							htmlNewHtml7.setVisible(false);
+							p1.setVisible(false);
+							p2.setVisible(false);
+							p3.setVisible(false);
+							p4.setVisible(false);
+							p5.setVisible(false);
+							p6.setVisible(false);
+							p7.setVisible(false);
+								
+							 greetingService.greetServer(Destacados.DESTACADO_PRODUCTO2,
+									new AsyncCallback<String>() {
+										public void onFailure(Throwable caught) {
+											//TODO
+										}
+
+										public void onSuccess(String result) {
+											sendBoxImg.setVisible(false);
+											htmlDestacado.setHTML(result);
+											htmlDestacado.setVisible(true);
+											RootPanel.get("botonComprar").add(p1);
+											p1.setStyleName("btn btn-danger");
+											p1.setVisible(true);
+											
+											
+											
+										p1.addClickHandler(new ClickHandler() {
+											public void onClick(ClickEvent event) {
+												
+												//validar aca que exita cookie
+										if(Cookies.getCookie("13051983ntmp") != null){			
+											
+											greetingService.precio(Destacados.DESTACADO_PRODUCTO2, "", new AsyncCallback<String[]>() {
+
+											@Override
+											public void onFailure(Throwable caught) {
+												// TODO Auto-generated method stub
+												//RootPanel.get("comprando").remove(comprando);
+												p1.setVisible(false);
+												
+
+											}
+
+											@Override
+											public void onSuccess(String[] result) {
+												htmlDestacado.setVisible(false);
+												p1.setVisible(false);
+												RootPanel.get("comprando").clear();
+												htmlNewHtml.setVisible(false);
+												htmlNewHtml2.setVisible(false);
+												htmlNewHtml3.setVisible(false);
+												htmlNewHtml4.setVisible(false);
+												htmlNewHtml5.setVisible(false);
+												htmlNewHtml6.setVisible(false);
+												htmlNewHtml7.setVisible(false);
+													System.out.println(result[0]);	
+													System.out.println(result[1]);	
+													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+
+														comprando.setVisible(true);
+														RootPanel.get("comprando").add(comprando);
+
+													
+													
+											}	 
+					
+												
+											});
+							
+											}else{
+												Window.alert("Para comprar, debes estar registrado en send-box.com, gracias");
+												
+											}	
+										
+											}
+										});
+
+											
+											}	
+										
+									});
+						}
+						
+						
+					}		 
+				 
+				 class MyHandlerDestacados3 implements ClickHandler, KeyUpHandler{
+
+						@Override
+						public void onKeyUp(KeyUpEvent event) {
+							viewItem();				
+							
+						}
+
+						@Override
+						public void onClick(ClickEvent event) {
+							viewItem();
+
+						}
+
+						private void viewItem() {
+							btnNewButton_1.setVisible(true);
+							htmlNewHtml.setVisible(false);
+							htmlNewHtml2.setVisible(false);
+							htmlNewHtml3.setVisible(false);
+							htmlNewHtml4.setVisible(false);
+							htmlNewHtml5.setVisible(false);
+							htmlNewHtml6.setVisible(false);
+							htmlNewHtml7.setVisible(false);
+							p1.setVisible(false);
+							p2.setVisible(false);
+							p3.setVisible(false);
+							p4.setVisible(false);
+							p5.setVisible(false);
+							p6.setVisible(false);
+							p7.setVisible(false);
+								
+							 greetingService.greetServer(Destacados.DESTACADO_PRODUCTO3,
+									new AsyncCallback<String>() {
+										public void onFailure(Throwable caught) {
+											//TODO
+										}
+
+										public void onSuccess(String result) {
+											sendBoxImg.setVisible(false);
+											htmlDestacado.setHTML(result);
+											htmlDestacado.setVisible(true);
+											RootPanel.get("botonComprar").add(p1);
+											p1.setStyleName("btn btn-danger");
+											p1.setVisible(true);
+											
+											
+											
+										p1.addClickHandler(new ClickHandler() {
+											public void onClick(ClickEvent event) {
+												
+												//validar aca que exita cookie
+										if(Cookies.getCookie("13051983ntmp") != null){			
+											
+											greetingService.precio(Destacados.DESTACADO_PRODUCTO3, "", new AsyncCallback<String[]>() {
+
+											@Override
+											public void onFailure(Throwable caught) {
+												// TODO Auto-generated method stub
+												//RootPanel.get("comprando").remove(comprando);
+												p1.setVisible(false);
+												
+
+											}
+
+											@Override
+											public void onSuccess(String[] result) {
+												htmlDestacado.setVisible(false);
+												p1.setVisible(false);
+												RootPanel.get("comprando").clear();
+												htmlNewHtml.setVisible(false);
+												htmlNewHtml2.setVisible(false);
+												htmlNewHtml3.setVisible(false);
+												htmlNewHtml4.setVisible(false);
+												htmlNewHtml5.setVisible(false);
+												htmlNewHtml6.setVisible(false);
+												htmlNewHtml7.setVisible(false);
+													System.out.println(result[0]);	
+													System.out.println(result[1]);	
+													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+
+														comprando.setVisible(true);
+														RootPanel.get("comprando").add(comprando);
+
+													
+													
+											}	 
+					
+												
+											});
+							
+											}else{
+												Window.alert("Para comprar, debes estar registrado en send-box.com, gracias");
+												
+											}	
+										
+											}
+										});
+
+											
+											}	
+										
+									});
+						}
+						
+						
+					}
+		
+				 class MyHandlerDestacados4 implements ClickHandler, KeyUpHandler{
+
+						@Override
+						public void onKeyUp(KeyUpEvent event) {
+							viewItem();				
+							
+						}
+
+						@Override
+						public void onClick(ClickEvent event) {
+							viewItem();
+
+						}
+
+						private void viewItem() {
+							btnNewButton_1.setVisible(true);
+							htmlNewHtml.setVisible(false);
+							htmlNewHtml2.setVisible(false);
+							htmlNewHtml3.setVisible(false);
+							htmlNewHtml4.setVisible(false);
+							htmlNewHtml5.setVisible(false);
+							htmlNewHtml6.setVisible(false);
+							htmlNewHtml7.setVisible(false);
+							p1.setVisible(false);
+							p2.setVisible(false);
+							p3.setVisible(false);
+							p4.setVisible(false);
+							p5.setVisible(false);
+							p6.setVisible(false);
+							p7.setVisible(false);
+								
+							 greetingService.greetServer(Destacados.DESTACADO_PRODUCTO4,
+									new AsyncCallback<String>() {
+										public void onFailure(Throwable caught) {
+											//TODO
+										}
+
+										public void onSuccess(String result) {
+											sendBoxImg.setVisible(false);
+											htmlDestacado.setHTML(result);
+											htmlDestacado.setVisible(true);
+											RootPanel.get("botonComprar").add(p1);
+											p1.setStyleName("btn btn-danger");
+											p1.setVisible(true);
+											
+											
+											
+										p1.addClickHandler(new ClickHandler() {
+											public void onClick(ClickEvent event) {
+												
+												//validar aca que exita cookie
+										if(Cookies.getCookie("13051983ntmp") != null){			
+											
+											greetingService.precio(Destacados.DESTACADO_PRODUCTO4, "", new AsyncCallback<String[]>() {
+
+											@Override
+											public void onFailure(Throwable caught) {
+												// TODO Auto-generated method stub
+												//RootPanel.get("comprando").remove(comprando);
+												p1.setVisible(false);
+												
+
+											}
+
+											@Override
+											public void onSuccess(String[] result) {
+												htmlDestacado.setVisible(false);
+												p1.setVisible(false);
+												RootPanel.get("comprando").clear();
+												htmlNewHtml.setVisible(false);
+												htmlNewHtml2.setVisible(false);
+												htmlNewHtml3.setVisible(false);
+												htmlNewHtml4.setVisible(false);
+												htmlNewHtml5.setVisible(false);
+												htmlNewHtml6.setVisible(false);
+												htmlNewHtml7.setVisible(false);
+													System.out.println(result[0]);	
+													System.out.println(result[1]);	
+													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+
+														comprando.setVisible(true);
+														RootPanel.get("comprando").add(comprando);
+
+													
+													
+											}	 
+					
+												
+											});
+							
+											}else{
+												Window.alert("Para comprar, debes estar registrado en send-box.com, gracias");
+												
+											}	
+										
+											}
+										});
+
+											
+											}	
+										
+									});
+						}
+						
+						
+					}
+				 
+				 class MyHandlerDestacados5 implements ClickHandler, KeyUpHandler{
+
+						@Override
+						public void onKeyUp(KeyUpEvent event) {
+							viewItem();				
+							
+						}
+
+						@Override
+						public void onClick(ClickEvent event) {
+							viewItem();
+
+						}
+
+						private void viewItem() {
+							btnNewButton_1.setVisible(true);
+							htmlNewHtml.setVisible(false);
+							htmlNewHtml2.setVisible(false);
+							htmlNewHtml3.setVisible(false);
+							htmlNewHtml4.setVisible(false);
+							htmlNewHtml5.setVisible(false);
+							htmlNewHtml6.setVisible(false);
+							htmlNewHtml7.setVisible(false);
+							p1.setVisible(false);
+							p2.setVisible(false);
+							p3.setVisible(false);
+							p4.setVisible(false);
+							p5.setVisible(false);
+							p6.setVisible(false);
+							p7.setVisible(false);
+								
+							 greetingService.greetServer(Destacados.DESTACADO_PRODUCTO5,
+									new AsyncCallback<String>() {
+										public void onFailure(Throwable caught) {
+											//TODO
+										}
+
+										public void onSuccess(String result) {
+											sendBoxImg.setVisible(false);
+											htmlDestacado.setHTML(result);
+											htmlDestacado.setVisible(true);
+											RootPanel.get("botonComprar").add(p1);
+											p1.setStyleName("btn btn-danger");
+											p1.setVisible(true);
+											
+											
+											
+										p1.addClickHandler(new ClickHandler() {
+											public void onClick(ClickEvent event) {
+												
+												//validar aca que exita cookie
+										if(Cookies.getCookie("13051983ntmp") != null){			
+											
+											greetingService.precio(Destacados.DESTACADO_PRODUCTO5, "", new AsyncCallback<String[]>() {
+
+											@Override
+											public void onFailure(Throwable caught) {
+												// TODO Auto-generated method stub
+												//RootPanel.get("comprando").remove(comprando);
+												p1.setVisible(false);
+												
+
+											}
+
+											@Override
+											public void onSuccess(String[] result) {
+												htmlDestacado.setVisible(false);
+												p1.setVisible(false);
+												RootPanel.get("comprando").clear();
+												htmlNewHtml.setVisible(false);
+												htmlNewHtml2.setVisible(false);
+												htmlNewHtml3.setVisible(false);
+												htmlNewHtml4.setVisible(false);
+												htmlNewHtml5.setVisible(false);
+												htmlNewHtml6.setVisible(false);
+												htmlNewHtml7.setVisible(false);
+													System.out.println(result[0]);	
+													System.out.println(result[1]);	
+													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+
+														comprando.setVisible(true);
+														RootPanel.get("comprando").add(comprando);
+
+													
+													
+											}	 
+					
+												
+											});
+							
+											}else{
+												Window.alert("Para comprar, debes estar registrado en send-box.com, gracias");
+												
+											}	
+										
+											}
+										});
+
+											
+											}	
+										
+									});
+						}
+						
+						
+					}	
+		
+				 class MyHandlerDestacados6 implements ClickHandler, KeyUpHandler{
+
+						@Override
+						public void onKeyUp(KeyUpEvent event) {
+							viewItem();				
+							
+						}
+
+						@Override
+						public void onClick(ClickEvent event) {
+							viewItem();
+
+						}
+
+						private void viewItem() {
+							btnNewButton_1.setVisible(true);
+							htmlNewHtml.setVisible(false);
+							htmlNewHtml2.setVisible(false);
+							htmlNewHtml3.setVisible(false);
+							htmlNewHtml4.setVisible(false);
+							htmlNewHtml5.setVisible(false);
+							htmlNewHtml6.setVisible(false);
+							htmlNewHtml7.setVisible(false);
+							p1.setVisible(false);
+							p2.setVisible(false);
+							p3.setVisible(false);
+							p4.setVisible(false);
+							p5.setVisible(false);
+							p6.setVisible(false);
+							p7.setVisible(false);
+								
+							 greetingService.greetServer(Destacados.DESTACADO_PRODUCTO6,
+									new AsyncCallback<String>() {
+										public void onFailure(Throwable caught) {
+											//TODO
+										}
+
+										public void onSuccess(String result) {
+											sendBoxImg.setVisible(false);
+											htmlDestacado.setHTML(result);
+											htmlDestacado.setVisible(true);
+											RootPanel.get("botonComprar").add(p1);
+											p1.setStyleName("btn btn-danger");
+											p1.setVisible(true);
+											
+											
+											
+										p1.addClickHandler(new ClickHandler() {
+											public void onClick(ClickEvent event) {
+												
+												//validar aca que exita cookie
+										if(Cookies.getCookie("13051983ntmp") != null){			
+											
+											greetingService.precio(Destacados.DESTACADO_PRODUCTO6, "", new AsyncCallback<String[]>() {
+
+											@Override
+											public void onFailure(Throwable caught) {
+												// TODO Auto-generated method stub
+												//RootPanel.get("comprando").remove(comprando);
+												p1.setVisible(false);
+												
+
+											}
+
+											@Override
+											public void onSuccess(String[] result) {
+												htmlDestacado.setVisible(false);
+												p1.setVisible(false);
+												RootPanel.get("comprando").clear();
+												htmlNewHtml.setVisible(false);
+												htmlNewHtml2.setVisible(false);
+												htmlNewHtml3.setVisible(false);
+												htmlNewHtml4.setVisible(false);
+												htmlNewHtml5.setVisible(false);
+												htmlNewHtml6.setVisible(false);
+												htmlNewHtml7.setVisible(false);
+													System.out.println(result[0]);	
+													System.out.println(result[1]);	
+													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+
+														comprando.setVisible(true);
+														RootPanel.get("comprando").add(comprando);
+
+													
+													
+											}	 
+					
+												
+											});
+							
+											}else{
+												Window.alert("Para comprar, debes estar registrado en send-box.com, gracias");
+												
+											}	
+										
+											}
+										});
+
+											
+											}	
+										
+									});
+						}
+						
+						
+					}
+				 
+				 class MyHandlerDestacados7 implements ClickHandler, KeyUpHandler{
+
+						@Override
+						public void onKeyUp(KeyUpEvent event) {
+							viewItem();				
+							
+						}
+
+						@Override
+						public void onClick(ClickEvent event) {
+							viewItem();
+
+						}
+
+						private void viewItem() {
+							btnNewButton_1.setVisible(true);
+							htmlNewHtml.setVisible(false);
+							htmlNewHtml2.setVisible(false);
+							htmlNewHtml3.setVisible(false);
+							htmlNewHtml4.setVisible(false);
+							htmlNewHtml5.setVisible(false);
+							htmlNewHtml6.setVisible(false);
+							htmlNewHtml7.setVisible(false);
+							p1.setVisible(false);
+							p2.setVisible(false);
+							p3.setVisible(false);
+							p4.setVisible(false);
+							p5.setVisible(false);
+							p6.setVisible(false);
+							p7.setVisible(false);
+								
+							 greetingService.greetServer(Destacados.DESTACADO_PRODUCTO7,
+									new AsyncCallback<String>() {
+										public void onFailure(Throwable caught) {
+											//TODO
+										}
+
+										public void onSuccess(String result) {
+											sendBoxImg.setVisible(false);
+											htmlDestacado.setHTML(result);
+											htmlDestacado.setVisible(true);
+											RootPanel.get("botonComprar").add(p1);
+											p1.setStyleName("btn btn-danger");
+											p1.setVisible(true);
+											
+											
+											
+										p1.addClickHandler(new ClickHandler() {
+											public void onClick(ClickEvent event) {
+												
+												//validar aca que exita cookie
+										if(Cookies.getCookie("13051983ntmp") != null){			
+											
+											greetingService.precio(Destacados.DESTACADO_PRODUCTO7, "", new AsyncCallback<String[]>() {
+
+											@Override
+											public void onFailure(Throwable caught) {
+												// TODO Auto-generated method stub
+												//RootPanel.get("comprando").remove(comprando);
+												p1.setVisible(false);
+												
+
+											}
+
+											@Override
+											public void onSuccess(String[] result) {
+												htmlDestacado.setVisible(false);
+												p1.setVisible(false);
+												RootPanel.get("comprando").clear();
+												htmlNewHtml.setVisible(false);
+												htmlNewHtml2.setVisible(false);
+												htmlNewHtml3.setVisible(false);
+												htmlNewHtml4.setVisible(false);
+												htmlNewHtml5.setVisible(false);
+												htmlNewHtml6.setVisible(false);
+												htmlNewHtml7.setVisible(false);
+													System.out.println(result[0]);	
+													System.out.println(result[1]);	
+													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+
+														comprando.setVisible(true);
+														RootPanel.get("comprando").add(comprando);
+
+													
+													
+											}	 
+					
+												
+											});
+							
+											}else{
+												Window.alert("Para comprar, debes estar registrado en send-box.com, gracias");
+												
+											}	
+										
+											}
+										});
+
+											
+											}	
+										
+									});
+						}
+						
+						
+					}
+				 class MyHandlerDestacados8 implements ClickHandler, KeyUpHandler{
+
+						@Override
+						public void onKeyUp(KeyUpEvent event) {
+							viewItem();				
+							
+						}
+
+						@Override
+						public void onClick(ClickEvent event) {
+							viewItem();
+
+						}
+
+						private void viewItem() {
+							btnNewButton_1.setVisible(true);
+							htmlNewHtml.setVisible(false);
+							htmlNewHtml2.setVisible(false);
+							htmlNewHtml3.setVisible(false);
+							htmlNewHtml4.setVisible(false);
+							htmlNewHtml5.setVisible(false);
+							htmlNewHtml6.setVisible(false);
+							htmlNewHtml7.setVisible(false);
+							p1.setVisible(false);
+							p2.setVisible(false);
+							p3.setVisible(false);
+							p4.setVisible(false);
+							p5.setVisible(false);
+							p6.setVisible(false);
+							p7.setVisible(false);
+								
+							 greetingService.greetServer(Destacados.DESTACADO_PRODUCTO8,
+									new AsyncCallback<String>() {
+										public void onFailure(Throwable caught) {
+											//TODO
+										}
+
+										public void onSuccess(String result) {
+											sendBoxImg.setVisible(false);
+											htmlDestacado.setHTML(result);
+											htmlDestacado.setVisible(true);
+											RootPanel.get("botonComprar").add(p1);
+											p1.setStyleName("btn btn-danger");
+											p1.setVisible(true);
+											
+											
+											
+										p1.addClickHandler(new ClickHandler() {
+											public void onClick(ClickEvent event) {
+												
+												//validar aca que exita cookie
+										if(Cookies.getCookie("13051983ntmp") != null){			
+											
+											greetingService.precio(Destacados.DESTACADO_PRODUCTO8, "", new AsyncCallback<String[]>() {
+
+											@Override
+											public void onFailure(Throwable caught) {
+												// TODO Auto-generated method stub
+												//RootPanel.get("comprando").remove(comprando);
+												p1.setVisible(false);
+												
+
+											}
+
+											@Override
+											public void onSuccess(String[] result) {
+												htmlDestacado.setVisible(false);
+												p1.setVisible(false);
+												RootPanel.get("comprando").clear();
+												htmlNewHtml.setVisible(false);
+												htmlNewHtml2.setVisible(false);
+												htmlNewHtml3.setVisible(false);
+												htmlNewHtml4.setVisible(false);
+												htmlNewHtml5.setVisible(false);
+												htmlNewHtml6.setVisible(false);
+												htmlNewHtml7.setVisible(false);
+													System.out.println(result[0]);	
+													System.out.println(result[1]);	
+													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+
+														comprando.setVisible(true);
+														RootPanel.get("comprando").add(comprando);
+
+													
+													
+											}	 
+					
+												
+											});
+							
+											}else{
+												Window.alert("Para comprar, debes estar registrado en send-box.com, gracias");
+												
+											}	
+										
+											}
+										});
+
+											
+											}	
+										
+									});
+						}
+						
+						
+					}	
+				 class MyHandlerDestacados9 implements ClickHandler, KeyUpHandler{
+
+						@Override
+						public void onKeyUp(KeyUpEvent event) {
+							viewItem();				
+							
+						}
+
+						@Override
+						public void onClick(ClickEvent event) {
+							viewItem();
+
+						}
+
+						private void viewItem() {
+							btnNewButton_1.setVisible(true);
+							htmlNewHtml.setVisible(false);
+							htmlNewHtml2.setVisible(false);
+							htmlNewHtml3.setVisible(false);
+							htmlNewHtml4.setVisible(false);
+							htmlNewHtml5.setVisible(false);
+							htmlNewHtml6.setVisible(false);
+							htmlNewHtml7.setVisible(false);
+							p1.setVisible(false);
+							p2.setVisible(false);
+							p3.setVisible(false);
+							p4.setVisible(false);
+							p5.setVisible(false);
+							p6.setVisible(false);
+							p7.setVisible(false);
+								
+							 greetingService.greetServer(Destacados.DESTACADO_PRODUCTO9,
+									new AsyncCallback<String>() {
+										public void onFailure(Throwable caught) {
+											//TODO
+										}
+
+										public void onSuccess(String result) {
+											sendBoxImg.setVisible(false);
+											htmlDestacado.setHTML(result);
+											htmlDestacado.setVisible(true);
+											RootPanel.get("botonComprar").add(p1);
+											p1.setStyleName("btn btn-danger");
+											p1.setVisible(true);
+											
+											
+											
+										p1.addClickHandler(new ClickHandler() {
+											public void onClick(ClickEvent event) {
+												
+												//validar aca que exita cookie
+										if(Cookies.getCookie("13051983ntmp") != null){			
+											
+											greetingService.precio(Destacados.DESTACADO_PRODUCTO9, "", new AsyncCallback<String[]>() {
+
+											@Override
+											public void onFailure(Throwable caught) {
+												// TODO Auto-generated method stub
+												//RootPanel.get("comprando").remove(comprando);
+												p1.setVisible(false);
+												
+
+											}
+
+											@Override
+											public void onSuccess(String[] result) {
+												htmlDestacado.setVisible(false);
+												p1.setVisible(false);
+												RootPanel.get("comprando").clear();
+												htmlNewHtml.setVisible(false);
+												htmlNewHtml2.setVisible(false);
+												htmlNewHtml3.setVisible(false);
+												htmlNewHtml4.setVisible(false);
+												htmlNewHtml5.setVisible(false);
+												htmlNewHtml6.setVisible(false);
+												htmlNewHtml7.setVisible(false);
+													System.out.println(result[0]);	
+													System.out.println(result[1]);	
+													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+
+														comprando.setVisible(true);
+														RootPanel.get("comprando").add(comprando);
+
+													
+													
+											}	 
+					
+												
+											});
+							
+											}else{
+												Window.alert("Para comprar, debes estar registrado en send-box.com, gracias");
+												
+											}	
+										
+											}
+										});
+
+											
+											}	
+										
+									});
+						}
+						
+						
+					}
 				 
 				 
 		MyHandlerDestacados destacado1Handler= new MyHandlerDestacados();	 
-		destacado1.addClickHandler(destacado1Handler);	 
-				 						 
+		destacado1.addClickHandler(destacado1Handler);	
+		
+		MyHandlerDestacados2 destacado2Handler= new MyHandlerDestacados2();
+		destacado2.addClickHandler(destacado2Handler);
+		
+		MyHandlerDestacados3 destacado3Handler= new MyHandlerDestacados3();
+		destacado3.addClickHandler(destacado3Handler);
+		
+		MyHandlerDestacados4 destacado4Handler= new MyHandlerDestacados4();
+		destacado4.addClickHandler(destacado4Handler);
+		
+		MyHandlerDestacados5 destacado5Handler= new MyHandlerDestacados5();
+		destacado5.addClickHandler(destacado5Handler);
+		
+		MyHandlerDestacados6 destacado6Handler= new MyHandlerDestacados6();
+		destacado6.addClickHandler(destacado6Handler);
+		
+		MyHandlerDestacados7 destacado7Handler= new MyHandlerDestacados7();
+		destacado7.addClickHandler(destacado7Handler);
+		
+		MyHandlerDestacados8 destacado8Handler= new MyHandlerDestacados8();
+		destacado8.addClickHandler(destacado8Handler);
+		
+		MyHandlerDestacados9 destacado9Handler= new MyHandlerDestacados9();
+		destacado9.addClickHandler(destacado9Handler);
+		
 		//Login en SendBox.		 
 		MyHandler3 handlerLogin =new MyHandler3();
 		btnNewButton_5.addClickHandler(handlerLogin);
