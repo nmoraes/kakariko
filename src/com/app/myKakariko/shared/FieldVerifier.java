@@ -41,6 +41,20 @@ public class FieldVerifier {
 		return name.length() > 4;
 	}
 	
+	public static boolean isValidCi(String cedula) {
+		if (cedula == null || cedula.equals("")) {
+			return false;
+		}
+		return cedula.length() == 7;
+	}
+	
+	public static boolean isValidTel(String tel) {
+		if (tel == null || tel.equals("")) {
+			return false;
+		}
+		return tel.length() >=8;
+	}
+	
 	/**
 	 * Validacion de emails.
 	 */
@@ -61,6 +75,14 @@ public class FieldVerifier {
            return valid;
    }
 
+	   public static boolean isValidName(String name) {
+			if (name == null || name.equals("")) {
+				return false;
+			}
+			return true;
+		}
+	   
+	   
 	   public static String currencies(String defaultCurrencyId){
 			String symbolCurrency=null;
 				

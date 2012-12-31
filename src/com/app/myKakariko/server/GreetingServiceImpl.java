@@ -139,8 +139,8 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 		return  "<div><p><img src="+s+ "align=\"left\" class=\"img-rounded\"><div><br><strong>" +title + " "+ subtitle+ "</strong><br><p class=\"text-error\">Precio: <strong>" + price +  "</strong> "+currency + " (el precio NO incluye el envio)</p> " 
 				+ "Cantidad inicial de articulos: "
 				+cantidadInicial  + "<br>Cantidad disponible a la venta: " + sold_quantity + "<br>" +
-				" Estado del producto : "+estado+"</p></div>" +
-				"<hr>";
+				" Estado del producto : "+estado+"</p></div>";
+				
 	}
 
 	/**
@@ -253,7 +253,7 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 						"<div id=\"gwtContainer\"><p align=\"right\"><button class=\"btn btn-warning\" input type=\"button\" >detalles</button></p></div>"
 						+"</div><hr> </div>";
 						
-					//System.out.println(html);	
+					System.out.println(html);	
 						
 				s[i]=html;
 				
@@ -262,7 +262,7 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 
 			reader.close();
 
-			System.out.println("QUERY :" + site + " " + query);
+			//System.out.println("QUERY :" + site + " " + query);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
