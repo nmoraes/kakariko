@@ -6,4 +6,13 @@
     <loc>http://www.send-box.com/</loc> 
 
   </url>
+  <url>  
+	 <loc>http://www.send-box.com/aboutUs.html</loc>
+  </url>
+
+	  <url>  
+	 <loc>http://www.send-box.com/empresas.html</loc>
+  </url>
+
+  
 </urlset>

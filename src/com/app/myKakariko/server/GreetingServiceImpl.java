@@ -33,6 +33,9 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		GreetingService {
 	
 	
+//private static String TWITTER_SHARE="<a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-text=\"Tenemos lo que estas buscando\" data-via=\"sendbox_uy\" data-lang=\"es\" data-size=\"large\">Twittear</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=\"//platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script>";	
+	
+	
 public String[] precio(String input, String shipping)throws IllegalArgumentException {
 	System.out.println(shipping);
 	String [] s = new String[5];
@@ -139,10 +142,11 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 		return  "<div><p><img src="+s+ "align=\"left\" class=\"img-rounded\"><div><br><strong>" +title + " "+ subtitle+ "</strong><br><p class=\"text-error\">Precio: <strong>" + price +  "</strong> "+currency + " (el precio NO incluye el envio)</p> " 
 				+ "Cantidad inicial de articulos: "
 				+cantidadInicial  + "<br>Cantidad disponible a la venta: " + sold_quantity + "<br>" +
-				" Estado del producto : "+estado+"</p></div>";
+				" Estado del producto : "+estado+"<br></p>" +
+				"</div>";
 				
 	}
-
+//http://www.redtube.com/273048
 	/**
 	 * Escape an html string. Escaping data received from the client helps to
 	 * prevent cross-site script vulnerabilities.

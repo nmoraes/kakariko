@@ -2434,7 +2434,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		
 		MyHandler2 handler2 = new MyHandler2();
 		btnNewButton.addClickHandler(handler2);
-		
+		btnNewButton.addKeyUpHandler(handler2);
+		txtbxIpod.addKeyUpHandler(handler2);
 		MyHandlerCookie killingCookies = new MyHandlerCookie();
 		btnNewButton_2.addClickHandler(killingCookies);
 		
