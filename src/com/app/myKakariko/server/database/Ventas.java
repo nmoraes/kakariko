@@ -25,6 +25,8 @@ public class Ventas {
 		this.regalo= false;
 		this.shipping= shippingType;
 		this.ganancia=null;  					 //precio - precio original
+		this.nombreDelRegalo=null;
+		this.direccionDelRegalo=null;
 		
   
 	}
@@ -151,6 +153,13 @@ public class Ventas {
 	
 	@Persistent
 	private String ganancia;
+	
+	@Persistent
+	private String nombreDelRegalo;
+	
+	@Persistent
+	private String direccionDelRegalo;
+	
 
 	public String getGanancia() {
 		return ganancia;

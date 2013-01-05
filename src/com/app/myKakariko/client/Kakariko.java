@@ -278,10 +278,10 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 
 
-		Button btnNewButton_4 = new Button("ayuda");
-		rootPanel.add(btnNewButton_4, 198, 185);
-		RootPanel.get("ayuda").add(btnNewButton_4);
-		btnNewButton_4.setStyleName("btn btn-link");
+		//Button btnNewButton_4 = new Button("ayuda");
+		//rootPanel.add(btnNewButton_4, 198, 185);
+		//RootPanel.get("ayuda").add(btnNewButton_4);
+		//btnNewButton_4.setStyleName("btn btn-link");
 
 		
 		//Destacados
