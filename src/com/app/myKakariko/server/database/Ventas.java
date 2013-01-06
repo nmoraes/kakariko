@@ -13,7 +13,7 @@ public class Ventas {
 	 * Ventas representa al data object, de las ventas del sistema
 	 */
  
-	public Ventas(String username, String itemId, int precioFinal, int precioOriginal, String shippingType) {
+	public Ventas(String username, String itemId, String precioFinal, String precioOriginal, String shippingType, String desc, String moneda) {
 		this.username = username;
 		this.itemId = itemId;
 		this.estado = "Esperando confirmacion de Abitab"; 
@@ -21,23 +21,20 @@ public class Ventas {
 		this.dateTransactionCompleted = null;	//cuando pago en abitab
 		this.entregaEstimada= null;				//calculada a partir del pago en abitab
 		this.precioFinal=precioFinal;			//precio del item + shipping
+		this.precioOriginal=precioOriginal;
 		this.dateShiped = null;
 		this.regalo= false;
 		this.shipping= shippingType;
 		this.ganancia=null;  					 //precio - precio original
 		this.nombreDelRegalo=null;
 		this.direccionDelRegalo=null;
+		this.descripcion= desc;
+		this.moneda=moneda;
 		
   
 	}
 
-	public int getPrecioFinal() {
-		return precioFinal;
-	}
 
-	public void setPrecioFinal(int precioFinal) {
-		this.precioFinal = precioFinal;
-	}
 
 	public boolean isRegalo() {
 		return regalo;
@@ -103,13 +100,7 @@ public class Ventas {
 		this.entregaEstimada = entregaEstimada;
 	}
 
-	public int getPrecio() {
-		return precioFinal;
-	}
 
-	public void setPrecio(int precio) {
-		this.precioFinal = precio;
-	}
 
 	public Date getDateShiped() {
 		return dateShiped;
@@ -119,13 +110,21 @@ public class Ventas {
 		this.dateShiped = dateShiped;
 	}
 
-	@PrimaryKey
+	
 	@Persistent
 	private String username;
 
 	@Persistent
 	private String itemId;
 
+	@Persistent
+	private String descripcion;
+	
+	@Persistent
+	private String moneda;
+	
+	@Persistent
+	private String precioOriginal;
 	
 	@Persistent
 	private String estado;
@@ -140,7 +139,7 @@ public class Ventas {
 	private Date entregaEstimada;
 	
 	@Persistent
-	private int precioFinal;
+	private String precioFinal;
 	
 	@Persistent
 	private Date dateShiped;

@@ -118,7 +118,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	final Label errorLabel = new Label();
 	 private Label label=new Label();
 	 	
-	private Comprar comprando; //=new Comprar(null,null,null,null);
+	private Comprar comprando;
 	
 	/**
 	 * This is the entry point method.
@@ -434,7 +434,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 									htmlNewHtml7.setVisible(false);
 										System.out.println(result[0]);	
 										System.out.println(result[1]);	
-										comprando = new Comprar(result[0],result[1],result[2],result[3]);
+										comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 											comprando.setVisible(true);
 											RootPanel.get("comprando").add(comprando);
@@ -553,7 +553,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 										htmlNewHtml7.setVisible(false);
 											System.out.println(result[0]);	
 											System.out.println(result[1]);	
-											comprando = new Comprar(result[0],result[1],result[2],result[3]);
+											comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 												comprando.setVisible(true);
 												RootPanel.get("comprando").add(comprando);
@@ -658,7 +658,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 										htmlNewHtml7.setVisible(false);
 											System.out.println(result[0]);	
 											System.out.println(result[1]);	
-											comprando = new Comprar(result[0],result[1],result[2],result[3]);
+											comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 												comprando.setVisible(true);
 												RootPanel.get("comprando").add(comprando);
@@ -764,7 +764,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 										htmlNewHtml7.setVisible(false);
 											System.out.println(result[0]);	
 											System.out.println(result[1]);	
-											comprando = new Comprar(result[0],result[1],result[2],result[3]);
+											comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 												comprando.setVisible(true);
 												RootPanel.get("comprando").add(comprando);
@@ -873,7 +873,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 										htmlNewHtml7.setVisible(false);
 											System.out.println(result[0]);	
 											System.out.println(result[1]);	
-											comprando = new Comprar(result[0],result[1],result[2],result[3]);
+											comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 												comprando.setVisible(true);
 												RootPanel.get("comprando").add(comprando);
@@ -982,7 +982,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 										htmlNewHtml7.setVisible(false);
 											System.out.println(result[0]);	
 											System.out.println(result[1]);	
-											comprando = new Comprar(result[0],result[1],result[2],result[3]);
+											comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 												comprando.setVisible(true);
 												RootPanel.get("comprando").add(comprando);
@@ -1088,7 +1088,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 										htmlNewHtml7.setVisible(false);
 											System.out.println(result[0]);	
 											System.out.println(result[1]);	
-											comprando = new Comprar(result[0],result[1],result[2],result[3]);
+											comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 												comprando.setVisible(true);
 												RootPanel.get("comprando").add(comprando);
@@ -1509,7 +1509,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 												htmlNewHtml7.setVisible(false);
 													System.out.println(result[0]);	
 													System.out.println(result[1]);	
-													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+													comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 														comprando.setVisible(true);
 														RootPanel.get("comprando").add(comprando);
@@ -1616,7 +1616,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 												htmlNewHtml7.setVisible(false);
 													System.out.println(result[0]);	
 													System.out.println(result[1]);	
-													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+													comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 														comprando.setVisible(true);
 														RootPanel.get("comprando").add(comprando);
@@ -1723,7 +1723,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 												htmlNewHtml7.setVisible(false);
 													System.out.println(result[0]);	
 													System.out.println(result[1]);	
-													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+													comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 														comprando.setVisible(true);
 														RootPanel.get("comprando").add(comprando);
@@ -1830,7 +1830,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 												htmlNewHtml7.setVisible(false);
 													System.out.println(result[0]);	
 													System.out.println(result[1]);	
-													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+													comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 														comprando.setVisible(true);
 														RootPanel.get("comprando").add(comprando);
@@ -1937,7 +1937,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 												htmlNewHtml7.setVisible(false);
 													System.out.println(result[0]);	
 													System.out.println(result[1]);	
-													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+													comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 														comprando.setVisible(true);
 														RootPanel.get("comprando").add(comprando);
@@ -2044,7 +2044,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 												htmlNewHtml7.setVisible(false);
 													System.out.println(result[0]);	
 													System.out.println(result[1]);	
-													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+													comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 														comprando.setVisible(true);
 														RootPanel.get("comprando").add(comprando);
@@ -2151,7 +2151,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 												htmlNewHtml7.setVisible(false);
 													System.out.println(result[0]);	
 													System.out.println(result[1]);	
-													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+													comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 														comprando.setVisible(true);
 														RootPanel.get("comprando").add(comprando);
@@ -2257,7 +2257,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 												htmlNewHtml7.setVisible(false);
 													System.out.println(result[0]);	
 													System.out.println(result[1]);	
-													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+													comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 														comprando.setVisible(true);
 														RootPanel.get("comprando").add(comprando);
@@ -2363,7 +2363,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 												htmlNewHtml7.setVisible(false);
 													System.out.println(result[0]);	
 													System.out.println(result[1]);	
-													comprando = new Comprar(result[0],result[1],result[2],result[3]);
+													comprando = new Comprar(result[0],result[1],result[2],result[3],result[4]);
 
 														comprando.setVisible(true);
 														RootPanel.get("comprando").add(comprando);

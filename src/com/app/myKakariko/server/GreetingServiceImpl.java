@@ -70,7 +70,7 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 		s[1]=currency;
 		s[2]=pictures;
 		s[3]=title;
-
+		s[4]=input;
 
 		
 	} catch (Exception e) {
@@ -86,7 +86,6 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
     
 	public String greetServer(String input) throws IllegalArgumentException {
 		
-
 		String pictures = null;
 		String price = null;
 		String sold_quantity = null;

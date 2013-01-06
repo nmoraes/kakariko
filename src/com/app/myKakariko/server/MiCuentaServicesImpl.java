@@ -8,6 +8,7 @@ import javax.jdo.PersistenceManager;
 import com.app.myKakariko.client.MiCuentaService;
 import com.app.myKakariko.server.database.Client;
 import com.app.myKakariko.server.database.PMF;
+import com.app.myKakariko.server.database.Ventas;
 import com.app.myKakariko.shared.FieldVerifier;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
@@ -24,6 +25,48 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 	private final String PESOS = "$";
 	private final String DOLARES = "U$S";
 
+	
+	
+	
+	
+	
+	
+	@Override
+	public String comprarProducto(String username, String nombre, String direccion, String descripcion, String Id, String precioReal, String precioSendBox, String moneda, String shipping) throws IllegalArgumentException {
+		
+//Cosas:
+		/** 
+		 * Hay que restar el valor Send-box - el valor original, para insertar en la BD.
+		 * 
+		 * */
+		
+		
+		
+		PersistenceManager pm = null;
+		pm = PMF.get().getPersistenceManager();
+
+		Ventas venta = new Ventas(username, Id, precioSendBox, precioReal, shipping, descripcion, moneda);
+		
+			System.out.println("se va a insertar......" + username);
+			pm.makePersistent(venta);
+
+		
+
+		//if (e != null) {
+
+			//throw new IllegalArgumentException();
+
+		//}
+
+		pm.close();
+
+
+
+		return "OK !!";
+		
+	}
+
+	
 	
 	
 

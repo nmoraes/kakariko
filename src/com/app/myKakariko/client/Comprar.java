@@ -11,46 +11,48 @@ import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.FormPanel;
-import com.google.gwt.user.client.ui.HorizontalSplitPanel;
-import com.google.gwt.user.client.ui.DecoratedStackPanel;
 import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Button;
 
 public class Comprar extends Composite {
 	
 	private final MiCuentaServiceAsync panelDeControl = GWT.create(MiCuentaService.class);
+	
 	private TextBox textBox;
 	private TextBox textBox_1;
 	private TextBox textBox_2;
 	private TextBox textBox_3;
-	private DecoratedTabPanel decoratedTabPanel;
-	private TextBox textBox_4;
+	private HTMLPanel decoratedTabPanel;
 	 //radioButton
 	private ListBox comboBox_1;
 	
 	private HTML image;
 	private static String precio;
 	private static String moneda;
+	private static String id;
 	private String desc;
+	private static String precioSendBox;
 	private Button btnComprar;
 	private HTML htmlNewHtml;
+	private Button btnCancelar;
+	private static  String valorCombobox=null;
+	
 	
 	
 	
 
-	public Comprar(String precio, String moneda, String imagen, String descripcion) {
+	public Comprar(String precio, String moneda, String imagen, String descripcion, String id) {
 		
 		image= new HTML("<div><p><img src="+imagen+ " align=\"center\" class=\"img-rounded\"><div></p",true);
 	
 		this.precio=precio;
 		this.moneda=moneda;
+		this.id=id;
 		desc=descripcion;
 		
 		
@@ -62,16 +64,15 @@ public class Comprar extends Composite {
 		comboBox_1.addItem("Entrega despues de 72 Hrs");
 		
 		
-		decoratedTabPanel = new DecoratedTabPanel();
+		decoratedTabPanel = new HTMLPanel("");
 		initWidget(decoratedTabPanel);
-		decoratedTabPanel.setHeight("447px");
-		decoratedTabPanel.setAnimationEnabled(true);
+		decoratedTabPanel.setSize("880px", "406px");
+		//decoratedTabPanel.setAnimationEnabled(true);
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 	
 		
-		decoratedTabPanel.add(absolutePanel_1, "mi compra",
-				false);
-		absolutePanel_1.setSize("880px", "421px");
+		decoratedTabPanel.add(absolutePanel_1);
+		absolutePanel_1.setSize("880px", "406px");
 
 		absolutePanel_1.add(image, 638, 10)	;
 		image.setSize("232px", "183px");
@@ -97,19 +98,26 @@ public class Comprar extends Composite {
 		absolutePanel_1.add(btnComprar, 703, 259);
 		btnComprar.setSize("82", "30");
 		
-		Button btnCancelar = new Button("cancelar");
+		btnCancelar = new Button("cancelar");
 		btnCancelar.setStyleName("btn btn-danger");
 		absolutePanel_1.add(btnCancelar, 789, 259);
+		
+		
+		btnCancelar.addClickHandler(new ClickHandler() {
+	
+			@Override
+			public void onClick(ClickEvent event) {
+				RootPanel.get("comprando").clear();	
+				Window.Location.reload();
+			}
+		});
 		
 		textBox_3 = new TextBox();
 		textBox_3.setText(moneda+" "+precio);
 		textBox_3.setEnabled(false);
 		absolutePanel_1.add(textBox_3, 236, 94);
 		
-		textBox_4 = new TextBox();
-		absolutePanel_1.add(textBox_4, 8, 142);
-		
-		htmlNewHtml = new HTML("<div class=\"alert alert-block\"><h4>Atencion!</h4>Usted esta por comprar 1(uno) producto, al momento de comprar, Ud genera una compra fictisia que se hace real al momento de abonar en Abitab, en el momento que abone, se calcula el tiempo de envio seleccionado.Ej. Ud compra un Lunes, con envio 24Hrs y abona un martes, el producto le llegar el Miercoles.</div>", true);
+		htmlNewHtml = new HTML("<div class=\"alert alert-block\"><h4>Atencion!</h4>Usted esta por comprar 1(uno) producto, al momento de comprar, Ud genera una compra ficticia que se hace real al momento de abonar en Abitab, en el momento que abone, se calcula el tiempo de envio seleccionado. Ej: Ud compra un Lunes, con envio 24Hrs y abona un martes, el producto le llegar el Miercoles.</div>", true);
 		absolutePanel_1.add(htmlNewHtml, 8, 295);
 		htmlNewHtml.setSize("863px", "110px");
 		
@@ -125,6 +133,8 @@ public class Comprar extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				int indexCat= comboBox_1.getSelectedIndex();
 				final String comboBoxValue =comboBox_1.getValue(indexCat);
+				Comprar.valorCombobox=comboBoxValue;
+				
 				if(!comboBoxValue.equals("precio sin impuesto de entrega")){
 					recalculo(comboBoxValue,Comprar.precio,Comprar.moneda);	
 					btnComprar.setVisible(true);
@@ -140,6 +150,7 @@ public class Comprar extends Composite {
 			public void onChange(ChangeEvent event) {
 				int indexCat= comboBox_1.getSelectedIndex();
 				final String comboBoxValue =comboBox_1.getValue(indexCat);
+				Comprar.valorCombobox=comboBoxValue;
 				if(!comboBoxValue.equals("precio sin impuesto de entrega")){
 					recalculo(comboBoxValue,Comprar.precio,Comprar.moneda);	
 					btnComprar.setVisible(true);
@@ -182,13 +193,79 @@ public class Comprar extends Composite {
 		
 		}
 		
-		//Login en SendBox.		 
+		
+		
+		
+		
+		
+			 
 		MyHandlerCombo handlerCombo =new MyHandlerCombo();
 		comboBox_1.addKeyUpHandler(handlerCombo);
 		comboBox_1.addChangeHandler(handlerCombo);
 
+		MyHandlerComprar comprar =new MyHandlerComprar();
+		btnComprar.addKeyUpHandler(comprar);
+		btnComprar.addClickHandler(comprar);
+		//btnComprar
+		
+		
 	}
+	class MyHandlerComprar implements ClickHandler, KeyUpHandler {
+		
+		/**
+		 * Fired when the user clicks on the sendButton.
+		 */
+		public void onClick(ClickEvent event) {
+			comprar();
+			
+		}
 
+		/**
+		 * Fired when the user types in the nameField.
+		 */
+		public void onKeyUp(KeyUpEvent event) {
+			comprar();
+		}
+
+		/**
+		 * Send the name from the nameField to the server and wait for a response.
+		 */
+		private void comprar(){
+			System.out.println("COMPRANDO !! ");
+			String username =Cookies.getCookie("13051983ntmp");
+			String nombre= textBox.getText();
+			String direccion = textBox_1.getText();
+			String descripcion =textBox_2.getText();
+			
+		
+			
+			panelDeControl.comprarProducto(username, nombre, direccion,
+					descripcion, Comprar.id, Comprar.precio,
+				    precioSendBox, Comprar.moneda, Comprar.valorCombobox , new AsyncCallback<String>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert("ERROR AL COMPRAR");
+
+				}
+
+				@Override
+				public void onSuccess(String result) {	 
+					
+					Window.alert("GRACIAS POR COMPRAR EN SEND-BOX.COM");
+
+	 
+					 
+				}
+
+			});
+			
+			
+			
+			
+		}
+		
+	}
 
 	public void findClient() {
 		String username =Cookies.getCookie("13051983ntmp");
