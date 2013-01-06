@@ -13,7 +13,7 @@ public class Ventas {
 	 * Ventas representa al data object, de las ventas del sistema
 	 */
  
-	public Ventas(String username, String itemId, String precioFinal, String precioOriginal, String shippingType, String desc, String moneda) {
+	public Ventas(String username, String itemId, String precioFinal, String precioOriginal, String shippingType, String desc, String moneda,String direccion) {
 		this.username = username;
 		this.itemId = itemId;
 		this.estado = "Esperando confirmacion de Abitab"; 
@@ -27,7 +27,7 @@ public class Ventas {
 		this.shipping= shippingType;
 		this.ganancia=null;  					 //precio - precio original
 		this.nombreDelRegalo=null;
-		this.direccionDelRegalo=null;
+		this.direccion=direccion;
 		this.descripcion= desc;
 		this.moneda=moneda;
 		
@@ -157,7 +157,7 @@ public class Ventas {
 	private String nombreDelRegalo;
 	
 	@Persistent
-	private String direccionDelRegalo;
+	private String direccion;
 	
 
 	public String getGanancia() {

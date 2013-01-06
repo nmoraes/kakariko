@@ -34,35 +34,24 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 	@Override
 	public String comprarProducto(String username, String nombre, String direccion, String descripcion, String Id, String precioReal, String precioSendBox, String moneda, String shipping) throws IllegalArgumentException {
 		
-//Cosas:
+
 		/** 
 		 * Hay que restar el valor Send-box - el valor original, para insertar en la BD.
 		 * 
 		 * */
 		
-		
+	
 		
 		PersistenceManager pm = null;
 		pm = PMF.get().getPersistenceManager();
-
-		Ventas venta = new Ventas(username, Id, precioSendBox, precioReal, shipping, descripcion, moneda);
-		
-			System.out.println("se va a insertar......" + username);
-			pm.makePersistent(venta);
-
-		
-
-		//if (e != null) {
-
-			//throw new IllegalArgumentException();
-
-		//}
+		Ventas venta = new Ventas(username, Id, precioSendBox, precioReal, shipping, descripcion, moneda,direccion);	
+		pm.makePersistent(venta);
 
 		pm.close();
 
 
-
-		return "OK !!";
+		String exit="Acabas de comprar: "+descripcion+ ", abre tu email, y tendras las instrucciones y el numero de cuenta Abitab para el deposito. Recuerda que en \"mi cuenta \" puedes hacer seguimiento de las compras hechas y su estado. Gracias por comprar en send-box.com";
+		return exit;
 		
 	}
 

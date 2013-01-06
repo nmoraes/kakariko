@@ -74,7 +74,7 @@ public class Comprar extends Composite {
 		decoratedTabPanel.add(absolutePanel_1);
 		absolutePanel_1.setSize("880px", "406px");
 
-		absolutePanel_1.add(image, 638, 10)	;
+		absolutePanel_1.add(image, 490, 10)	;
 		image.setSize("232px", "183px");
 		
 		absolutePanel_1.add(comboBox_1, 8, 96);
@@ -177,7 +177,7 @@ public class Comprar extends Composite {
 
 					@Override
 					public void onSuccess(String result) {	 
-						System.out.println(result);
+						precioSendBox=result;
 						textBox_3.setText(Comprar.moneda+" "+result);
 
 		 
@@ -231,28 +231,27 @@ public class Comprar extends Composite {
 		 * Send the name from the nameField to the server and wait for a response.
 		 */
 		private void comprar(){
-			System.out.println("COMPRANDO !! ");
 			String username =Cookies.getCookie("13051983ntmp");
 			String nombre= textBox.getText();
 			String direccion = textBox_1.getText();
 			String descripcion =textBox_2.getText();
-			
-		
-			
+
 			panelDeControl.comprarProducto(username, nombre, direccion,
 					descripcion, Comprar.id, Comprar.precio,
 				    precioSendBox, Comprar.moneda, Comprar.valorCombobox , new AsyncCallback<String>() {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert("ERROR AL COMPRAR");
-
+					Window.alert("Error al comprar, segurmente se vencio la cookie, oprime F5.");
+					RootPanel.get("comprando").clear();	
+					Window.Location.reload();
 				}
 
 				@Override
 				public void onSuccess(String result) {	 
-					
-					Window.alert("GRACIAS POR COMPRAR EN SEND-BOX.COM");
+					Window.alert(result);
+					RootPanel.get("comprando").clear();	
+					Window.Location.reload();
 
 	 
 					 
