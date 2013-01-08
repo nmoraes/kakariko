@@ -1,5 +1,6 @@
 package com.app.myKakariko.client;
 
+import com.app.myKakariko.shared.FieldVerifier;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.TextBox;
@@ -23,6 +24,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.FlexTable;
 
 public class MiCuenta extends Composite {
 
@@ -47,6 +49,8 @@ public class MiCuenta extends Composite {
 
 
 		private DecoratedTabPanel decoratedTabPanel;
+		
+		private Label lblNewLabel_7;
 		
 		/**
 		 * Crea un servicio remoto proxy para comunicarse con la capa servidora de
@@ -82,67 +86,70 @@ public class MiCuenta extends Composite {
 					false);
 	 
 			Label lblNewLabel_1 = new Label("password");
-			absolutePanel.add(lblNewLabel_1, 18, 101);
+			absolutePanel.add(lblNewLabel_1, 9, 59);
 
 			Label lblNewLabel_2 = new Label("direccion");
-			absolutePanel.add(lblNewLabel_2, 18, 150);
+			absolutePanel.add(lblNewLabel_2, 9, 105);
 
 			Label lblNewLabel_3 = new Label("telefono");
-			absolutePanel.add(lblNewLabel_3, 23, 203);
+			absolutePanel.add(lblNewLabel_3, 9, 153);
 
 			Label lblNewLabel_5 = new Label("cedula");
-			absolutePanel.add(lblNewLabel_5, 9, 239);
+			absolutePanel.add(lblNewLabel_5, 9, 197);
 			
-			absolutePanel.add(sendBoxReg,395,90);
+			absolutePanel.add(sendBoxReg,650,195);
 			sendBoxReg.setSize("220px", "169px");
 
 			textBox_2 = new TextBox();
-			textBox_2.setTitle("ingrese nombre del nuevo cliente");
-			absolutePanel.add(textBox_2, 82, 101);
+			textBox_2.setTitle("mi password");
+			absolutePanel.add(textBox_2, 96, 59);
 
 			textBox_3 = new TextBox();
-			textBox_3.setTitle("ingrese apellido del nuevo cliente");
-			absolutePanel.add(textBox_3, 82, 147);
+			textBox_3.setTitle("Puedes cambiar tu direccion en cualquier momento, puedes poner cualquiera, la de tu trabajo, tu novia, tus padres, y la puedes cambiar cuantas veces quieras.");
+			absolutePanel.add(textBox_3, 96, 105);
 
 			textBox_4 = new TextBox();
-			textBox_4.setTitle("ingrese cedula del nuevo cliente");
-			absolutePanel.add(textBox_4, 82, 193);
+			textBox_4.setTitle("Puedes cambiar tu telefono las veces que quieras, puede estar asociado con la direccion actual, o sea seria un numero particualar, o sino un celular.");
+			absolutePanel.add(textBox_4, 96, 151);
 
 			textBox_5 = new TextBox();
-			textBox_5.setTitle("ingrese telefono del nuevo cliente");
-			absolutePanel.add(textBox_5, 82, 239);
+			textBox_5.setEnabled(false);
+			textBox_5.setTitle("Actualmente la cedula, no es modificable.");
+			absolutePanel.add(textBox_5, 96, 197);
 
 			Label lblNewLabel_6 = new Label("ciudad");
-			absolutePanel.add(lblNewLabel_6, 11, 285);
+			absolutePanel.add(lblNewLabel_6, 9, 245);
 
 			textBox_6 = new TextBox();
-			textBox_6.setTitle("ingrese direccion del nuevo cliente");
-			absolutePanel.add(textBox_6, 82, 285);
-
-			Label lblIngresoDeNuevo = new Label("datos personales");
-			absolutePanel.add(lblIngresoDeNuevo, 75, 10);
+			textBox_6.setTitle("Tanto la ciudad como el departamento, debe estar relacionado con tu direccion actual, si nos facilita los datos, sera mejor para Ud, al momento de recibir un paquete.");
+			absolutePanel.add(textBox_6, 96, 243);
 
 			btnEnviar = new Button("cancelar");
 			btnEnviar.setStyleName("btn btn-large");
-			absolutePanel.add(btnEnviar, 563, 25);
+			absolutePanel.add(btnEnviar, 206, 356);
 
-			btnBuscar = new Button("buscar");
+			btnBuscar = new Button("modificar");
 			btnBuscar.setStyleName("btn btn-large btn-primary");
-			absolutePanel.add(btnBuscar, 448, 25);
+			absolutePanel.add(btnBuscar, 91, 356);
 			
 			textBox_8 = new TextBox();
+			textBox_8.setTitle("El username, nunca sera modificable, es una manera de prevenir al sistema de falsos compradores, repelerlos y por otro lado asegurar el buen funcionamiento del sistema para nuestros \"buenos\" usuarios. ");
 			textBox_8.setEnabled(false);
-			absolutePanel.add(textBox_8, 82, 55);
+			absolutePanel.add(textBox_8, 96, 13);
 			
 			Label lblUsername = new Label("username");
-			lblUsername.setStyleName("label label-warning");
-			absolutePanel.add(lblUsername, 13, 63);
+			
+			absolutePanel.add(lblUsername, 9, 13);
 			
 			textBox_9 = new TextBox();
-			absolutePanel.add(textBox_9, 82, 324);
+			textBox_9.setTitle("Tanto la ciudad como el departamento, debe estar relacionado con tu direccion actual, si nos facilita los datos, sera mejor para Ud, al momento de recibir un paquete.");
+			absolutePanel.add(textBox_9, 96, 282);
 			
 			Label lblDepartamento = new Label("departamento");
-			absolutePanel.add(lblDepartamento, 9, 324);
+			absolutePanel.add(lblDepartamento, 9, 282);
+			
+			lblNewLabel_7 = new Label("");
+			absolutePanel.add(lblNewLabel_7, 486, 116);
 			decoratedTabPanel.add(absolutePanel3, "mis compras activas", false);
 
 			Label lblNewLabel = new Label("id movil");
@@ -189,27 +196,27 @@ public class MiCuenta extends Composite {
 			findClient();
 			}
 			
-			// Handler para la busqueda de datos personales.
-		//	MyHandler2 handler2 = new MyHandler2();
-			//btnBuscar.addClickHandler(handler2);
+			//Handler para la busqueda de datos personales.
+			MyHandler handler = new MyHandler();
+			btnBuscar.addClickHandler(handler);
 
 		}
 		
 
 		
 
-		// controlador de eventos para buscar datos personales.
-	/*	class MyHandler2 implements ClickHandler, KeyUpHandler {
+		//Handler de modificacion.
+		class MyHandler implements ClickHandler, KeyUpHandler {
 
 			@Override
 			public void onClick(ClickEvent event) {
 			    
 				if (Cookies.getCookie("13051983ntmp")!=null){
-				btnEnviar.setEnabled(false);
-				findClient();
+				btnBuscar.setEnabled(false);
+				modificar();
 				}else{
 
-					  Window.Location.assign("http://www.send-box.com");
+					  //Window.Location.assign("http://www.send-box.com");
 				
 				}
 				
@@ -218,47 +225,60 @@ public class MiCuenta extends Composite {
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
 				if (Cookies.getCookie("13051983ntmp")!=null){
-					btnEnviar.setEnabled(false);
-					findClient();
+					btnBuscar.setEnabled(false);
+					modificar();
 					}else{
-					    Window.Location.assign("http://www.send-box.com");							}
+					  //  Window.Location.assign("http://www.send-box.com");							}
 						
 					
 					
 			}
-
-			private void findClient() {
+			}
+			private void modificar() {
 				
 				
 				String username =Cookies.getCookie("13051983ntmp");
+				String passw= textBox_2.getText();
+				String direccion=textBox_3.getText();
+				String telefono=textBox_4.getText();
+				String ciudad=textBox_6.getText();
+				String depto=textBox_9.getText();
+							
+				if (!FieldVerifier.isValidPass(passw)) {
+					lblNewLabel_7.setText("El password no puede ser vacio, y debe tener al menos 5 caracteres");
+					btnBuscar.setEnabled(true);
+					return;
+				}
+				
+				
+				System.out.println("ciudad :" + ciudad);
+				System.out.println("depto :" + depto);
 
 				
-				System.out.println("username de cookie " + username);
-				panelDeControl.miCuenta(username, new AsyncCallback<String[]>() {
+				panelDeControl.updateClient(username,passw, direccion,telefono,ciudad,depto,new AsyncCallback<String>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						 btnEnviar.setEnabled(true);
-						Window.alert(caught.getMessage());
+						Window.alert(caught.getMessage()); 
+						btnBuscar.setEnabled(true);	
 						
 					}
 
+
+					
+
 					@Override
-					public void onSuccess(String[] result) {
-						 btnEnviar.setEnabled(true);
-						 
-						 System.out.println("hola Mi cuento: "+ result[0] + " " +result[1]);
-						 textBox_8.setText(result[0] );
-						 
-						 
-						 
+					public void onSuccess(String result) {
+						Window.alert(result+ "datos modificados, tendras que iniciar nuevamente.");
+						Window.Location.reload();
+						
 					}
 
 				});
 
 			}
 
-		}*/
+		}
 		
 		public void findClient() {
 			
@@ -294,7 +314,4 @@ public class MiCuenta extends Composite {
 			});
 
 		}
-		
-		
-		
 	}

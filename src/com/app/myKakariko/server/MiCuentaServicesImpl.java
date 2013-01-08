@@ -30,6 +30,37 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 	
 	
 	
+	@Override
+	public String updateClient(String user, String password, String direccion, String telefono,String ciudad,String depto) {
+	    PersistenceManager pm = PMF.get().getPersistenceManager();
+  	  
+	    
+	    System.out.println("ciudad: " + ciudad);
+  	  System.out.println("depto: " + depto);
+
+  	  
+  	
+	    
+	    try {
+	        Client e = pm.getObjectById(Client.class, user);
+	        e.setPassword(password);
+	        e.setDireccion(direccion);
+	        e.setTelefono(telefono);
+	        e.setCiudad(ciudad);
+	        e.setDepartamento(depto);
+	        }
+	      catch(Exception e){
+	    	  System.out.println("ERROR AL ACTUALIZAR");
+	      }	
+	     finally {
+	        pm.close();
+	    }
+	    
+	    return "OK, ";
+	}
+	
+	
+	
 	
 	@Override
 	public String comprarProducto(String username, String nombre, String direccion, String descripcion, String Id, String precioReal, String precioSendBox, String moneda, String shipping) throws IllegalArgumentException {
