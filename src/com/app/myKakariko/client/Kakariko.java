@@ -1,7 +1,7 @@
 package com.app.myKakariko.client;
 
 
-import java.awt.Dialog;
+
 
 import com.app.myKakariko.shared.FieldVerifier;
 import com.google.gwt.core.client.EntryPoint;
@@ -125,6 +125,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	 */
 	public void onModuleLoad() {
 	 	
+		//DialogSendBox dialogo = new DialogSendBox("Bienvenido");
+		//dialogo.center();
+		//dialogo.show();
 		
 		p1.setVisible(false);
 		p2.setVisible(false);
@@ -2559,7 +2562,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			RootPanel.get("telefonoReg").setVisible(true);
 
 			confirmar.setVisible(true);
-			confirmar.setEnabled(false);
+			//confirmar.setEnabled(false);
 			cancelar.setVisible(true);
 			
 			Window.alert("Hola, Gracias por llegar a Send-box.com, ya estamos en los ultimos detalles, en pocos dias" +

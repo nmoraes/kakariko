@@ -35,8 +35,8 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 	    PersistenceManager pm = PMF.get().getPersistenceManager();
   	  
 	    
-	    System.out.println("ciudad: " + ciudad);
-  	  System.out.println("depto: " + depto);
+	    System.out.println("SERVER :ciudad: " + ciudad);
+  	  	System.out.println("SERVER :depto: " + depto);
 
   	  
   	
@@ -120,8 +120,8 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 			s[2]=direccion;
 			s[3]=tel;
 			s[4]=ci;
-			s[5]=dpto;
-			s[6]=ciudad;
+			s[5]=ciudad;
+			s[6]=dpto;
 			s[7]=nomb;
 			s[8]=apellido;
 			

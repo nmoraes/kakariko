@@ -269,7 +269,8 @@ public class MiCuenta extends Composite {
 
 					@Override
 					public void onSuccess(String result) {
-						Window.alert(result+ "datos modificados, tendras que iniciar nuevamente.");
+						Window.alert(result+ " datos modificados, tendras que iniciar nuevamente.");
+						Cookies.removeCookie("13051983ntmp");
 						Window.Location.reload();
 						
 					}
@@ -308,6 +309,21 @@ public class MiCuenta extends Composite {
 					 textBox_6.setText(result[5]);
 					 textBox_9.setText(result[6]);
 	 
+					 
+					 
+					 
+
+					 
+					 System.out.println("TEXT 8: "+result[0]);
+					 System.out.println("TEXT 2: "+result[1]);
+					 System.out.println("TEXT 3: "+result[2]);
+					 System.out.println("TEXT 4: "+result[3]);
+					 System.out.println("TEXT 5: "+result[4]);
+					 System.out.println("TEXT 6: "+result[5]);
+					 System.out.println("TEXT 9: "+result[6]);
+
+					 
+					 
 					 
 				}
 
