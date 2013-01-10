@@ -81,7 +81,7 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 		pm.close();
 
 
-		String exit="Acabas de comprar: "+descripcion+ ", abre tu email, y tendras las instrucciones y el numero de cuenta Abitab para el deposito. Recuerda que en \"mi cuenta \" puedes hacer seguimiento de las compras hechas y su estado. Gracias por comprar en send-box.com";
+		String exit="Acabas de comprar: "+descripcion+ "<br>, abre tu email, y tendras las instrucciones y el numero de cuenta Abitab para el deposito.<br> Recuerda que en \"mi cuenta \" puedes hacer seguimiento de las compras hechas y su estado. <br>Gracias por comprar en send-box.com";
 		return exit;
 		
 	}

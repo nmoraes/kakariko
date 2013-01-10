@@ -249,9 +249,16 @@ public class Comprar extends Composite {
 
 				@Override
 				public void onSuccess(String result) {	 
-					Window.alert(result);
+					//Window.alert(result);
+					
+					DialogSendBox dialogo = new DialogSendBox("Gracias por comprar en send-box.com",result);
+					dialogo.center();
+					dialogo.show();
+					
+					
+					
 					RootPanel.get("comprando").clear();	
-					Window.Location.reload();
+					//Window.Location.reload();
 
 	 
 					 
