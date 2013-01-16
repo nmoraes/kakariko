@@ -265,7 +265,17 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 
 			reader.close();
 
-			//System.out.println("QUERY :" + site + " " + query);
+			
+			//PRUEBA API MAILS
+			//String [] 	arre = new String[5];
+			//arre[0]="emailnico.moraes@gmail.com";
+
+			//URL urlMail = new URL("http://send-box.ip-zone.com/ccm/admin/api/version/2/&type=json&function=sendMail&"+arre+"&subject=welcome&html=<p>welcome send-box.com</p>&apiKey=6b33c82ed5d99d68fc6ae9618577f00bf4d0626f&mailboxFromId=6&mailboxReplyId=6&mailboxReportId=6&packageId=6");
+			//InputStream responses = urlMail.openStream();
+
+			
+			
+			//System.out.println(responses);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

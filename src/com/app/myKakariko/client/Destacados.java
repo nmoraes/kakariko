@@ -4,6 +4,8 @@ package com.app.myKakariko.client;
 public class Destacados {
 
 	
+	public static String SEND_BOX_LOGO="<div><p><input type=\"image\" src=http://img152.imageshack.us/img152/7392/capturadepantalla201212m.png align=\"center\" class=\"img-rounded\"><div></p>";	
+	
 	public static String SEND_BOX_PAY="<div><p><input type=\"image\" src=http://img534.imageshack.us/img534/2315/sendboxpay12.jpg align=\"center\" class=\"img-rounded\"><div></p>";	
 	public static String REG_BOX="<div><p><input type=\"image\" src=http://img547.imageshack.us/img547/6066/box88431.jpg align=\"center\" class=\"img-rounded\"><div></p>";
 												//<input type="image" src="image.gif">																										

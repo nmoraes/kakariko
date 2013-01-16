@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 
 public class Comprar extends Composite {
 	
@@ -41,9 +42,10 @@ public class Comprar extends Composite {
 	private HTML htmlNewHtml;
 	private Button btnCancelar;
 	private static  String valorCombobox=null;
+	private Label lblNewLabel_1;
 	
-	
-	
+	private HTML sendBoxLogo= new HTML(Destacados.SEND_BOX_LOGO, true);
+
 	
 
 	public Comprar(String precio, String moneda, String imagen, String descripcion, String id) {
@@ -66,17 +68,21 @@ public class Comprar extends Composite {
 		
 		decoratedTabPanel = new HTMLPanel("");
 		initWidget(decoratedTabPanel);
-		decoratedTabPanel.setSize("880px", "406px");
+		decoratedTabPanel.setSize("880px", "548px");
 		//decoratedTabPanel.setAnimationEnabled(true);
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 	
 		
 		decoratedTabPanel.add(absolutePanel_1);
-		absolutePanel_1.setSize("880px", "406px");
+		absolutePanel_1.setSize("880px", "535px");
 
-		absolutePanel_1.add(image, 490, 10)	;
+		
+		absolutePanel_1.add(image, 8, 156)	;
 		image.setSize("232px", "183px");
 		
+		absolutePanel_1.add(sendBoxLogo, 610, 10);
+		sendBoxLogo.setSize("261px", "71px");
+
 		absolutePanel_1.add(comboBox_1, 8, 96);
 		
 		textBox = new TextBox();
@@ -95,20 +101,21 @@ public class Comprar extends Composite {
 		btnComprar = new Button("comprar");
 		btnComprar.setVisible(false);
 		btnComprar.setStyleName("btn btn-success");
-		absolutePanel_1.add(btnComprar, 703, 259);
+		absolutePanel_1.add(btnComprar, 701, 495);
 		btnComprar.setSize("82", "30");
 		
 		btnCancelar = new Button("cancelar");
 		btnCancelar.setStyleName("btn btn-danger");
-		absolutePanel_1.add(btnCancelar, 789, 259);
+		absolutePanel_1.add(btnCancelar, 789, 495);
 		
 		
 		btnCancelar.addClickHandler(new ClickHandler() {
 	
 			@Override
 			public void onClick(ClickEvent event) {
-				RootPanel.get("comprando").clear();	
-				Window.Location.reload();
+				//RootPanel.get("comprando").remove(comprando);
+				RootPanel.get("comprando").clear();
+				//Window.Location.reload();
 			}
 		});
 		
@@ -118,13 +125,32 @@ public class Comprar extends Composite {
 		absolutePanel_1.add(textBox_3, 236, 94);
 		
 		htmlNewHtml = new HTML("<div class=\"alert alert-block\"><h4>Atencion!</h4>Usted esta por comprar 1(uno) producto, al momento de comprar, Ud genera una compra ficticia que se hace real al momento de abonar en Abitab, en el momento que abone, se calcula el tiempo de envio seleccionado. Ej: Ud compra un Lunes, con envio 24Hrs y abona un martes, el producto le llegar el Miercoles.</div>", true);
-		absolutePanel_1.add(htmlNewHtml, 8, 295);
+		absolutePanel_1.add(htmlNewHtml, 8, 350);
 		htmlNewHtml.setSize("863px", "110px");
 		
+		Label lblNewLabel = new Label("total a pagar");
+		absolutePanel_1.add(lblNewLabel, 685, 319);
+		
+		Label label = new Label("______________");
+		absolutePanel_1.add(label, 773, 319);
+		
+		lblNewLabel_1 = new Label("");
+		absolutePanel_1.add(lblNewLabel_1, 771, 308);
+		lblNewLabel_1.setSize("100px", "20px");
+		
 		if (Cookies.getCookie("13051983ntmp")!=null){
-			findClient();
+			if(Cookies.getCookie("13051983comprarnombre")!=null && Cookies.getCookie("13051983comprardir")!=null){
+				textBox.setText(Cookies.getCookie("13051983comprarnombre"));
+				textBox_1.setText(Cookies.getCookie("13051983comprardir"));
+				textBox_2.setText(desc);
+			}
+			else{
+				findClient();
 			}
 			
+			
+			}
+		
 		
 		class MyHandlerCombo implements ChangeHandler, KeyUpHandler{
 			
@@ -158,6 +184,7 @@ public class Comprar extends Composite {
 				else{
 					btnComprar.setVisible(false);
 					textBox_3.setText(Comprar.moneda+" "+Comprar.precio);
+					lblNewLabel_1.setText("");
 			}
 				}
 
@@ -172,6 +199,7 @@ public class Comprar extends Composite {
 					@Override
 					public void onFailure(Throwable caught) {
 						textBox_3.setText("");
+						lblNewLabel_1.setText("");
 						System.out.println("ERROR DE COMBOBOX");
 					}
 
@@ -179,6 +207,7 @@ public class Comprar extends Composite {
 					public void onSuccess(String result) {	 
 						precioSendBox=result;
 						textBox_3.setText(Comprar.moneda+" "+result);
+						lblNewLabel_1.setText(Comprar.moneda+" "+result);
 
 		 
 						 
@@ -210,6 +239,7 @@ public class Comprar extends Composite {
 		
 		
 	}
+	
 	class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 		
 		/**
@@ -299,6 +329,18 @@ public class Comprar extends Composite {
 				 textBox_1.setText(result[2]);
 				 textBox_2.setText(desc);
 			
+				 final long DURATION = 180000; // duration
+					// remembering login.3 minutos
+
+					java.util.Date expires = new java.util.Date(System.currentTimeMillis() + DURATION);
+					Cookies.setCookie("13051983comprarnombre", result[7] + " " + result[8], expires);
+					Cookies.setCookie("13051983comprardir", result[2], expires);
+					
+
+					// cokies
+
+				 
+				 
  
 				 
 			}

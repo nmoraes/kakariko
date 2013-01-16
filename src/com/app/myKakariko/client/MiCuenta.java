@@ -64,6 +64,7 @@ public class MiCuenta extends Composite {
 			
 			decoratedTabPanel = new DecoratedTabPanel();
 			initWidget(decoratedTabPanel);
+			decoratedTabPanel.setSize("856", "451");
 			decoratedTabPanel.setAnimationEnabled(true);
 			AbsolutePanel absolutePanel = new AbsolutePanel();
 			absolutePanel.setStylePrimaryName("menuPrincipal");
@@ -152,26 +153,19 @@ public class MiCuenta extends Composite {
 			absolutePanel.add(lblNewLabel_7, 486, 116);
 			decoratedTabPanel.add(absolutePanel3, "mis compras activas", false);
 
-			Label lblNewLabel = new Label("id movil");
-			absolutePanel3.add(lblNewLabel, 20, 21);
-
 
 
 			Button btnNewButton_1 = new Button("New button");
-			absolutePanel3.add(btnNewButton_1, 121, 44);
-
-			TextBox textBox_1 = new TextBox();
-			absolutePanel3.add(textBox_1, 84, 10);
-
-			RadioButton rdbtnTodos = new RadioButton("new name", "todos");
-			absolutePanel3.add(rdbtnTodos, 245, 19);
-			
-			HTML htmlNewHtml_1 = new HTML("<table class=\"table table-condensed\"><caption>hello table</caption><tbody> <thead><tr><th>campo____1</th><th>campo____2</th><th>campo____3</th><th>campo____4</th></tr></thead><tr class=\"success\"><td>1</td> <td>TB - Monthly</td><td>01/04/2012</td><td>Approved</td></tr></tbody></table>", true);
+			absolutePanel3.add(btnNewButton_1, 198, 260);
 			
 			
 			
-			absolutePanel3.add(htmlNewHtml_1, 43, 112);
-			htmlNewHtml_1.setSize("417px", "131px");
+			HTML htmlNewHtml_1 = new HTML("<table class=\"table table-condensed\"><caption>tabla de mis compras activas</caption><tbody> <thead><tr><th>campo____1</th><th>campo____2</th><th>campo____3</th><th>estado</th></tr></thead><tr class=\"success\"><td>1</td> <td>TB - Monthly</td><td>01/04/2012</td><td>Approved</td></tr></tbody></table>", true);
+			
+			absolutePanel3.add(htmlNewHtml_1, 0, 0);
+			htmlNewHtml_1.setSize("800px", "400px");
+			
+			
 			decoratedTabPanel.add(absolutePanel4, "mis compras finalizadas", false);
 
 			Label lblNewLabel_4 = new Label("id cliente");
@@ -187,10 +181,6 @@ public class MiCuenta extends Composite {
 			Label lblBuscarCliente = new Label("buscar cliente");
 			absolutePanel4.add(lblBuscarCliente, 20, 28);
 			decoratedTabPanel.add(absolutePanel5, "acerca de send-box.com", false);
-
-			HTML htmlNewHtml = new HTML("<table class=\"table table-condensed\"><caption>hello table</caption><tbody> <thead><tr><th>campo____1</th><th>campo____2</th><th>campo____3</th><th>campo____4</th></tr></thead><tr class=\"success\"><td>1</td> <td>TB - Monthly</td><td>01/04/2012</td><td>Approved</td></tr></tbody></table>", true);
-			absolutePanel5.add(htmlNewHtml, 95, 81);
-			htmlNewHtml.setSize("484px", "89px");
 			
 			if (Cookies.getCookie("13051983ntmp")!=null){
 			findClient();
