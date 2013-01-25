@@ -38,11 +38,13 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 public String[] precio(String input, String shipping)throws IllegalArgumentException {
 	System.out.println(shipping);
-	String [] s = new String[5];
+	String [] s = new String[15];
 	String price = null;
 	String currency =null;
 	String pictures=null;
 	String title =null;
+	String estado=null;
+	String html =null;
 	URL url;
 	try {
 		url = new URL("https://api.mercadolibre.com/items/" + input);
@@ -64,7 +66,9 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 		pictures = json.getString("thumbnail");
 		pictures=pictures.replace("_v_I_f", "_v_T_f");
 		title = json.getString("title");
+		estado=estado(json.getString("condition"));
 		reader.close();
+
 
 		s[0]=price;
 		s[1]=currency;
@@ -72,6 +76,10 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 		s[3]=title;
 		s[4]=input;
 
+			
+		
+		
+		//HAY Q DEVOLVER UN HTML
 		
 	} catch (Exception e) {
 		// TODO Auto-generated catch block

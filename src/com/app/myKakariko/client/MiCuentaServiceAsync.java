@@ -15,10 +15,8 @@ public interface MiCuentaServiceAsync {
 	void calcularPrecioFinal(String precio, String shipping, String moneda,
 			AsyncCallback<String> callback);
 
-	void comprarProducto(String username, String nombre, String direccion,
-			String descripcion, String Id, String precioReal,
-			String precioSendBox, String moneda, String shipping,
-			AsyncCallback<String> callback);
+	void comprarProducto(String username, String userpass, String prod,
+			String shipping, AsyncCallback<String> callback);
 
 	void updateClient(String user, String password, String direccion, String telefono,String ciudad,String depto, AsyncCallback<String> asyncCallback);
 

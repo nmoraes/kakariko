@@ -266,7 +266,7 @@ public class Comprar extends Composite {
 			String direccion = textBox_1.getText();
 			String descripcion =textBox_2.getText();
 
-			panelDeControl.comprarProducto(username, nombre, direccion,
+			/*panelDeControl.comprarProducto(username, nombre, direccion,
 					descripcion, Comprar.id, Comprar.precio,
 				    precioSendBox, Comprar.moneda, Comprar.valorCombobox , new AsyncCallback<String>() {
 
@@ -294,7 +294,7 @@ public class Comprar extends Composite {
 					 
 				}
 
-			});
+			});*/
 			
 			
 			
