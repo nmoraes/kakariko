@@ -162,8 +162,8 @@ public class MiCuenta extends Composite {
 			
 			HTML htmlNewHtml_1 = new HTML("<table class=\"table table-condensed\"><caption>tabla de mis compras activas</caption><tbody> <thead><tr><th>campo____1</th><th>campo____2</th><th>campo____3</th><th>estado</th></tr></thead><tr class=\"success\"><td>1</td> <td>TB - Monthly</td><td>01/04/2012</td><td>Approved</td></tr></tbody></table>", true);
 			
-			absolutePanel3.add(htmlNewHtml_1, 0, 0);
-			htmlNewHtml_1.setSize("800px", "400px");
+			absolutePanel3.add(htmlNewHtml_1, 22, 20);
+			htmlNewHtml_1.setSize("779px", "319px");
 			
 			
 			decoratedTabPanel.add(absolutePanel4, "mis compras finalizadas", false);

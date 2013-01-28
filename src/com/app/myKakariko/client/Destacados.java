@@ -6,7 +6,7 @@ public class Destacados {
 	
 	public static String SEND_BOX_LOGO="<div><p><input type=\"image\" src=http://img152.imageshack.us/img152/7392/capturadepantalla201212m.png align=\"center\" class=\"img-rounded\"><div></p>";	
 	
-	public static String SEND_BOX_PAY="<div><p><input type=\"image\" src=http://img534.imageshack.us/img534/2315/sendboxpay12.jpg align=\"center\" class=\"img-rounded\"><div></p>";	
+	public static String SEND_BOX_PAY="<div><p><img src=http://img534.imageshack.us/img534/2315/sendboxpay12.jpg align=\"center\" class=\"img-rounded\"><div></p>";	
 	public static String REG_BOX="<div><p><input type=\"image\" src=http://img547.imageshack.us/img547/6066/box88431.jpg align=\"center\" class=\"img-rounded\"><div></p>";
 												//<input type="image" src="image.gif">																										
 	public static String DESTACADO_UNO= "<div><a href=\"#arriba\"><p><input type=\"image\" src=http://img1.mlstatic.com/s_MLU_v_T_f_16612512_7071.jpg align=\"left\" class=\"img-rounded\"><div><br>Gps Con Navegador Garmin Con Mapas +2gb Gratis Mp3 Mp4 Y Mas.<br>79 U$S. Estado: Nuevo<br><b>Oferta Valida: </b>2013-01-18</p><br></div><div id=\"gwtContainer\"><p align=\"right\"></p></div></div></a></div>";

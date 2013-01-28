@@ -21,7 +21,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 
 public class Comprar extends Composite {
-	
+	/*
 	private final MiCuentaServiceAsync panelDeControl = GWT.create(MiCuentaService.class);
 	
 	private TextBox textBox;
@@ -242,24 +242,20 @@ public class Comprar extends Composite {
 	
 	class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 		
-		/**
-		 * Fired when the user clicks on the sendButton.
-		 */
+		/*
+		
 		public void onClick(ClickEvent event) {
 			comprar();
 			
 		}
-
-		/**
-		 * Fired when the user types in the nameField.
 		 */
+		/*
 		public void onKeyUp(KeyUpEvent event) {
 			comprar();
 		}
 
-		/**
-		 * Send the name from the nameField to the server and wait for a response.
-		 */
+	
+		
 		private void comprar(){
 			String username =Cookies.getCookie("13051983ntmp");
 			String nombre= textBox.getText();
@@ -294,7 +290,7 @@ public class Comprar extends Composite {
 					 
 				}
 
-			});*/
+			});
 			
 			
 			
@@ -347,5 +343,5 @@ public class Comprar extends Composite {
 
 		});
 
-	}
+	}*/
 }
