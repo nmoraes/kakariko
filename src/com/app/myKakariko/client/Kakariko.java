@@ -40,9 +40,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	/**
 	 * Create a remote service proxy to talk to the server-side Greeting service.
 	 */
-	private final GreetingServiceAsync greetingService = GWT
-			.create(GreetingService.class);
-
+	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 	private final MiCuentaServiceAsync comprarService = GWT.create(MiCuentaService.class);
 
 	private final long DURATION_QUERY = 180000000;
@@ -77,7 +75,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private HTML destacado9= new HTML(Destacados.DESTACADO_NUEVE, true);
 
 	private HTML sendBoxImg= new HTML(Destacados.SEND_BOX_PAY, true);
-
 
 	private String producto1;
 	private String producto2;	
@@ -165,9 +162,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("btnComprar").add(btnComprar);
 		label.setVisible(false);
 		RootPanel.get("labelPrice").add(label);
-
-		
-		
+	
 		//miCuenta
 		miCuenta= new Hyperlink("mi cuenta","miCuenta");
 		miCuenta.setStyleName("btn btn-link");
@@ -326,15 +321,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 		btnNewButton_1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				datos1.setVisible(false);
-				datos2.setVisible(false);
-				label.setVisible(false);
-				label.setText("");
+				clearComprar();
 				btnComprar.setVisible(false);
 				htmlDestacado.setVisible(false);
-				comboBox_1.setVisible(false);
-				datos1.setVisible(false);
-				datos2.setVisible(false);
 				htmlNewHtml.setHTML("");
 				htmlNewHtml2.setHTML("");
 				htmlNewHtml3.setHTML("");
@@ -361,8 +350,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						Cookies.removeCookie("13051983comprarnombre");
 						Cookies.removeCookie("13051983comprardir");
 						Cookies.removeCookie("13051983ciudaddepto");
+						Cookies.removeCookie("13051983prodactual");	
 						Window.Location.reload();
-
+	
 					}
 
 					@Override
@@ -371,6 +361,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						Cookies.removeCookie("13051983comprarnombre");
 						Cookies.removeCookie("13051983comprardir");
 						Cookies.removeCookie("13051983ciudaddepto");
+						Cookies.removeCookie("13051983prodactual");
 						Window.Location.reload();
 
 
@@ -394,15 +385,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			}
 
 			private void viewItem() {
-				htmlNewHtml.setVisible(false);
-				htmlNewHtml2.setVisible(false);
-				htmlNewHtml3.setVisible(false);
-				htmlNewHtml4.setVisible(false);
-				htmlNewHtml5.setVisible(false);
-				htmlNewHtml6.setVisible(false);
-				htmlNewHtml7.setVisible(false);
-				p1.setVisible(false);
-	
 
 				mostrarItem(Cookies.getCookie("prod1"));
 
@@ -427,15 +409,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			}
 
 			private void viewItem() {
-				htmlNewHtml.setVisible(false);
-				htmlNewHtml2.setVisible(false);
-				htmlNewHtml3.setVisible(false);
-				htmlNewHtml4.setVisible(false);
-				htmlNewHtml5.setVisible(false);
-				htmlNewHtml6.setVisible(false);
-				htmlNewHtml7.setVisible(false);
-				p1.setVisible(false);
-		
 
 				mostrarItem(Cookies.getCookie("prod2"));
 
@@ -460,15 +433,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			}
 
 			private void viewItem() {
-				htmlNewHtml.setVisible(false);
-				htmlNewHtml2.setVisible(false);
-				htmlNewHtml3.setVisible(false);
-				htmlNewHtml4.setVisible(false);
-				htmlNewHtml5.setVisible(false);
-				htmlNewHtml6.setVisible(false);
-				htmlNewHtml7.setVisible(false);
-				p1.setVisible(false);
-			
 
 				mostrarItem(Cookies.getCookie("prod3"));
 			
@@ -491,15 +455,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			}
 
 			private void viewItem() {
-				htmlNewHtml.setVisible(false);
-				htmlNewHtml2.setVisible(false);
-				htmlNewHtml3.setVisible(false);
-				htmlNewHtml4.setVisible(false);
-				htmlNewHtml5.setVisible(false);
-				htmlNewHtml6.setVisible(false);
-				htmlNewHtml7.setVisible(false);
-				p1.setVisible(false);
-			
 
 				mostrarItem(Cookies.getCookie("prod4"));
 
@@ -524,15 +479,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			}
 
 			private void viewItem() {
-				htmlNewHtml.setVisible(false);
-				htmlNewHtml2.setVisible(false);
-				htmlNewHtml3.setVisible(false);
-				htmlNewHtml4.setVisible(false);
-				htmlNewHtml5.setVisible(false);
-				htmlNewHtml6.setVisible(false);
-				htmlNewHtml7.setVisible(false);
-				p1.setVisible(false);
-			
 
 				mostrarItem(Cookies.getCookie("prod5"));
 
@@ -558,15 +504,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			}
 
 			private void viewItem() {
-				htmlNewHtml.setVisible(false);
-				htmlNewHtml2.setVisible(false);
-				htmlNewHtml3.setVisible(false);
-				htmlNewHtml4.setVisible(false);
-				htmlNewHtml5.setVisible(false);
-				htmlNewHtml6.setVisible(false);
-				htmlNewHtml7.setVisible(false);
-				p1.setVisible(false);
-				
 
 				mostrarItem(Cookies.getCookie("prod6"));
 
@@ -591,15 +528,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 			}
 
 			private void viewItem() {
-				htmlNewHtml.setVisible(false);
-				htmlNewHtml2.setVisible(false);
-				htmlNewHtml3.setVisible(false);
-				htmlNewHtml4.setVisible(false);
-				htmlNewHtml5.setVisible(false);
-				htmlNewHtml6.setVisible(false);
-				htmlNewHtml7.setVisible(false);
-				p1.setVisible(false);
-			
 
 				mostrarItem(Cookies.getCookie("prod7"));
 
@@ -610,7 +538,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		}
 
 
-		// Create a handler for the sendButton and nameField
+		/**
+		 * Handler que registra un nuevo usuario en send-box.com
+		 */
 		class MyHandler implements ClickHandler, KeyUpHandler {
 			/**
 			 * Fired when the user clicks on the sendButton.
@@ -629,14 +559,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 				confirmar.setEnabled(false);
 				//cancelar.setEnabled(false);
 				sendNameToServer();
-				//System.out.println("hola");
 
-				//}
 			}
 
-			/**
-			 * Send the name from the nameField to the server and wait for a response.
-			 */
 			private void sendNameToServer() {
 				// First, we validate the input.
 				errorLabel.setText("");
@@ -726,7 +651,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								Window.alert("Error al registrarte");
 
 								confirmar.setEnabled(true);
-								//cancelar.setEnabled(true);
+							
 							}
 
 							public void onSuccess(String result) {
@@ -744,7 +669,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								DOM.getElementById("telefonoReg").setPropertyString("value", "");
 
 								confirmar.setEnabled(true);
-								//cancelar.setEnabled(true);
+								
 							}
 						});
 			}
@@ -838,15 +763,16 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 					@Override
 					public void onKeyUp(KeyUpEvent event) {
-						datos1.setVisible(false);
-						datos2.setVisible(false);
+						
+						clearComprar();
 						makeQuery();
 					}
 
 					@Override
 					public void onClick(ClickEvent event) {
-						datos1.setVisible(false);
-						datos2.setVisible(false);
+						//datos1.setVisible(false);
+						//datos2.setVisible(false);
+						clearComprar();
 						makeQuery();
 
 					}
@@ -933,12 +859,15 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					public void onKeyUp(KeyUpEvent event) {
 						btnNewButton_5.setEnabled(false);
 						login();
+						
+		
 					}
 
 					@Override
 					public void onClick(ClickEvent event) {
 						btnNewButton_5.setEnabled(false);
 						login();
+						
 					}
 
 					private void login(){
@@ -959,6 +888,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 								Window.alert("Error al loguearse");
 								btnNewButton_5.setEnabled(true);
+								RootPanel.get("barra").removeFromParent();
 
 
 							}
@@ -974,6 +904,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 										System.currentTimeMillis() + DURATION);
 								Cookies.setCookie("13051983ntmp", userlog, expires);
 								Cookies.setCookie("13051983ntmppasw", userpas, expires);
+								
 
 								userName.setVisible(false);
 								btnNewButton_3.setVisible(false);
@@ -983,7 +914,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 								btnNewButton_2.setVisible(true);
 
 								Window.alert("Welcome back " + userlog);
-
+								findClient();
 
 								if (History.getToken().equals("registro"))
 								   History.newItem("home");
@@ -1016,14 +947,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						private void viewItem() {
 							
 							btnNewButton_1.setVisible(true);
-							htmlNewHtml.setVisible(false);
-							htmlNewHtml2.setVisible(false);
-							htmlNewHtml3.setVisible(false);
-							htmlNewHtml4.setVisible(false);
-							htmlNewHtml5.setVisible(false);
-							htmlNewHtml6.setVisible(false);
-							htmlNewHtml7.setVisible(false);
-							p1.setVisible(false);						
+										
 
 							mostrarItem(Destacados.DESTACADO_PRODUCTO1);
 							
@@ -1050,16 +974,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						private void viewItem() {
 						
 							btnNewButton_1.setVisible(true);
-							htmlNewHtml.setVisible(false);
-							htmlNewHtml2.setVisible(false);
-							htmlNewHtml3.setVisible(false);
-							htmlNewHtml4.setVisible(false);
-							htmlNewHtml5.setVisible(false);
-							htmlNewHtml6.setVisible(false);
-							htmlNewHtml7.setVisible(false);
-							p1.setVisible(false);
-						
-
+					
 							mostrarItem(Destacados.DESTACADO_PRODUCTO2);
 							
 							 
@@ -1085,15 +1000,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						private void viewItem() {
 							
 							btnNewButton_1.setVisible(true);
-							htmlNewHtml.setVisible(false);
-							htmlNewHtml2.setVisible(false);
-							htmlNewHtml3.setVisible(false);
-							htmlNewHtml4.setVisible(false);
-							htmlNewHtml5.setVisible(false);
-							htmlNewHtml6.setVisible(false);
-							htmlNewHtml7.setVisible(false);
-							p1.setVisible(false);
-						
+							
 
 							mostrarItem(Destacados.DESTACADO_PRODUCTO3);
 							
@@ -1120,15 +1027,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						private void viewItem() {
 						
 							btnNewButton_1.setVisible(true);
-							htmlNewHtml.setVisible(false);
-							htmlNewHtml2.setVisible(false);
-							htmlNewHtml3.setVisible(false);
-							htmlNewHtml4.setVisible(false);
-							htmlNewHtml5.setVisible(false);
-							htmlNewHtml6.setVisible(false);
-							htmlNewHtml7.setVisible(false);
-							p1.setVisible(false);
-				
+					
 
 							mostrarItem(Destacados.DESTACADO_PRODUCTO4);
 							
@@ -1155,14 +1054,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						private void viewItem() {
 						
 							btnNewButton_1.setVisible(true);
-							htmlNewHtml.setVisible(false);
-							htmlNewHtml2.setVisible(false);
-							htmlNewHtml3.setVisible(false);
-							htmlNewHtml4.setVisible(false);
-							htmlNewHtml5.setVisible(false);
-							htmlNewHtml6.setVisible(false);
-							htmlNewHtml7.setVisible(false);
-							p1.setVisible(false);
+						
 						
 
 							mostrarItem(Destacados.DESTACADO_PRODUCTO5);
@@ -1190,14 +1082,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						private void viewItem() {
 						
 							btnNewButton_1.setVisible(true);
-							htmlNewHtml.setVisible(false);
-							htmlNewHtml2.setVisible(false);
-							htmlNewHtml3.setVisible(false);
-							htmlNewHtml4.setVisible(false);
-							htmlNewHtml5.setVisible(false);
-							htmlNewHtml6.setVisible(false);
-							htmlNewHtml7.setVisible(false);
-							p1.setVisible(false);
+							
 
 
 							mostrarItem(Destacados.DESTACADO_PRODUCTO6);
@@ -1225,14 +1110,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						private void viewItem() {
 				
 							btnNewButton_1.setVisible(true);
-							htmlNewHtml.setVisible(false);
-							htmlNewHtml2.setVisible(false);
-							htmlNewHtml3.setVisible(false);
-							htmlNewHtml4.setVisible(false);
-							htmlNewHtml5.setVisible(false);
-							htmlNewHtml6.setVisible(false);
-							htmlNewHtml7.setVisible(false);
-							p1.setVisible(false);
+							
 				
 							mostrarItem(Destacados.DESTACADO_PRODUCTO7);
 							
@@ -1258,15 +1136,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						private void viewItem() {
 
 							btnNewButton_1.setVisible(true);
-							htmlNewHtml.setVisible(false);
-							htmlNewHtml2.setVisible(false);
-							htmlNewHtml3.setVisible(false);
-							htmlNewHtml4.setVisible(false);
-							htmlNewHtml5.setVisible(false);
-							htmlNewHtml6.setVisible(false);
-							htmlNewHtml7.setVisible(false);
-							p1.setVisible(false);
-			
+						
 
 							mostrarItem(Destacados.DESTACADO_PRODUCTO8);
 							
@@ -1292,14 +1162,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						private void viewItem() {
 
 							btnNewButton_1.setVisible(true);
-							htmlNewHtml.setVisible(false);
-							htmlNewHtml2.setVisible(false);
-							htmlNewHtml3.setVisible(false);
-							htmlNewHtml4.setVisible(false);
-							htmlNewHtml5.setVisible(false);
-							htmlNewHtml6.setVisible(false);
-							htmlNewHtml7.setVisible(false);
-							p1.setVisible(false);
+						
 
 							mostrarItem(Destacados.DESTACADO_PRODUCTO9);
 							
@@ -1453,6 +1316,8 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 
 	public void mostrarItem(String producto){
 		sendBoxImg.setVisible(false);
+		clearParaMostrar();
+		clearComprar();
 		java.util.Date expires = new java.util.Date(System.currentTimeMillis() + DURATION_QUERY);
 		Cookies.setCookie("13051983prodactual", producto, expires);
 		
@@ -1500,7 +1365,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 							@Override
 							public void onSuccess(String[] result) {
 								sendBoxImg.setVisible(false);
-
+								label.setText("");
 								p1.setVisible(false);
 								comboBox_1.setItemSelected(0, true);
 								comboBox_1.setVisible(true);
@@ -1589,6 +1454,30 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 
 	}
 	
+	//Borra el producto que se queria comprar.
+	public void clearComprar(){
+		datos1.setVisible(false);
+		datos2.setVisible(false);
+		label.setVisible(false);
+		label.setText("");
+		comboBox_1.setVisible(false);
+		comboBox_1.setItemSelected(0, true);
+		btnComprar.setVisible(false);
+		
+	}
+	
+	
+	public void clearParaMostrar(){
+		htmlNewHtml.setVisible(false);
+		htmlNewHtml2.setVisible(false);
+		htmlNewHtml3.setVisible(false);
+		htmlNewHtml4.setVisible(false);
+		htmlNewHtml5.setVisible(false);
+		htmlNewHtml6.setVisible(false);
+		htmlNewHtml7.setVisible(false);
+		p1.setVisible(false);
+		
+	}
 	
 	
 	
