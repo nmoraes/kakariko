@@ -57,6 +57,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private HTML htmlNewHtml6= new HTML("", true);
 	private HTML htmlNewHtml7= new HTML("", true);
 	private HTML htmlDestacado= new HTML("", true);
+	private HTML verItem= new HTML("", true);
+
 	
 	//para comprar
 	private HTML datos1= new HTML("", true);
@@ -116,6 +118,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private String nom = null;
 	private String dir = null;
 	private String ciuyDepto = null;
+	private String tel = null;
 	
 	private Button btnComprar;
  
@@ -127,6 +130,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 		
 		p1.setVisible(false);
+		verItem.setVisible(false);
 	
 
 		
@@ -202,7 +206,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		btnNewButton_2.setVisible(false);
 
 
-		// /////////galletitas///////////////
+		///////////galletitas///////////////
 				if (Cookies.getCookie("13051983ntmp") != null) {
 					home.setVisible(false);
 					System.out.println("hay cookie");
@@ -216,9 +220,6 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					btnNewButton_2.setVisible(true);
 					confirmar.setVisible(false);
 					cancelar.setVisible(false);
-
-
-
 
 				} else {
 					History.newItem("home");
@@ -255,6 +256,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml5);
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml6);
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml7);
+		RootPanel.get("htmlNewHtml").add(verItem);
+
 
 		btnNewButton_1 = new Button("Cerrar");
 		btnNewButton_1.setStyleName("btn btn-link");
@@ -322,6 +325,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		btnNewButton_1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				clearComprar();
+				clearParaMostrar();
 				btnComprar.setVisible(false);
 				htmlDestacado.setVisible(false);
 				htmlNewHtml.setHTML("");
@@ -341,30 +345,31 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		});
 
 
-		// Handler para eliminacion de cookies.
+				/**Handler para la eliminacion de todas las cookies 
+				 * creadas en el navegador por send-box.com
+				 * 
+				 * */
 				class MyHandlerCookie implements ClickHandler, KeyUpHandler {
 
 					@Override
 					public void onClick(ClickEvent event) {
-						Cookies.removeCookie("13051983ntmp");
-						Cookies.removeCookie("13051983comprarnombre");
-						Cookies.removeCookie("13051983comprardir");
-						Cookies.removeCookie("13051983ciudaddepto");
-						Cookies.removeCookie("13051983prodactual");	
-						Window.Location.reload();
-	
+						matarCookies();
 					}
 
 					@Override
 					public void onKeyUp(KeyUpEvent event) {
+						matarCookies();
+					}
+					
+					private void matarCookies(){
 						Cookies.removeCookie("13051983ntmp");
 						Cookies.removeCookie("13051983comprarnombre");
 						Cookies.removeCookie("13051983comprardir");
 						Cookies.removeCookie("13051983ciudaddepto");
 						Cookies.removeCookie("13051983prodactual");
+						Cookies.removeCookie("13051983telef");
 						Window.Location.reload();
-
-
+											
 					}
 
 				}
@@ -1300,7 +1305,6 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 					DialogSendBox dialogo = new DialogSendBox("Gracias por comprar en send-box.com",result);
 					dialogo.center();
 					dialogo.show();
-					 
 				}
 
 			});
@@ -1330,8 +1334,12 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 
 						public void onSuccess(String result) {
 							sendBoxImg.setVisible(false);
-							htmlNewHtml2.setHTML(result);
-							htmlNewHtml2.setVisible(true);
+							//ACA VA EL HTML
+							//TODO
+							verItem.setHTML(result);
+							verItem.setVisible(true);
+							//htmlNewHtml2.setHTML(result);
+							//htmlNewHtml2.setVisible(true);
 							RootPanel.get("botonComprar").add(p1);
 							p1.setStyleName("btn btn-danger");
 							p1.setVisible(true);
@@ -1348,6 +1356,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 									nom = Cookies.getCookie("13051983comprarnombre");
 									dir = Cookies.getCookie("13051983comprardir");
 									ciuyDepto=Cookies.getCookie("13051983ciudaddepto");
+									tel=Cookies.getCookie("13051983telef");
 								}
 								else{
 									findClient();
@@ -1382,6 +1391,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 								htmlNewHtml5.setVisible(false);
 								htmlNewHtml6.setVisible(false);
 								htmlNewHtml7.setVisible(false);
+								verItem.setVisible(false);
 								
 								//htmlNewHtml = new HTML("<div class=\"alert alert-block\"><h4>Detalles</h4>Usted esta por comprar 1(uno) producto.</div>", true);
 
@@ -1390,7 +1400,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 								
 								datos1.setHTML("<div><img src="+result[2]+ "align=\"left\" class=\"img-rounded\"></div><div><br><strong>Descripcion del producto: </strong><br>" +result[3] + "<br> " + result[1] +  " "+result[0] + ", envio no incluido.</p> " 
 										+ "Cantidad : 1 <br>" +"</div>");	
-								datos2.setHTML("<div><br><strong>Datos de envio:</strong><br>" +nom +"<br>"+dir + ", "+ciuyDepto + "</div>");
+								datos2.setHTML("<div><br><strong>Datos de envio:</strong><br>" +nom +"<br>"+dir + ", "+ciuyDepto + "<br>"+ tel+"</div>");
 								
 								datos1.setVisible(true);
 								datos2.setVisible(true);
@@ -1442,11 +1452,12 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 					Cookies.setCookie("13051983comprarnombre", result[7] + " " + result[8], expires);
 					Cookies.setCookie("13051983comprardir", result[2], expires);
 					Cookies.setCookie("13051983ciudaddepto", result[5]+", "+result[6], expires);
+					Cookies.setCookie("13051983telef", result[3], expires);
 
-					
 					nom = Cookies.getCookie("13051983comprarnombre");
 					dir = Cookies.getCookie("13051983comprardir");
 					ciuyDepto =  Cookies.getCookie("13051983ciudaddepto");
+					tel=Cookies.getCookie("13051983telef");
 			
 			}
 
@@ -1475,6 +1486,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 		htmlNewHtml5.setVisible(false);
 		htmlNewHtml6.setVisible(false);
 		htmlNewHtml7.setVisible(false);
+		verItem.setVisible(false);
 		p1.setVisible(false);
 		
 	}
@@ -1501,14 +1513,8 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 	    	home.setVisible(true);  
 	    	p1.setVisible(false);
 
-
-			htmlNewHtml.setVisible(false);
-			htmlNewHtml2.setVisible(false);
-			htmlNewHtml3.setVisible(false);
-			htmlNewHtml4.setVisible(false);
-			htmlNewHtml5.setVisible(false);
-			htmlNewHtml6.setVisible(false);
-			htmlNewHtml7.setVisible(false);
+	    	clearParaMostrar();
+	    	clearComprar();
 			
 	    	RootPanel.get("userReg").setVisible(false);
 			RootPanel.get("passReg").setVisible(false);
@@ -1556,13 +1562,9 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 	    	sendBoxImg.setVisible(false);
 	    	comboBox.setVisible(false);
 	    	btnNewButton_1.setVisible(false);
-	    	htmlNewHtml.setVisible(false);
-			htmlNewHtml2.setVisible(false);
-			htmlNewHtml3.setVisible(false);
-			htmlNewHtml4.setVisible(false);
-			htmlNewHtml5.setVisible(false);
-			htmlNewHtml6.setVisible(false);
-			htmlNewHtml7.setVisible(false);
+	    	
+	    	clearParaMostrar();
+	    	clearComprar();
 
 			RootPanel.get("userReg").setVisible(true);
 			RootPanel.get("passReg").setVisible(true);
@@ -1606,13 +1608,8 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 		    	btnNewButton.setVisible(true);
 		    	comboBox.setVisible(true);
 
-	    	    htmlNewHtml.setHTML("");
-	    	    htmlNewHtml2.setHTML("");
-				htmlNewHtml3.setHTML("");
-				htmlNewHtml4.setHTML("");
-				htmlNewHtml5.setHTML("");
-				htmlNewHtml6.setHTML("");
-				htmlNewHtml7.setHTML("");
+		    	clearParaMostrar();
+		    	clearComprar();
 
 	    		RootPanel.get("userReg").setVisible(false);
 				RootPanel.get("passReg").setVisible(false);

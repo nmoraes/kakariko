@@ -246,9 +246,9 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 				
 				html = "<!--"+id + "                                         -->"+
 						"<div>"
-						+ "<p><img src="
+						+ "<p><a href=\"#arriba\"><img src="
 						+ pic
-						+ " align=\"left\" class=\"img-rounded\"><div><br>"
+						+ " align=\"left\" class=\"img-rounded\"></a><div><br>"
 						+ titles
 						+ ".<br>"
 						+ subtitle
@@ -261,8 +261,8 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 						+ "<br><b>Oferta Valida: </b>"
 						+ stop_time
 						+ "</p><br></div>" +
-						"<div id=\"gwtContainer\"><p align=\"right\"><button class=\"btn btn-warning\" input type=\"button\" >detalles</button></p></div>"
-						+"</div><hr> </div>";
+						"<div id=\"gwtContainer\"><p align=\"right\"><a href=\"#arriba\"><button class=\"btn btn-warning\" input type=\"button\" >detalles</button></a></p></div>"
+						+"</div><hr></div>";
 						
 					System.out.println(html);	
 						
@@ -297,7 +297,7 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 
 	@Override
 	public String inicio(String name) {
-
+/*
 		String site = null;
 		String query = null;
 		String currency = null;
@@ -393,8 +393,8 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		return html;
+		}*/
+		return ""; // html
 
 	}
 
