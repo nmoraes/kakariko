@@ -14,6 +14,7 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -783,6 +784,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					}
 
 					private void makeQuery(){
+						//ProgressBar bar = new ProgressBar(0.0, 2000.0 0.0);
+						  //bar.setProgress(1500.0);
+	
 						panelDeControl.setVisible(false);
 						String consulta= txtbxIpod.getText();
 						greetingService.query(consulta, new AsyncCallback<String[]>(){
@@ -885,7 +889,22 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						userlog=username;
 						String passs= pass.getText();
 						userpas=passs;
-
+						/* 
+						final ProgressBar progressBar = new ProgressBar(10
+					             ,ProgressBar.SHOW_TIME_REMAINING
+					              +ProgressBar.SHOW_TEXT);
+						 progressBar.setText("Doing something...");
+						  RootPanel.get("progress").add(progressBar);
+						
+						  Timer t = new Timer() {
+							    public void run() {
+							      int progress = progressBar.getProgress()+4;
+							      if (progress>100) cancel();
+							      progressBar.setProgress(progress);
+							    }
+							  };
+							  t.scheduleRepeating(1000);
+						*/	  
 						greetingService.login(username,passs, new AsyncCallback<Boolean>(){
 
 
@@ -901,6 +920,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 							public void onSuccess(Boolean result) {				
 
+								
 								// ////////////////COOKIES////////////////////////
 								final long DURATION = 1800000; // duration
 								// remembering login.3 minutos
@@ -1232,25 +1252,19 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		MyHandlerCookie killingCookies = new MyHandlerCookie();
 		btnNewButton_2.addClickHandler(killingCookies);
 
-		//Define handler to manage the click event on the product list
+		//Handler para el listado de items.
 		MyHandlerProducto1 p1 = new MyHandlerProducto1();
 		htmlNewHtml.addClickHandler(p1);
-
 		MyHandlerProducto2 p2 = new MyHandlerProducto2();
 		htmlNewHtml2.addClickHandler(p2);
-
 		MyHandlerProducto3 p3 = new MyHandlerProducto3();
 		htmlNewHtml3.addClickHandler(p3);
-
 		MyHandlerProducto4 p4 = new MyHandlerProducto4();
 		htmlNewHtml4.addClickHandler(p4);
-
 		MyHandlerProducto5 p5 = new MyHandlerProducto5();
 		htmlNewHtml5.addClickHandler(p5);
-
 		MyHandlerProducto6 p6 = new MyHandlerProducto6();
 		htmlNewHtml6.addClickHandler(p6);
-
 		MyHandlerProducto7 p7 = new MyHandlerProducto7();
 		htmlNewHtml7.addClickHandler(p7);
 
@@ -1324,7 +1338,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 		clearComprar();
 		java.util.Date expires = new java.util.Date(System.currentTimeMillis() + DURATION_QUERY);
 		Cookies.setCookie("13051983prodactual", producto, expires);
-		
+		History.newItem(producto);
 		
 		 greetingService.greetServer(producto,
 					new AsyncCallback<String>() {
@@ -1338,8 +1352,6 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 							//TODO
 							verItem.setHTML(result);
 							verItem.setVisible(true);
-							//htmlNewHtml2.setHTML(result);
-							//htmlNewHtml2.setVisible(true);
 							RootPanel.get("botonComprar").add(p1);
 							p1.setStyleName("btn btn-danger");
 							p1.setVisible(true);
@@ -1491,7 +1503,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 		
 	}
 	
-	
+
 	
 //Navegacion.
 	
