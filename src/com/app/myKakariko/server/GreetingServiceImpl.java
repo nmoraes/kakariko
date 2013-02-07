@@ -3,6 +3,7 @@ package com.app.myKakariko.server;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
@@ -68,7 +69,6 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 		title = json.getString("title");
 		estado=estado(json.getString("condition"));
 		reader.close();
-
 
 		s[0]=price;
 		s[1]=currency;
@@ -143,14 +143,24 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 			e.printStackTrace();
 		}
 		
-	
+	String salida =  "<div><p><img src="+s+ "align=\"left\" class=\"img-rounded\"><div><br><strong>" +title + " "+ subtitle+ "</strong><br><p class=\"text-error\">Precio: <strong>" + price +  "</strong> "+currency + " (el precio NO incluye el envio)</p> " 
+			+ "Cantidad inicial de articulos: "
+			+cantidadInicial  + "<br>Cantidad disponible a la venta: " + sold_quantity + "<br>" +
+			" Estado del producto : "+estado+"<br></p>" +
+			"</div>";
 		
+		/*String value="";
+		byte ptext[];
+		try {
+			ptext = salida.getBytes("US-ASCII");
+			 value= new String(ptext, "UTF8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		 */
 
-		return  "<div><p><img src="+s+ "align=\"left\" class=\"img-rounded\"><div><br><strong>" +title + " "+ subtitle+ "</strong><br><p class=\"text-error\">Precio: <strong>" + price +  "</strong> "+currency + " (el precio NO incluye el envio)</p> " 
-				+ "Cantidad inicial de articulos: "
-				+cantidadInicial  + "<br>Cantidad disponible a la venta: " + sold_quantity + "<br>" +
-				" Estado del producto : "+estado+"<br></p>" +
-				"</div>";
+		return  salida;
 				
 	}
 //http://www.redtube.com/273048

@@ -60,7 +60,8 @@ public class DialogSendBox extends DialogBox {
 	           ok.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				DialogSendBox.this.hide();
+				//DialogSendBox.this.hide();
+				DialogSendBox.this.clear();
 				Window.Location.reload();
 				
 			}

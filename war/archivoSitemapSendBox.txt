@@ -14,5 +14,14 @@
 	 <loc>http://www.send-box.com/empresas.html</loc>
   </url>
 
+	  <url>  
+	 <loc>http://www.send-box.com/ayuda.html</loc>
+  </url>
+
+	  <url>  
+	 <loc>http://www.send-box.com/avisoLegal.html</loc>
+  </url>
+
+
   
 </urlset>

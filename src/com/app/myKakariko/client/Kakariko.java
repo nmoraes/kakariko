@@ -228,14 +228,23 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 				}
 
 		RootPanel.get("userReg").setVisible(false);
+		RootPanel.get("userReg").setTitle("registra tu email, de ahora en mas, ese sera tu nombre de usuario en send-box");
 		RootPanel.get("passReg").setVisible(false);
+		RootPanel.get("passReg").setTitle("el password no puede ser vacio, y debe tener al menos 5 caracteres");
 		RootPanel.get("nombreReg").setVisible(false);
+		RootPanel.get("nombreReg").setTitle("solo tu nombre, utiliza tu nombre real");
 		RootPanel.get("apellidoReg").setVisible(false);
+		RootPanel.get("apellidoReg").setTitle("solo tu apellido, utiliza tu apellido real");
 		RootPanel.get("cedulaReg").setVisible(false);
+		RootPanel.get("cedulaReg").setTitle("Àpor que mi cedula?, la cedula es fundamental para comprar en abitab, por lo tanto debe ser real, al igual que tu nombre y apellido, ingresala SIN puntos y sin el guion ni el ultimo numero");
 		RootPanel.get("departamentoReg").setVisible(false);
+		RootPanel.get("departamentoReg").setTitle("necesitamos saber tu departamento para enviar tu paquete.");
 		RootPanel.get("ciudadReg").setVisible(false);
+		RootPanel.get("ciudadReg").setTitle("necesitamos saber la ciudad en donde vives y asi poder enviar tu paquete.");
 		RootPanel.get("direccionReg").setVisible(false);
+		RootPanel.get("direccionReg").setTitle("necesitamos saber la direccion exacta en donde vives y asi poder enviar tu paquete");
 		RootPanel.get("telefonoReg").setVisible(false);
+		RootPanel.get("telefonoReg").setTitle("queresmos tu telefono asi poder contactarte ante cualquier problema con el envio de tu paquete.");
 
 		btnNewButton = new Button("New button");
 		btnNewButton.setText("buscar");
@@ -1426,9 +1435,8 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 
 							}else{
 								
-								DialogSendBox dialogo = new DialogSendBox("Mensaje de send-box.com","Para comprar, debes estar registrado en send-box.com, gracias");
-								dialogo.center();
-								dialogo.show();
+								Window.alert("Para comprar, debes estar registrado en send-box.com, gracias");
+							
 								
 							}	
 
