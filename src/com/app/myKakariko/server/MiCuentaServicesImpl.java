@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
+import java.util.List;
 
 import javax.jdo.PersistenceManager;
 
@@ -20,6 +21,7 @@ import com.app.myKakariko.shared.FieldVerifier;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import javax.jdo.Query;
 
 @SuppressWarnings("serial")
 public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuentaService {
@@ -32,6 +34,64 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 	private final String PESOS = "$";
 	private final String DOLARES = "U$S";
 
+	
+	
+	@Override
+	public String ventasCliente(String idClient){
+		
+		/*
+		 .success 	VERDA
+		 .error 	ROJO
+         .warning 	AMARILLO
+		  .info		AZUL
+		*/
+	
+		
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+
+		  Query query = pm.newQuery(Ventas.class,"username == '" + idClient + "'" );
+		  String consulta="";
+		    try {
+		        List<Ventas> results = (List<Ventas>) query.execute();
+		        if (!results.isEmpty()) {
+
+		            for (Ventas e : results) {
+		            	
+		            	if(e.getEstado().equals(Utilidades.ESTADO_1) ){
+		            		consulta= consulta + "<tr class=\"error\"><td>"+ e.getDescripcion() +"</td> <td>"+ e.getPrecioFinal() + e.getMoneda()+" </td><td>" + e.getDateCompra()+ "</td><td>"+e.getEstado()+ "</td></tr>";
+		            	}
+		                
+		            	if(e.getEstado().equals(Utilidades.ESTADO_2)){
+		            		consulta= consulta + "<tr class=\"info\"><td>"+ e.getDescripcion() +"</td> <td>"+ e.getPrecioFinal() + e.getMoneda()+" </td><td>" + e.getDateCompra()+ "</td><td>"+e.getEstado()+ "</td></tr>";
+		            	}
+		                
+		            	if(e.getEstado().equals(Utilidades.ESTADO_3)){
+		            		consulta= consulta + "<tr class=\"success\"><td>"+ e.getDescripcion() +"</td> <td>"+ e.getPrecioFinal() + e.getMoneda()+" </td><td>" + e.getDateCompra()+ "</td><td>"+e.getEstado()+ "</td></tr>";
+		            	}
+  	
+		            }
+		        } else {
+	                System.out.println("<h1>OCURRIO UN ERROR GRAVE<h1>");
+		        }
+		    } finally {
+		        query.closeAll();
+		    }
+		
+		    
+		    String tabla= "<table class=\"table table-condensed\"><caption>MIS COMPRAS ACTIVAS</caption><tbody><thead><tr><th>Descripcion</th><th>Precio</th><th>Fecha de compra</th><th>Estado</th></tr></thead>";
+		    
+		    String finTabla="</tbody></table>";
+		    		
+		    		
+		String salida = tabla.concat(consulta);
+		String tablaFinal = salida.concat(finTabla);
+		
+		
+		System.out.println(tablaFinal);
+		
+		
+		return tablaFinal;
+	}
 	
 	
 	
@@ -192,14 +252,6 @@ private String currencies(String defaultCurrencyId){
 	
 	return symbolCurrency;
 }
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	//hay q poner q valide con la password tambien

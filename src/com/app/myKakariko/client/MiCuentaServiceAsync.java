@@ -20,4 +20,6 @@ public interface MiCuentaServiceAsync {
 
 	void updateClient(String user, String password, String direccion, String telefono,String ciudad,String depto, String nombre, String apellido, AsyncCallback<String> asyncCallback);
 
+	void ventasCliente(String idClient, AsyncCallback<String> callback);
+
 }

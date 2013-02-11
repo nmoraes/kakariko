@@ -19,6 +19,8 @@ public interface MiCuentaService  extends RemoteService  {
 			String telefono, String ciudad, String depto, String nombre,
 			String apellido);
 
+	String ventasCliente(String idClient);
+
 	
 	
 	

@@ -49,6 +49,8 @@ public class MiCuenta extends Composite {
 		
 		private Label lblNewLabel_7;
 		
+		private HTML htmlNewHtml_1;
+		
 		/**
 		 * Crea un servicio remoto proxy para comunicarse con la capa servidora de
 		 * Menu.
@@ -158,43 +160,27 @@ public class MiCuenta extends Composite {
 			absolutePanel.add(lblNombre, 9, 13);
 			decoratedTabPanel.add(absolutePanel3, "mis compras activas", false);
 
-
-
-			Button btnNewButton_1 = new Button("New button");
-			absolutePanel3.add(btnNewButton_1, 198, 260);
-			
-			
-			
-			HTML htmlNewHtml_1 = new HTML("<table class=\"table table-condensed\"><caption>tabla de mis compras activas</caption><tbody> <thead><tr><th>campo____1</th><th>campo____2</th><th>campo____3</th><th>estado</th></tr></thead><tr class=\"success\"><td>1</td> <td>TB - Monthly</td><td>01/04/2012</td><td>Approved</td></tr></tbody></table>", true);
+			htmlNewHtml_1 = new HTML("", true);
 			
 			absolutePanel3.add(htmlNewHtml_1, 22, 20);
 			htmlNewHtml_1.setSize("779px", "319px");
 			
 			
 			decoratedTabPanel.add(absolutePanel4, "mis compras finalizadas", false);
-
-			Label lblNewLabel_4 = new Label("id cliente");
-			absolutePanel4.add(lblNewLabel_4, 20, 152);
-
-			Button btnNewButton = new Button("New button");
-			btnNewButton.setText("facturar");
-			absolutePanel4.add(btnNewButton, 91, 196);
-
-			TextBox textBox = new TextBox();
-			absolutePanel4.add(textBox, 78, 142);
-
-			Label lblBuscarCliente = new Label("buscar cliente");
-			absolutePanel4.add(lblBuscarCliente, 20, 28);
 			decoratedTabPanel.add(absolutePanel5, "acerca de send-box.com", false);
 			
 			if (Cookies.getCookie("13051983ntmp")!=null){
 			findClient();
+			misCompras();
 			}
 			
 			//Handler para la busqueda de datos personales.
 			MyHandler handler = new MyHandler();
 			btnBuscar.addClickHandler(handler);
 
+			
+			
+			
 		}
 		
 
@@ -315,4 +301,35 @@ public class MiCuenta extends Composite {
 			});
 
 		}
+		
+		public void misCompras(){
+		
+			
+			String username =Cookies.getCookie("13051983ntmp");
+
+			panelDeControl.ventasCliente(username,new AsyncCallback<String>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+				
+					
+				}
+
+
+				
+
+				@Override
+				public void onSuccess(String result) {
+					htmlNewHtml_1.setHTML(result);
+					
+				}
+
+			});	
+			
+			
+			
+		}
+		
+		
+		
 	}

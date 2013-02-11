@@ -34,6 +34,54 @@ public class Ventas {
   
 	}
 
+	
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+
+
+	public String getMoneda() {
+		return moneda;
+	}
+
+
+
+	public void setMoneda(String moneda) {
+		this.moneda = moneda;
+	}
+
+
+
+	public String getPrecioFinal() {
+		return precioFinal;
+	}
+
+
+
+	public void setPrecioFinal(String precioFinal) {
+		this.precioFinal = precioFinal;
+	}
+
+
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
 
 
 	public boolean isRegalo() {

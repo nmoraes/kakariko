@@ -31,6 +31,20 @@ public class Utilidades {
 	public static String ROPA_JOYAS_RELOJES="MLU1430";
 	public static String SALUD_BELLEZA="MLU1246";
 
+	
+	
+	/** Esperando confirmacion de Abitab */
+	public static String ESTADO_1 ="Esperando confirmacion de Abitab";
+	/**Pago confirmado, enviando*/
+	public static String ESTADO_2 ="Pago confirmado, enviando";
+	/**Paquete entregado*/
+	public static String ESTADO_3 ="Paquete entregado";
+
+
+	
+
+	
+	
 
 	
 }
