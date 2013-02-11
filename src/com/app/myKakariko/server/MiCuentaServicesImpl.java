@@ -38,15 +38,9 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 	
 	
 	@Override
-	public String updateClient(String user, String password, String direccion, String telefono,String ciudad,String depto) {
+	public String updateClient(String user, String password, String direccion, String telefono,String ciudad,String depto,String nombre,String apellido) {
 	    PersistenceManager pm = PMF.get().getPersistenceManager();
   	  
-	    
-	    System.out.println("SERVER :ciudad: " + ciudad);
-  	  	System.out.println("SERVER :depto: " + depto);
-
-  	  
-  	
 	    
 	    try {
 	        Client e = pm.getObjectById(Client.class, user);
@@ -55,6 +49,8 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 	        e.setTelefono(telefono);
 	        e.setCiudad(ciudad);
 	        e.setDepartamento(depto);
+	        e.setNombre(nombre);
+	        e.setApellido(apellido);
 	        }
 	      catch(Exception e){
 	    	  System.out.println("ERROR AL ACTUALIZAR");
@@ -106,14 +102,6 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 
 		
 		}
-		
-	
-		
-		
-	
-		
-	
-
 
 		return exit;
 		

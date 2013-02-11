@@ -28,11 +28,6 @@ import com.google.gwt.user.client.ui.FlexTable;
 
 public class MiCuenta extends Composite {
 
-
-
-		// boton para modificacion
-		private Button btnEnviar;
-
 		// text box para ingreso
 		private TextBox textBox_2;
 		private TextBox textBox_3;
@@ -41,6 +36,8 @@ public class MiCuenta extends Composite {
 		private TextBox textBox_6;
 		private TextBox textBox_8;
 		private TextBox textBox_9; 
+		private TextBox textBox_1;
+		private TextBox textBox_7;
 
 		// boton para modificacion
 		private Button btnBuscar;
@@ -87,70 +84,78 @@ public class MiCuenta extends Composite {
 					false);
 	 
 			Label lblNewLabel_1 = new Label("password");
-			absolutePanel.add(lblNewLabel_1, 9, 59);
+			absolutePanel.add(lblNewLabel_1, 9, 145);
 
 			Label lblNewLabel_2 = new Label("direccion");
-			absolutePanel.add(lblNewLabel_2, 9, 105);
+			absolutePanel.add(lblNewLabel_2, 9, 191);
 
 			Label lblNewLabel_3 = new Label("telefono");
-			absolutePanel.add(lblNewLabel_3, 9, 153);
+			absolutePanel.add(lblNewLabel_3, 9, 239);
 
 			Label lblNewLabel_5 = new Label("cedula");
-			absolutePanel.add(lblNewLabel_5, 9, 197);
+			absolutePanel.add(lblNewLabel_5, 9, 283);
 			
 			absolutePanel.add(sendBoxReg,650,195);
 			sendBoxReg.setSize("220px", "169px");
 
 			textBox_2 = new TextBox();
 			textBox_2.setTitle("mi password");
-			absolutePanel.add(textBox_2, 96, 59);
+			absolutePanel.add(textBox_2, 96, 138);
 
 			textBox_3 = new TextBox();
 			textBox_3.setTitle("Puedes cambiar tu direccion en cualquier momento, puedes poner cualquiera, la de tu trabajo, tu novia, tus padres, y la puedes cambiar cuantas veces quieras.");
-			absolutePanel.add(textBox_3, 96, 105);
+			absolutePanel.add(textBox_3, 96, 184);
 
 			textBox_4 = new TextBox();
 			textBox_4.setTitle("Puedes cambiar tu telefono las veces que quieras, puede estar asociado con la direccion actual, o sea seria un numero particualar, o sino un celular.");
-			absolutePanel.add(textBox_4, 96, 151);
+			absolutePanel.add(textBox_4, 96, 230);
 
 			textBox_5 = new TextBox();
 			textBox_5.setEnabled(false);
 			textBox_5.setTitle("Actualmente la cedula, no es modificable.");
-			absolutePanel.add(textBox_5, 96, 197);
+			absolutePanel.add(textBox_5, 96, 276);
 
 			Label lblNewLabel_6 = new Label("ciudad");
-			absolutePanel.add(lblNewLabel_6, 9, 245);
+			absolutePanel.add(lblNewLabel_6, 9, 331);
 
 			textBox_6 = new TextBox();
 			textBox_6.setTitle("Tanto la ciudad como el departamento, debe estar relacionado con tu direccion actual, si nos facilita los datos, sera mejor para Ud, al momento de recibir un paquete.");
-			absolutePanel.add(textBox_6, 96, 243);
-
-			btnEnviar = new Button("cancelar");
-			btnEnviar.setStyleName("btn btn-large");
-			absolutePanel.add(btnEnviar, 206, 356);
+			absolutePanel.add(textBox_6, 96, 322);
 
 			btnBuscar = new Button("modificar");
 			btnBuscar.setStyleName("btn btn-large btn-primary");
-			absolutePanel.add(btnBuscar, 91, 356);
+			absolutePanel.add(btnBuscar, 400, 138);
 			
 			textBox_8 = new TextBox();
 			textBox_8.setTitle("El username, nunca sera modificable, es una manera de prevenir al sistema de falsos compradores, repelerlos y por otro lado asegurar el buen funcionamiento del sistema para nuestros \"buenos\" usuarios. ");
 			textBox_8.setEnabled(false);
-			absolutePanel.add(textBox_8, 96, 13);
+			absolutePanel.add(textBox_8, 96, 92);
 			
 			Label lblUsername = new Label("username");
 			
-			absolutePanel.add(lblUsername, 9, 13);
+			absolutePanel.add(lblUsername, 9, 99);
 			
 			textBox_9 = new TextBox();
 			textBox_9.setTitle("Tanto la ciudad como el departamento, debe estar relacionado con tu direccion actual, si nos facilita los datos, sera mejor para Ud, al momento de recibir un paquete.");
-			absolutePanel.add(textBox_9, 96, 282);
+			absolutePanel.add(textBox_9, 96, 363);
 			
 			Label lblDepartamento = new Label("departamento");
-			absolutePanel.add(lblDepartamento, 9, 282);
+			absolutePanel.add(lblDepartamento, 9, 371);
 			
 			lblNewLabel_7 = new Label("");
 			absolutePanel.add(lblNewLabel_7, 486, 116);
+			
+		    textBox_1 = new TextBox();
+			absolutePanel.add(textBox_1, 96, 46);
+			
+			Label lblNewLabel = new Label("apelido");
+			absolutePanel.add(lblNewLabel, 9, 53);
+			
+			textBox_7 = new TextBox();
+			absolutePanel.add(textBox_7, 96, 9);
+			
+			Label lblNombre = new Label("nombre");
+			absolutePanel.add(lblNombre, 9, 13);
 			decoratedTabPanel.add(absolutePanel3, "mis compras activas", false);
 
 
@@ -233,19 +238,20 @@ public class MiCuenta extends Composite {
 				String telefono=textBox_4.getText();
 				String ciudad=textBox_6.getText();
 				String depto=textBox_9.getText();
-							
+				
+				
+				//cambiar la llamada al evento de RPC
+				String nombre=textBox_7.getText();
+				String apellido=textBox_1.getText();			
+				
+				
 				if (!FieldVerifier.isValidPass(passw)) {
 					lblNewLabel_7.setText("El password no puede ser vacio, y debe tener al menos 5 caracteres");
 					btnBuscar.setEnabled(true);
 					return;
 				}
 				
-				
-				System.out.println("ciudad :" + ciudad);
-				System.out.println("depto :" + depto);
-
-				
-				panelDeControl.updateClient(username,passw, direccion,telefono,ciudad,depto,new AsyncCallback<String>() {
+				panelDeControl.updateClient(username,passw, direccion,telefono,ciudad,depto,nombre,apellido,new AsyncCallback<String>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -282,14 +288,14 @@ public class MiCuenta extends Composite {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					 btnEnviar.setEnabled(true);
+					// btnEnviar.setEnabled(true);
 					Window.alert(caught.getMessage());
 					
 				}
 
 				@Override
 				public void onSuccess(String[] result) {
-					 btnEnviar.setEnabled(true);
+					// btnEnviar.setEnabled(true);
 					 
 					 textBox_8.setText(result[0]);
 					 textBox_2.setText(result[1]);
@@ -298,10 +304,11 @@ public class MiCuenta extends Composite {
 					 textBox_5.setText(result[4]);
 					 textBox_6.setText(result[5]);
 					 textBox_9.setText(result[6]);
-	 
-
-					 
-					 
+					 textBox_7.setText(result[7]);
+					 textBox_1.setText(result[8]);
+		 
+					 //S7 NOM
+ 					 //S8 APELL		 
 					 
 				}
 

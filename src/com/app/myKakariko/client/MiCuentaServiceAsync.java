@@ -18,6 +18,6 @@ public interface MiCuentaServiceAsync {
 	void comprarProducto(String username, String userpass, String prod,
 			String shipping, AsyncCallback<String> callback);
 
-	void updateClient(String user, String password, String direccion, String telefono,String ciudad,String depto, AsyncCallback<String> asyncCallback);
+	void updateClient(String user, String password, String direccion, String telefono,String ciudad,String depto, String nombre, String apellido, AsyncCallback<String> asyncCallback);
 
 }

@@ -15,7 +15,9 @@ public interface MiCuentaService  extends RemoteService  {
 			String shipping)
 			throws IllegalArgumentException;
 
-	String updateClient(String user, String password, String direccion, String telefono,String ciudad,String depto);
+	String updateClient(String user, String password, String direccion,
+			String telefono, String ciudad, String depto, String nombre,
+			String apellido);
 
 	
 	
