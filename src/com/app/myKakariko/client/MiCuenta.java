@@ -171,7 +171,7 @@ public class MiCuenta extends Composite {
 			
 			if (Cookies.getCookie("13051983ntmp")!=null){
 			findClient();
-			misCompras();
+		//	misCompras();
 			}
 			
 			//Handler para la busqueda de datos personales.

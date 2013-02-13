@@ -59,6 +59,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private HTML htmlNewHtml7= new HTML("", true);
 	private HTML htmlDestacado= new HTML("", true);
 	private HTML verItem= new HTML("", true);
+	
+	private HTML tabla= new HTML("", true);
+
 
 	
 	//para comprar
@@ -173,6 +176,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		miCuenta.setStyleName("btn btn-link");
 		RootPanel.get("miCuenta").add(miCuenta);
 		miCuenta.setVisible(false);
+		tabla.setVisible(false);
+		RootPanel.get("tabla").add(tabla);
 
 		//home
 		home= new Hyperlink("inicio","home");
@@ -209,6 +214,14 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 		///////////galletitas///////////////
 				if (Cookies.getCookie("13051983ntmp") != null) {
+					
+					if(Cookies.getCookie("13051983tabla")!=null){		
+						tabla.setHTML(Cookies.getCookie("13051983tabla"));
+					}else{
+						misCompras();
+						
+					}
+
 					home.setVisible(false);
 					System.out.println("hay cookie");
 					btnNewButton_5.setVisible(false);
@@ -267,7 +280,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml6);
 		RootPanel.get("htmlNewHtml").add(htmlNewHtml7);
 		RootPanel.get("htmlNewHtml").add(verItem);
-
+		
 
 		btnNewButton_1 = new Button("Cerrar");
 		btnNewButton_1.setStyleName("btn btn-link");
@@ -378,6 +391,8 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 						Cookies.removeCookie("13051983ciudaddepto");
 						Cookies.removeCookie("13051983prodactual");
 						Cookies.removeCookie("13051983telef");
+						Cookies.removeCookie("13051983tabla");
+						
 						Window.Location.reload();
 											
 					}
@@ -795,7 +810,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					private void makeQuery(){
 						//ProgressBar bar = new ProgressBar(0.0, 2000.0 0.0);
 						  //bar.setProgress(1500.0);
-	
+						tabla.setVisible(false);
 						panelDeControl.setVisible(false);
 						String consulta= txtbxIpod.getText();
 						greetingService.query(consulta, new AsyncCallback<String[]>(){
@@ -952,7 +967,9 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 								if (History.getToken().equals("registro"))
 								   History.newItem("home");
-
+						
+								misCompras();
+	
 							}
 
 
@@ -1511,6 +1528,39 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 		
 	}
 	
+	public void misCompras(){
+		
+		String username =Cookies.getCookie("13051983ntmp");
+		comprarService.ventasCliente(username,new AsyncCallback<String>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+			
+				
+			}
+
+			@Override
+			public void onSuccess(String result) {
+				
+				final long TIEMPO_TABLA = 180000; //3 min
+
+				java.util.Date fin = new java.util.Date(
+						System.currentTimeMillis() + TIEMPO_TABLA);
+				Cookies.setCookie("13051983tabla", result, fin);
+
+				tabla.setHTML(result);
+				
+				
+			}
+
+		});	
+		
+		
+		
+	}
+	
+	
+	
 
 	
 //Navegacion.
@@ -1523,6 +1573,15 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 	public void changePage(String token) {
 		//Mi Cuenta con cookie valida 
 		if (History.getToken().equals("miCuenta") &&(Cookies.getCookie("13051983ntmp") != null)){
+			//carga la tabla de compras.
+			
+			if( Cookies.getCookie("13051983tabla") == null ){
+				misCompras();
+				
+			}
+			
+			
+			tabla.setVisible(true);
 			label.setVisible(false);
 			label.setText("");
 			btnComprar.setVisible(false);
@@ -1561,6 +1620,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 
 	     //Registro
 	    } else if (History.getToken().equals("registro") && (Cookies.getCookie("13051983ntmp") == null)) {
+	    	tabla.setVisible(false);
 	    	label.setVisible(false);
 			label.setText("");
 	    	btnComprar.setVisible(false);
@@ -1608,6 +1668,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 
 	  //Home page default
 	    else {
+	    	tabla.setVisible(false);
 	    	label.setVisible(false);
 			label.setText("");
 	    	btnComprar.setVisible(false);

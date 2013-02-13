@@ -78,7 +78,7 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 		    }
 		
 		    
-		    String tabla= "<table class=\"table table-condensed\"><caption>MIS COMPRAS ACTIVAS</caption><tbody><thead><tr><th>Descripcion</th><th>Precio</th><th>Fecha de compra</th><th>Estado</th></tr></thead>";
+		    String tabla= "<br><br><table class=\"table table-condensed\"><caption>MIS COMPRAS ACTIVAS</caption><tbody><thead><tr><th>Descripcion</th><th>Precio</th><th>Fecha de compra</th><th>Estado</th></tr></thead>";
 		    
 		    String finTabla="</tbody></table>";
 		    		
