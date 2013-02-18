@@ -35,7 +35,7 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 	private final String DOLARES = "U$S";
 
 	
-	
+	/**Muesta todas las ventas de un usuario */
 	@Override
 	public String ventasCliente(String idClient){
 		
@@ -58,15 +58,15 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 		            for (Ventas e : results) {
 		            	
 		            	if(e.getEstado().equals(Utilidades.ESTADO_1) ){
-		            		consulta= consulta + "<tr class=\"error\"><td>"+ e.getDescripcion() +"</td> <td>"+ e.getPrecioFinal() + e.getMoneda()+" </td><td>" + e.getDateCompra()+ "</td><td>"+e.getEstado()+ "</td></tr>";
+		            		consulta= consulta + "<tr class=\"error\"><td>"+ e.getDescripcion() +"</td> <td>"+ e.getPrecioFinal() +" "+ e.getMoneda()+" </td><td>" + e.getDateCompra()+ "</td><td>"+e.getEstado()+ "</td></tr>";
 		            	}
 		                
 		            	if(e.getEstado().equals(Utilidades.ESTADO_2)){
-		            		consulta= consulta + "<tr class=\"info\"><td>"+ e.getDescripcion() +"</td> <td>"+ e.getPrecioFinal() + e.getMoneda()+" </td><td>" + e.getDateCompra()+ "</td><td>"+e.getEstado()+ "</td></tr>";
+		            		consulta= consulta + "<tr class=\"info\"><td>"+ e.getDescripcion() +"</td> <td>"+ e.getPrecioFinal() +" "+ e.getMoneda()+" </td><td>" + e.getDateCompra()+ "</td><td>"+e.getEstado()+ "</td></tr>";
 		            	}
 		                
 		            	if(e.getEstado().equals(Utilidades.ESTADO_3)){
-		            		consulta= consulta + "<tr class=\"success\"><td>"+ e.getDescripcion() +"</td> <td>"+ e.getPrecioFinal() + e.getMoneda()+" </td><td>" + e.getDateCompra()+ "</td><td>"+e.getEstado()+ "</td></tr>";
+		            		consulta= consulta + "<tr class=\"success\"><td>"+ e.getDescripcion() +"</td> <td>"+ e.getPrecioFinal() +" "+ e.getMoneda()+" </td><td>" + e.getDateCompra()+ "</td><td>"+e.getEstado()+ "</td></tr>";
 		            	}
   	
 		            }
@@ -78,16 +78,13 @@ public class MiCuentaServicesImpl extends RemoteServiceServlet implements MiCuen
 		    }
 		
 		    
-		    String tabla= "<br><br><table class=\"table table-condensed\"><caption>MIS COMPRAS ACTIVAS</caption><tbody><thead><tr><th>Descripcion</th><th>Precio</th><th>Fecha de compra</th><th>Estado</th></tr></thead>";
+		    String tabla= "<table class=\"table table-condensed\"><caption><h3>Mis compras activas</h3></caption><tbody><thead><tr><th>Descripcion</th><th>Precio</th><th>Fecha de compra</th><th>Estado</th></tr></thead>";
 		    
 		    String finTabla="</tbody></table>";
 		    		
 		    		
 		String salida = tabla.concat(consulta);
 		String tablaFinal = salida.concat(finTabla);
-		
-		
-		System.out.println(tablaFinal);
 		
 		
 		return tablaFinal;
@@ -407,19 +404,19 @@ private String currencies(String defaultCurrencyId){
 					System.out.println("PRECIO MAYOR IGUAL A 1000: valor = " +valor);
 
 					if(shipping.equals(SHIPPING_1)){
-						salida=calculadoraDePrecio(precio,12);						
+						salida=calculadoraDePrecio(precio,10);						
 						System.out.println("24 hrs "+salida);
 					}
 					else if(shipping.equals(SHIPPING_2)){
-						salida=calculadoraDePrecio(precio,11);						
+						salida=calculadoraDePrecio(precio,9);						
 						System.out.println("48 hrs "+salida);
 					}
 					else if(shipping.equals(SHIPPING_3)){
-						salida=calculadoraDePrecio(precio,10);						
+						salida=calculadoraDePrecio(precio,8);						
 						System.out.println("72 hrs "+salida);
 						
 					}else if(shipping.equals(SHIPPING_4)){
-						salida=calculadoraDePrecio(precio,9);						
+						salida=calculadoraDePrecio(precio,7);						
 						System.out.println("despues 72 hrs: "+salida);
 						
 					}
@@ -430,20 +427,20 @@ private String currencies(String defaultCurrencyId){
 			System.out.println("PRECIO en DOLARES: valor = " +valor);
 
 			if(shipping.equals(SHIPPING_1)){
-				salida=calculadoraDePrecio(precio,10);						
+				salida=calculadoraDePrecio(precio,8);						
 				System.out.println("24 hrs "+salida);				
 			}
 			else if(shipping.equals(SHIPPING_2)){
-				salida=calculadoraDePrecio(precio,9);						
+				salida=calculadoraDePrecio(precio,7);						
 				System.out.println("48 hrs "+salida);
 			
 			}
 			else if(shipping.equals(SHIPPING_3)){
-				salida=calculadoraDePrecio(precio,8);						
+				salida=calculadoraDePrecio(precio,6);						
 				System.out.println("72 hrs "+salida);
 				
 			}else if(shipping.equals(SHIPPING_4)){
-				salida=calculadoraDePrecio(precio,7);						
+				salida=calculadoraDePrecio(precio,5);						
 				System.out.println("despues 72 hrs: "+salida);
 				
 			}

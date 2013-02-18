@@ -128,6 +128,11 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 			currency = json.getString("currency_id");
 			currency = currencies(currency);
 			subtitle =json.getString("subtitle");
+			
+			if(subtitle.equals("null")){
+				subtitle= "";
+			}
+			
 			cantidadInicial =json.getString("initial_quantity");
 			estado=estado(json.getString("condition"));
 			pictures = json.getString("thumbnail");
@@ -243,6 +248,12 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 				JSONObject array = (JSONObject) results.get(i);
 				titles = array.getString("title");
 				subtitle = array.getString("subtitle");
+				
+				if(subtitle.equals("null")){
+					subtitle= "";
+				}else
+					subtitle = subtitle + ".<br>";
+				
 				price = array.getString("price");
 				//price=calculadoraDePrecio(price);
 				thumbnail = array.getString("thumbnail");
@@ -262,7 +273,6 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 						+ titles
 						+ ".<br>"
 						+ subtitle
-						+ ".<br>"
 						+ price
 						+ " "
 						+ symbolCurrency

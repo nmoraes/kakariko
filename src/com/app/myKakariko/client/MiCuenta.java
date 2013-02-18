@@ -25,6 +25,7 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
 public class MiCuenta extends Composite {
 
@@ -42,14 +43,10 @@ public class MiCuenta extends Composite {
 		// boton para modificacion
 		private Button btnBuscar;
 
-		private HTML sendBoxReg= new HTML(Destacados.REG_BOX, true);
 
-
-		private DecoratedTabPanel decoratedTabPanel;
+		//private DecoratedTabPanel decoratedTabPanel;
 		
 		private Label lblNewLabel_7;
-		
-		private HTML htmlNewHtml_1;
 		
 		/**
 		 * Crea un servicio remoto proxy para comunicarse con la capa servidora de
@@ -57,121 +54,103 @@ public class MiCuenta extends Composite {
 		 */
 	private final MiCuentaServiceAsync panelDeControl = GWT.create(MiCuentaService.class);
 
+	//private HTML sendBoxLogo= new HTML(Destacados.SEND_BOX_LOGO, true);
+
 	
 	
 		public MiCuenta() {
 			
-			decoratedTabPanel = new DecoratedTabPanel();
-			initWidget(decoratedTabPanel);
-			decoratedTabPanel.setSize("856", "451");
-			decoratedTabPanel.setAnimationEnabled(true);
+			//decoratedTabPanel = new DecoratedTabPanel();
+			//initWidget(decoratedTabPanel);
+			//decoratedTabPanel.setSize("856", "451");
+			//decoratedTabPanel.setAnimationEnabled(true);
 			AbsolutePanel absolutePanel = new AbsolutePanel();
 			absolutePanel.setStylePrimaryName("menuPrincipal");
 			absolutePanel.setStyleName("menuPrincipal");
-			AbsolutePanel absolutePanel3 = new AbsolutePanel();
-			absolutePanel3.setStylePrimaryName("menuPrincipal");
-			absolutePanel3.setStyleName("menuPrincipal");
-			AbsolutePanel absolutePanel4 = new AbsolutePanel();
-			absolutePanel4.setStylePrimaryName("menuPrincipal");
-			absolutePanel4.setStyleName("menuPrincipal");
-			AbsolutePanel absolutePanel5 = new AbsolutePanel();
-			absolutePanel5.setStylePrimaryName("menuPrincipal");
-			absolutePanel5.setStyleName("menuPrincipal");
-			absolutePanel.setSize("880px", "406px");
-			absolutePanel3.setSize("880px", "406px");
-			absolutePanel4.setSize("880px", "406px");
-			absolutePanel5.setSize("880px", "406px");
-
-			decoratedTabPanel.add(absolutePanel, "mis datos",
-					false);
+			absolutePanel.setSize("880px", "380px");
+			initWidget(absolutePanel);
+			//decoratedTabPanel.add(absolutePanel, "mis datos",
+				//	false);
 	 
 			Label lblNewLabel_1 = new Label("password");
-			absolutePanel.add(lblNewLabel_1, 9, 145);
+			absolutePanel.add(lblNewLabel_1, 340, 116);
 
 			Label lblNewLabel_2 = new Label("direccion");
-			absolutePanel.add(lblNewLabel_2, 9, 191);
+			absolutePanel.add(lblNewLabel_2, 10, 162);
 
 			Label lblNewLabel_3 = new Label("telefono");
-			absolutePanel.add(lblNewLabel_3, 9, 239);
+			absolutePanel.add(lblNewLabel_3, 340, 162);
 
 			Label lblNewLabel_5 = new Label("cedula");
-			absolutePanel.add(lblNewLabel_5, 9, 283);
-			
-			absolutePanel.add(sendBoxReg,650,195);
-			sendBoxReg.setSize("220px", "169px");
+			absolutePanel.add(lblNewLabel_5, 10, 204);
 
 			textBox_2 = new TextBox();
 			textBox_2.setTitle("mi password");
-			absolutePanel.add(textBox_2, 96, 138);
+			absolutePanel.add(textBox_2, 408, 116);
 
 			textBox_3 = new TextBox();
 			textBox_3.setTitle("Puedes cambiar tu direccion en cualquier momento, puedes poner cualquiera, la de tu trabajo, tu novia, tus padres, y la puedes cambiar cuantas veces quieras.");
-			absolutePanel.add(textBox_3, 96, 184);
+			absolutePanel.add(textBox_3, 96, 162);
 
 			textBox_4 = new TextBox();
 			textBox_4.setTitle("Puedes cambiar tu telefono las veces que quieras, puede estar asociado con la direccion actual, o sea seria un numero particualar, o sino un celular.");
-			absolutePanel.add(textBox_4, 96, 230);
+			absolutePanel.add(textBox_4, 408, 162);
 
 			textBox_5 = new TextBox();
 			textBox_5.setEnabled(false);
 			textBox_5.setTitle("Actualmente la cedula, no es modificable.");
-			absolutePanel.add(textBox_5, 96, 276);
+			absolutePanel.add(textBox_5, 96, 204);
 
 			Label lblNewLabel_6 = new Label("ciudad");
-			absolutePanel.add(lblNewLabel_6, 9, 331);
+			absolutePanel.add(lblNewLabel_6, 340, 204);
 
 			textBox_6 = new TextBox();
 			textBox_6.setTitle("Tanto la ciudad como el departamento, debe estar relacionado con tu direccion actual, si nos facilita los datos, sera mejor para Ud, al momento de recibir un paquete.");
-			absolutePanel.add(textBox_6, 96, 322);
+			absolutePanel.add(textBox_6, 408, 204);
 
 			btnBuscar = new Button("modificar");
-			btnBuscar.setStyleName("btn btn-large btn-primary");
-			absolutePanel.add(btnBuscar, 400, 138);
+			btnBuscar.setStyleName("btn");
+			absolutePanel.add(btnBuscar, 424, 270);
 			
 			textBox_8 = new TextBox();
 			textBox_8.setTitle("El username, nunca sera modificable, es una manera de prevenir al sistema de falsos compradores, repelerlos y por otro lado asegurar el buen funcionamiento del sistema para nuestros \"buenos\" usuarios. ");
 			textBox_8.setEnabled(false);
-			absolutePanel.add(textBox_8, 96, 92);
+			absolutePanel.add(textBox_8, 96, 116);
 			
 			Label lblUsername = new Label("username");
 			
-			absolutePanel.add(lblUsername, 9, 99);
+			absolutePanel.add(lblUsername, 12, 116);
 			
 			textBox_9 = new TextBox();
 			textBox_9.setTitle("Tanto la ciudad como el departamento, debe estar relacionado con tu direccion actual, si nos facilita los datos, sera mejor para Ud, al momento de recibir un paquete.");
-			absolutePanel.add(textBox_9, 96, 363);
+			absolutePanel.add(textBox_9, 96, 250);
 			
 			Label lblDepartamento = new Label("departamento");
-			absolutePanel.add(lblDepartamento, 9, 371);
+			absolutePanel.add(lblDepartamento, 0, 250);
 			
 			lblNewLabel_7 = new Label("");
 			absolutePanel.add(lblNewLabel_7, 486, 116);
 			
 		    textBox_1 = new TextBox();
-			absolutePanel.add(textBox_1, 96, 46);
+			absolutePanel.add(textBox_1, 408, 72);
 			
 			Label lblNewLabel = new Label("apelido");
-			absolutePanel.add(lblNewLabel, 9, 53);
+			absolutePanel.add(lblNewLabel, 340, 72);
 			
 			textBox_7 = new TextBox();
-			absolutePanel.add(textBox_7, 96, 9);
+			absolutePanel.add(textBox_7, 96, 72);
 			
 			Label lblNombre = new Label("nombre");
-			absolutePanel.add(lblNombre, 9, 13);
-			decoratedTabPanel.add(absolutePanel3, "mis compras activas", false);
-
-			htmlNewHtml_1 = new HTML("", true);
+			absolutePanel.add(lblNombre, 12, 72);
 			
-			absolutePanel3.add(htmlNewHtml_1, 22, 20);
-			htmlNewHtml_1.setSize("779px", "319px");
-			
-			
-			decoratedTabPanel.add(absolutePanel4, "mis compras finalizadas", false);
-			decoratedTabPanel.add(absolutePanel5, "acerca de send-box.com", false);
+			HTML htmlNewHtml = new HTML("<h3>Mi cuenta</h3>", true);
+			htmlNewHtml.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+			absolutePanel.add(htmlNewHtml, 260, 8);
+			htmlNewHtml.setSize("255px", "28px");
 			
 			if (Cookies.getCookie("13051983ntmp")!=null){
-			findClient();
-		//	misCompras();
+				findClient();
+
 			}
 			
 			//Handler para la busqueda de datos personales.
@@ -197,8 +176,7 @@ public class MiCuenta extends Composite {
 				modificar();
 				}else{
 
-					  //Window.Location.assign("http://www.send-box.com");
-				
+					Window.Location.reload();				
 				}
 				
 			}
@@ -209,14 +187,19 @@ public class MiCuenta extends Composite {
 					btnBuscar.setEnabled(false);
 					modificar();
 					}else{
-					  //  Window.Location.assign("http://www.send-box.com");							}
-						
-					
-					
+				    	Window.Location.reload();
+		
 			}
 			}
 			private void modificar() {
 				
+				textBox_2.setEnabled(false);
+				textBox_3.setEnabled(false);
+				textBox_4.setEnabled(false);
+				textBox_6.setEnabled(false);
+				textBox_9.setEnabled(false);
+				textBox_7.setEnabled(false);
+				textBox_1.setEnabled(false);
 				
 				String username =Cookies.getCookie("13051983ntmp");
 				String passw= textBox_2.getText();
@@ -242,12 +225,16 @@ public class MiCuenta extends Composite {
 					@Override
 					public void onFailure(Throwable caught) {
 						Window.alert(caught.getMessage()); 
+						textBox_2.setEnabled(true);
+						textBox_3.setEnabled(true);
+						textBox_4.setEnabled(true);
+						textBox_6.setEnabled(true);
+						textBox_9.setEnabled(true);
+						textBox_7.setEnabled(true);
+						textBox_1.setEnabled(true);
 						btnBuscar.setEnabled(true);	
 						
 					}
-
-
-					
 
 					@Override
 					public void onSuccess(String result) {
@@ -302,34 +289,5 @@ public class MiCuenta extends Composite {
 
 		}
 		
-		public void misCompras(){
-		
-			
-			String username =Cookies.getCookie("13051983ntmp");
-
-			panelDeControl.ventasCliente(username,new AsyncCallback<String>() {
-
-				@Override
-				public void onFailure(Throwable caught) {
-				
-					
-				}
-
-
-				
-
-				@Override
-				public void onSuccess(String result) {
-					htmlNewHtml_1.setHTML(result);
-					
-				}
-
-			});	
-			
-			
-			
-		}
-		
-		
-		
+	
 	}

@@ -607,14 +607,14 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 				TextBox direccionText=TextBox.wrap(DOM.getElementById("direccionReg"));
 				TextBox telefonoText=TextBox.wrap(DOM.getElementById("telefonoReg"));
 
-				String username =usernameText.getText();
+				String username =usernameText.getText().toLowerCase();
 				String password=passwordText.getText();
-				String nombre=nombreText.getText();
-				String apellido=apellidoText.getText(); 	
+				String nombre=nombreText.getText().toLowerCase();
+				String apellido=apellidoText.getText().toLowerCase();
 				String cedula=cedulaText.getText();
-				String departamento=departamentoText.getText();
-				String ciudad=ciudadText.getText();
-				String direccion=direccionText.getText(); 
+				String departamento=departamentoText.getText().toLowerCase();
+				String ciudad=ciudadText.getText().toLowerCase();
+				String direccion=direccionText.getText().toLowerCase();
 				String telefono=telefonoText.getText();
 
 				if (!FieldVerifier.isEmail(username)) {
@@ -906,29 +906,14 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					private void login(){
 
 						userName=TextBox.wrap(DOM.getElementById("nico"));
-
 						pass=PasswordTextBox.wrap(DOM.getElementById("nicolas"));
 
 						String username= userName.getText();
+						username= username.toLowerCase();
 						userlog=username;
 						String passs= pass.getText();
 						userpas=passs;
-						/* 
-						final ProgressBar progressBar = new ProgressBar(10
-					             ,ProgressBar.SHOW_TIME_REMAINING
-					              +ProgressBar.SHOW_TEXT);
-						 progressBar.setText("Doing something...");
-						  RootPanel.get("progress").add(progressBar);
-						
-						  Timer t = new Timer() {
-							    public void run() {
-							      int progress = progressBar.getProgress()+4;
-							      if (progress>100) cancel();
-							      progressBar.setProgress(progress);
-							    }
-							  };
-							  t.scheduleRepeating(1000);
-						*/	  
+						  
 						greetingService.login(username,passs, new AsyncCallback<Boolean>(){
 
 
@@ -1657,7 +1642,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 			RootPanel.get("telefonoReg").setVisible(true);
 
 			confirmar.setVisible(true);
-			confirmar.setEnabled(false);
+			//confirmar.setEnabled(false);
 			cancelar.setVisible(true);
 
 			Window.alert("Son solo unos pocos dias y" +
