@@ -1556,6 +1556,41 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 	}
 	
 	
+	public void ocultarDestacados(){
+		
+		destacado1.setVisible(false);
+		destacado2.setVisible(false);
+		destacado3.setVisible(false);
+		destacado4.setVisible(false);
+		destacado5.setVisible(false);
+		destacado6.setVisible(false);
+		destacado7.setVisible(false);
+		destacado8.setVisible(false);
+		destacado9.setVisible(false);
+		
+		destacadoTitulo1.setVisible(false);
+		destacadoTitulo2.setVisible(false);
+		destacadoTitulo3.setVisible(false);		
+		
+	}
+	
+	public void mostrarDestacados(){
+		
+		destacado1.setVisible(true);
+		destacado2.setVisible(true);
+		destacado3.setVisible(true);
+		destacado4.setVisible(true);
+		destacado5.setVisible(true);
+		destacado6.setVisible(true);
+		destacado7.setVisible(true);
+		destacado8.setVisible(true);
+		destacado9.setVisible(true);
+		
+		destacadoTitulo1.setVisible(true);
+		destacadoTitulo2.setVisible(true);
+		destacadoTitulo3.setVisible(true);		
+		
+	}
 	
 
 	
@@ -1570,13 +1605,12 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 		//Mi Cuenta con cookie valida 
 		if (History.getToken().equals("miCuenta") &&(Cookies.getCookie("13051983ntmp") != null)){
 			//carga la tabla de compras.
-			
+			ocultarDestacados();
 			if( Cookies.getCookie("13051983tabla") == null ){
 				misCompras();
 				
 			}
-			
-			
+					
 			tabla.setVisible(true);
 			label.setVisible(false);
 			label.setText("");
@@ -1616,6 +1650,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 
 	     //Registro
 	    } else if (History.getToken().equals("registro") && (Cookies.getCookie("13051983ntmp") == null)) {
+	    	ocultarDestacados();
 	    	tabla.setVisible(false);
 	    	label.setVisible(false);
 			label.setText("");
@@ -1664,6 +1699,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 
 	  //Home page default
 	    else {
+	    	mostrarDestacados();
 	    	tabla.setVisible(false);
 	    	label.setVisible(false);
 			label.setText("");

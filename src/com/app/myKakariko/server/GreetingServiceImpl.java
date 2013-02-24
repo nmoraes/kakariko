@@ -353,11 +353,11 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 				url = new URL("https://api.mercadolibre.com/sites/MLU/search?q="+ parametro);
 			}
 			
-			
-			
-			//https://api.mercadolibre.com/sites/MLU/search?category=MLU1051&q=blackberry
-			//url = new URL("https://api.mercadolibre.com/sites/MLU/search?q="
-				//	+ parametro);
+			//********REPARACIONES E INSTALACIONES************
+			//https://api.mercadolibre.com/sites/MLU/categories
+			//https://api.mercadolibre.com/categories/MLU1540
+			//*************************************************
+
 			InputStream response = url.openStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					response));

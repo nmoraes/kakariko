@@ -1,6 +1,5 @@
 package com.app.myKakariko.shared;
 
-import com.app.myKakariko.client.Comprar;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 
