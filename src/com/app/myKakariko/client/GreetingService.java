@@ -12,7 +12,7 @@ public interface GreetingService extends RemoteService {
 
 	String[] query(String name) throws IllegalArgumentException;
 
-	String inicio(String name) throws IllegalArgumentException;
+	//String inicio(String name) throws IllegalArgumentException;
 
 	String nuevoUsuario(String username, String password,
 			String nombre, String apellido, String cedula, String departamento,
@@ -20,7 +20,10 @@ public interface GreetingService extends RemoteService {
 
 	boolean login(String user, String pass);
 	
-	String[] precio(String input, String shipping)throws IllegalArgumentException;;
+	String[] precio(String input, String shipping)throws IllegalArgumentException;
+
+	String[] queryCategorie(String name, String categ)
+			throws IllegalArgumentException;;
 	
 	
 

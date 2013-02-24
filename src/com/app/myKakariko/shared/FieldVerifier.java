@@ -38,6 +38,27 @@ public class FieldVerifier {
 	 * @param name the name to validate				rvm use 1.9.3
 	 * @return true if valid, false if invalid jekyll --pygments --safe --auto
 	 */
+	
+	
+	public static String TODAS_LAS_CATEGORIAS ="Todas las categorias";
+	public static String ANIMALES ="Animales y Mascotas";
+	public static String ARTE_ANTIGUEDAD= "Arte y Antiguedades";	
+	public static String CAMARAS_ACCESORIOS ="Camaras y Accesorios";	
+	public static String TELEFONIA ="Celulares y Telefonia";	
+	public static String COLECCIONES="Coleccionables";	
+	public static String INFORMATICA ="Computacion";
+	public static String CONSOLAS ="Consolas y Videojuegos";
+	public static String DEPORTES ="Deportes y Fitness";
+	public static String ELECTRODOMESTICOS ="Electrodomesticos y Aires Ac.";
+	public static String ELECTRONICA_AUDIO_VIDEO ="Electronica, Audio y Video";
+	public static String HOGAR = "Hogar, Muebles y Jardin";
+	public static String INDUSTRIA_Y_OFICINA ="Industrias y Oficinas";
+	public static String INSTRUMENTOS_MUSICALES ="Instrumentos Musicales";
+	public static String  JUEGOS_Y_JUGUETES = "Juegos y Juguetes";
+	public static String MUSICA_LIBROS_PELICULAS ="Musica, Libros y Peliculas";
+	public static String ROPA_JOYAS_RELOJES ="Ropa, Joyas y Relojes";
+
+	
 	public static boolean isValidPass(String name) {
 		if (name == null || name.equals("")) {
 			return false;

@@ -190,7 +190,7 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 
 		 //log.log(Level.INFO, "AHORA SEEEE CARAJO consulta :" +name);
 		 //log.info("HOLA");
-		 
+		 /*
 		String site = null;
 		String query = null;
 		String currency = null;
@@ -309,21 +309,21 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+*/
 		// return null;
-		return s;
+		return null;
 
 	}
-
+	
+	
 	@Override
-	public String inicio(String name) {
-/*
+	public String[] queryCategorie(String name, String categ) throws IllegalArgumentException {
+		 
 		String site = null;
 		String query = null;
 		String currency = null;
 		String stop_time = null;
 		String condition = null;
-		String ofertaValidaHasta=null;
 
 		String titles = null;
 		String subtitle = null;
@@ -332,24 +332,38 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 		String pic = null;
 		String parametro = name.replaceAll(" ", "");
 		String html = "";
-		String id=null;
+		String id= null;
 		System.out.println(parametro);
+		String symbolCurrency=null;
+		String [] s = new String[50];
 		
-		String identificadores=null;
-
-
 		// http://answers.oreilly.com/topic/257-how-to-parse-json-in-java/
 		URL url;
 		try {
-			url = new URL("https://api.mercadolibre.com/sites/MLU/search?q="
-					+ parametro);
+			
+			String categories=Utilidades.viewCategorie(categ);
+			
+			if(categories!= null && parametro!=null){
+				System.out.println("se va a pagar a la categoria: "+categories);
+				url= new URL("https://api.mercadolibre.com/sites/MLU/search?category="+ categories +"&q="+parametro);
+			}
+			
+			else{
+				System.out.println("se va a pagar a la vieja URL");
+				url = new URL("https://api.mercadolibre.com/sites/MLU/search?q="+ parametro);
+			}
+			
+			
+			
+			//https://api.mercadolibre.com/sites/MLU/search?category=MLU1051&q=blackberry
+			//url = new URL("https://api.mercadolibre.com/sites/MLU/search?q="
+				//	+ parametro);
 			InputStream response = url.openStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					response));
 			String result = "";
 
 			for (String line; (line = reader.readLine()) != null;) {
-				//System.out.println(line);
 				result = result + line;
 			}
 
@@ -357,6 +371,7 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 
 			JSONObject json = (JSONObject) JSONSerializer.toJSON(result);
 
+			// String id = json.getString( "id" );
 			site = json.getString("site_id");
 			query = json.getString("query");
 
@@ -366,57 +381,69 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 			System.out.println("Total: " + total);
 
 			JSONArray results = json.getJSONArray("results");
-
-			// results.size();
-			// Obtengo los 10 primeros
-			for (int i = 0; i < 3; i++) {
+		
+			
+			for (int i = 0; i < results.size(); i++) {
+				html=null;
+				pic=null;
 				JSONObject array = (JSONObject) results.get(i);
 				titles = array.getString("title");
 				subtitle = array.getString("subtitle");
+				
+				if(subtitle.equals("null")){
+					subtitle= "";
+				}else
+					subtitle = subtitle + ".<br>";
+				
 				price = array.getString("price");
-				//price=calculadoraDePrecio(price);			
+				//price=calculadoraDePrecio(price);
 				thumbnail = array.getString("thumbnail");
-				pic = thumbnail.replace("_v_I_f", "_v_T_f");
 				currency = array.getString("currency_id");
+				pic = thumbnail.replace("_v_I_f", "_v_T_f");
 				stop_time = array.getString("stop_time");
-				condition = array.getString("condition");
-				id=array.getString("id");
+				condition = estado(array.getString("condition"));
+				id = array.getString("id");
+				symbolCurrency=currencies(currency);
+
 				
-				identificadores=identificadores+ id+ "/";
-				
-				html = html + "<!-- id="+ id +" -->"
-						+ "<div>"
-						+ "<p><img src="
+				html = "<!--"+id + "                                         -->"+
+						"<div>"
+						+ "<p><a href=\"#arriba\"><img src="
 						+ pic
-						+ " align=\"left\" class=\"img-rounded\"><div><br>"
-						+ titles
-						+ ".<br>"
+						+ " align=\"left\" class=\"img-rounded\"></a><div><br>"
+						+ "<div class=\"text-info\"><strong>"+titles +".</strong></div>"
 						+ subtitle
-						+ ".<br>"
 						+ price
-						+ " "						
-						+ currency
-						+ ". Estado "
+						+ " "
+						+ symbolCurrency
+						+ ". Estado: "
 						+ condition
 						+ "<br><b>Oferta Valida: </b>"
 						+ stop_time
-						+ "</p><br>" +"<div id=\"gwtContainer\"><p align=\"right\"><button class=\"btn btn-warning\" input type=\"button\" >detalles</button></p></div>"
-						+"</div><hr> </div>";
-
+						+ "</p><br></div>" +
+						"<div id=\"gwtContainer\"><p align=\"right\"><a href=\"#arriba\"><button class=\"btn btn-warning\" input type=\"button\" >detalles</button></a></p></div>"
+						+"</div><hr></div>";
+						
+					System.out.println(html);	
+						
+				s[i]=html;
+				
 			}
-			System.out.println(html);
+			
 
 			reader.close();
 
-			System.out.println("QUERY :" + site + " " + query);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
-		return ""; // html
+		}
+
+		// return null;
+		return s;
 
 	}
+	
 
 
 public boolean login(String user, String pass) throws IllegalArgumentException {

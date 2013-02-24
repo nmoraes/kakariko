@@ -81,6 +81,13 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	private HTML destacado9= new HTML(Destacados.DESTACADO_NUEVE, true);
 
 	private HTML sendBoxImg= new HTML(Destacados.SEND_BOX_PAY, true);
+	
+	private HTML destacadoTitulo1= new HTML(Destacados.DESTACADO_TITULO_1, true);
+	private HTML destacadoTitulo2= new HTML(Destacados.DESTACADO_TITULO_2, true);
+	private HTML destacadoTitulo3= new HTML(Destacados.DESTACADO_TITULO_3, true);
+
+
+	
 
 	private String producto1;
 	private String producto2;	
@@ -294,30 +301,25 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		rootPanel.add(comboBox, 20, 70);
 		rootPanel.setTitle("cateogorias");
 		comboBox.setSize("173px", "30px");
-		comboBox.addItem("Todas las categorias");
-		comboBox.addItem("Animales y Mascotas");
-		comboBox.addItem("Arte y Antiguedades");
-		comboBox.addItem("Camaras y Accesorios");
-		comboBox.addItem("Celulares y Telefon’a");
-		comboBox.addItem("Coleccionables");
-		comboBox.addItem("Computacion");
-		comboBox.addItem("Consolas y Videojuegos");
-		comboBox.addItem("Deportes y Fitness");
-		comboBox.addItem("Electrodomesticos y Aires Ac.");
-		comboBox.addItem("Electronica, Audio y Video");
-		comboBox.addItem("Hogar, Muebles y Jardin");
-		comboBox.addItem("Industrias y Oficinas");	
-		comboBox.addItem("Instrumentos Musicales");
-		comboBox.addItem("Juegos y Juguetes");	
-		comboBox.addItem("Musica, Libros y Peliculas");
-		comboBox.addItem("Ropa, Joyas y Relojes");
-		comboBox.addItem("Industrias y Oficinas");
-
-
+		comboBox.addItem(FieldVerifier.TODAS_LAS_CATEGORIAS);
+		comboBox.addItem(FieldVerifier.ANIMALES);
+		comboBox.addItem(FieldVerifier.ARTE_ANTIGUEDAD);
+		comboBox.addItem(FieldVerifier.CAMARAS_ACCESORIOS);
+		comboBox.addItem(FieldVerifier.TELEFONIA);
+		comboBox.addItem(FieldVerifier.COLECCIONES);
+		comboBox.addItem(FieldVerifier.INFORMATICA);
+		comboBox.addItem(FieldVerifier.CONSOLAS);
+		comboBox.addItem(FieldVerifier.DEPORTES);
+		comboBox.addItem(FieldVerifier.ELECTRODOMESTICOS);
+		comboBox.addItem(FieldVerifier.ELECTRONICA_AUDIO_VIDEO);
+		comboBox.addItem(FieldVerifier.HOGAR);
+		comboBox.addItem(FieldVerifier.INDUSTRIA_Y_OFICINA);	
+		comboBox.addItem(FieldVerifier.INSTRUMENTOS_MUSICALES);
+		comboBox.addItem(FieldVerifier.JUEGOS_Y_JUGUETES);	
+		comboBox.addItem(FieldVerifier.MUSICA_LIBROS_PELICULAS);
+		comboBox.addItem(FieldVerifier.ROPA_JOYAS_RELOJES);
 
 		RootPanel.get("combo").add(comboBox);
-
-
 
 		//Destacados
 		RootPanel.get("des1").add(destacado1);
@@ -329,6 +331,10 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("des7").add(destacado7);
 		RootPanel.get("des8").add(destacado8);
 		RootPanel.get("des9").add(destacado9);
+
+		RootPanel.get("destacadoTitulo1").add(destacadoTitulo1);
+		RootPanel.get("destacadoTitulo2").add(destacadoTitulo2);
+		RootPanel.get("destacadoTitulo3").add(destacadoTitulo3);
 
 
 
@@ -800,20 +806,25 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 					@Override
 					public void onClick(ClickEvent event) {
-						//datos1.setVisible(false);
-						//datos2.setVisible(false);
 						clearComprar();
 						makeQuery();
 
 					}
 
 					private void makeQuery(){
-						//ProgressBar bar = new ProgressBar(0.0, 2000.0 0.0);
-						  //bar.setProgress(1500.0);
+						
+						int indexCat = comboBox.getSelectedIndex();
+						final String comboBoxValue = comboBox.getValue(indexCat);
+						
+						System.out.println(comboBoxValue);
+						
+						
 						tabla.setVisible(false);
 						panelDeControl.setVisible(false);
 						String consulta= txtbxIpod.getText();
-						greetingService.query(consulta, new AsyncCallback<String[]>(){
+						//greetingService.query(consulta, new AsyncCallback<String[]>(){
+
+						greetingService.queryCategorie(consulta,comboBoxValue, new AsyncCallback<String[]>(){
 
 
 							public void onFailure(Throwable caught) {
@@ -1349,7 +1360,7 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 		clearComprar();
 		java.util.Date expires = new java.util.Date(System.currentTimeMillis() + DURATION_QUERY);
 		Cookies.setCookie("13051983prodactual", producto, expires);
-		History.newItem(producto);
+		//History.newItem(producto);
 		
 		 greetingService.greetServer(producto,
 					new AsyncCallback<String>() {

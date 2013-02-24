@@ -3,6 +3,8 @@
  */
 package com.app.myKakariko.server;
 
+import com.app.myKakariko.shared.FieldVerifier;
+
 /**
  * @author nicolasmoraes
  *
@@ -14,7 +16,7 @@ public class Utilidades {
 	
 	public static String MASCOTAS="MLU1071";
 	public static String ANTIGUEDADES="MLU1367";
-	public static String CAMARAS_ACCESORIOS="MLU1367";
+	public static String CAMARAS_ACCESORIOS="MLU1039";
 	public static String BEBES="MLU1384";
 	public static String TELEFONIA_ACCESORIOS="MLU1051";
 	public static String COLECCIONABLES="MLU1798";
@@ -41,8 +43,91 @@ public class Utilidades {
 	public static String ESTADO_3 ="Paquete entregado";
 
 
-	
+	/**Dado un nombre de categoria dado por el combobox de busqueda
+	 * devuelve el numero de categoria correspondiente.
+	 * */
+	public static String viewCategorie(String comboBoxValue){
+		
+		String categoria = null;
 
+		if (comboBoxValue.equals(FieldVerifier.ANIMALES)) {
+
+			categoria = Utilidades.MASCOTAS;
+
+		} else if (comboBoxValue.equals(FieldVerifier.ARTE_ANTIGUEDAD)) {
+
+			categoria = Utilidades.ANTIGUEDADES;
+
+		} else if (comboBoxValue.equals(FieldVerifier.CAMARAS_ACCESORIOS)) {
+
+			categoria = Utilidades.CAMARAS_ACCESORIOS;
+
+		} else if (comboBoxValue.equals(FieldVerifier.TELEFONIA)) {
+
+			categoria = Utilidades.TELEFONIA_ACCESORIOS;
+
+		} else if (comboBoxValue.equals(FieldVerifier.COLECCIONES)) {
+
+			categoria = Utilidades.COLECCIONABLES;
+		}
+
+		else if (comboBoxValue.equals(FieldVerifier.INFORMATICA)) {
+
+			categoria = Utilidades.COMPUTACION;
+		}
+
+		else if (comboBoxValue.equals(FieldVerifier.CONSOLAS)) {
+
+			categoria = Utilidades.VIDEO_JUEGOS;
+		}
+
+		else if (comboBoxValue.equals(FieldVerifier.DEPORTES)) {
+
+			categoria = Utilidades.DEPORTES;
+		}
+
+		else if (comboBoxValue.equals(FieldVerifier.ELECTRODOMESTICOS)) {
+
+			categoria = Utilidades.ELECTRODOMESTICOS;
+		}
+
+		else if (comboBoxValue.equals(FieldVerifier.ELECTRONICA_AUDIO_VIDEO)) {
+
+			categoria = Utilidades.AUDIO_VIDEO;
+		}
+
+		else if (comboBoxValue.equals(FieldVerifier.HOGAR)) {
+
+			categoria = Utilidades.HOGAR;
+		}
+
+		else if (comboBoxValue.equals(FieldVerifier.INDUSTRIA_Y_OFICINA)) {
+
+			categoria = Utilidades.INDUSTRIA_OFICINA;
+		}
+
+		else if (comboBoxValue.equals(FieldVerifier.INSTRUMENTOS_MUSICALES)) {
+
+			categoria = Utilidades.INSTRUMENTOS_MUSICALES;
+		}
+
+		else if (comboBoxValue.equals(FieldVerifier.JUEGOS_Y_JUGUETES)) {
+
+			categoria = Utilidades.JUEGOS_JUGUETES;
+		}
+
+		else if (comboBoxValue.equals(FieldVerifier.MUSICA_LIBROS_PELICULAS)) {
+
+			categoria = Utilidades.MUSICA_LIBROS_PELICULAS;
+		}
+
+		else if (comboBoxValue.equals(FieldVerifier.ROPA_JOYAS_RELOJES)) {
+
+			categoria = Utilidades.ROPA_JOYAS_RELOJES;
+		}
+		
+		return categoria;
+	}
 	
 	
 
