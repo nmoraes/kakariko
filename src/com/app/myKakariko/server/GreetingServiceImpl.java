@@ -411,16 +411,16 @@ public String[] precio(String input, String shipping)throws IllegalArgumentExcep
 						+ "<p><a href=\"#arriba\"><img src="
 						+ pic
 						+ " align=\"left\" class=\"img-rounded\"></a><div><br>"
-						+ "<div class=\"text-info\"><strong>"+titles +".</strong></div>"
-						+ subtitle
-						+ price
+						+ "<div class=\"text-info\"><strong>"+titles +".</strong>"
+						+ " "+subtitle + "</div>"
+						+ "<div class=\"muted\">"+ price
 						+ " "
 						+ symbolCurrency
 						+ ". Estado: "
 						+ condition
 						+ "<br><b>Oferta Valida: </b>"
 						+ stop_time
-						+ "</p><br></div>" +
+						+ "</div></p><br></div>" +
 						"<div id=\"gwtContainer\"><p align=\"right\"><a href=\"#arriba\"><button class=\"btn btn-warning\" input type=\"button\" >detalles</button></a></p></div>"
 						+"</div><hr></div>";
 						
