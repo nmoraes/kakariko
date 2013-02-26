@@ -812,7 +812,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					}
 
 					private void makeQuery(){
-						
+						verItem.setVisible(false);
 						int indexCat = comboBox.getSelectedIndex();
 						final String comboBoxValue = comboBox.getValue(indexCat);
 						
