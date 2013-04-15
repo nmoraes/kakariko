@@ -139,6 +139,26 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 	 */
 	public void onModuleLoad() {
 
+		RootPanel.get("userReg").setVisible(false);
+		RootPanel.get("passReg").setVisible(false);
+		RootPanel.get("nombreReg").setVisible(false);
+		RootPanel.get("apellidoReg").setVisible(false);
+		RootPanel.get("cedulaReg").setVisible(false);
+		RootPanel.get("departamentoReg").setVisible(false);
+		RootPanel.get("ciudadReg").setVisible(false);
+		RootPanel.get("direccionReg").setVisible(false);
+		RootPanel.get("telefonoReg").setVisible(false);
+		RootPanel.get("userReg").setTitle("registra tu email, de ahora en mas, ese sera tu nombre de usuario en send-box");
+		RootPanel.get("passReg").setTitle("el password no puede ser vacio, y debe tener al menos 5 caracteres");	
+		RootPanel.get("nombreReg").setTitle("solo tu nombre, utiliza tu nombre real");
+		RootPanel.get("apellidoReg").setTitle("solo tu apellido, utiliza tu apellido real");		
+		RootPanel.get("cedulaReg").setTitle("Àpor que mi cedula?, la cedula es fundamental para comprar en abitab, por lo tanto debe ser real, al igual que tu nombre y apellido, ingresala SIN puntos y sin el guion ni el ultimo numero");		
+		RootPanel.get("departamentoReg").setTitle("necesitamos saber tu departamento para enviar tu paquete.");	
+		RootPanel.get("ciudadReg").setTitle("necesitamos saber la ciudad en donde vives y asi poder enviar tu paquete.");	
+		RootPanel.get("direccionReg").setTitle("necesitamos saber la direccion exacta en donde vives y asi poder enviar tu paquete");
+		RootPanel.get("telefonoReg").setTitle("queresmos tu telefono asi poder contactarte ante cualquier problema con el envio de tu paquete.");
+		
+		RootPanel.get("pay").add(sendBoxImg);
 		
 		p1.setVisible(false);
 		verItem.setVisible(false);
@@ -246,7 +266,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					History.newItem("home");
 
 				}
-
+/*
 		RootPanel.get("userReg").setVisible(false);
 		RootPanel.get("userReg").setTitle("registra tu email, de ahora en mas, ese sera tu nombre de usuario en send-box");
 		RootPanel.get("passReg").setVisible(false);
@@ -264,7 +284,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("direccionReg").setVisible(false);
 		RootPanel.get("direccionReg").setTitle("necesitamos saber la direccion exacta en donde vives y asi poder enviar tu paquete");
 		RootPanel.get("telefonoReg").setVisible(false);
-		RootPanel.get("telefonoReg").setTitle("queresmos tu telefono asi poder contactarte ante cualquier problema con el envio de tu paquete.");
+		RootPanel.get("telefonoReg").setTitle("queresmos tu telefono asi poder contactarte ante cualquier problema con el envio de tu paquete.");*/
 
 		btnNewButton = new Button("New button");
 		btnNewButton.setText("buscar");
@@ -322,6 +342,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("combo").add(comboBox);
 
 		//Destacados
+	/*	
 		RootPanel.get("des1").add(destacado1);
 		RootPanel.get("des2").add(destacado2);
 		RootPanel.get("des3").add(destacado3);
@@ -335,11 +356,7 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 		RootPanel.get("destacadoTitulo1").add(destacadoTitulo1);
 		RootPanel.get("destacadoTitulo2").add(destacadoTitulo2);
 		RootPanel.get("destacadoTitulo3").add(destacadoTitulo3);
-
-
-
-		RootPanel.get("pay").add(sendBoxImg);
-
+		*/
 
         History.addValueChangeHandler(this);
         //when there is no token, the "home" token is set else changePage() is called.
@@ -716,20 +733,19 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 
 			@Override
 			public void onChange(ChangeEvent event) {
-				int indexCat = comboBox_1.getSelectedIndex();
-				final String comboBoxValue = comboBox_1.getValue(indexCat);
-				java.util.Date expires = new java.util.Date(System.currentTimeMillis() + DURATION_QUERY);
-
 				
+			if (Cookies.getCookie("13051983ntmp")!=null){
+				
+				int indexCat = comboBox_1.getSelectedIndex();
+				final String comboBoxValue = comboBox_1.getValue(indexCat);	
 
 				if (!comboBoxValue.equals("precio sin impuesto de entrega")) {
-					
+				
+					java.util.Date expires = new java.util.Date(System.currentTimeMillis() + DURATION_QUERY);
 					Cookies.setCookie("shipping", comboBoxValue, expires);
-					recalculo(comboBoxValue,
-							Cookies.getCookie("13051983valor"),
-							Cookies.getCookie("13051983moneda"));
-					btnComprar.setVisible(true);
-					label.setVisible(true);
+					recalculo(comboBoxValue,Cookies.getCookie("13051983valor"),Cookies.getCookie("13051983moneda"));
+					
+					
 
 				} else {
 
@@ -738,6 +754,16 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 					label.setText("");
 
 				}
+				}
+			
+			else{
+				Window.Location.reload();
+
+				
+			}
+			
+			
+			
 			}
 
 			private void recalculo(String shipping, String precioInicial,
@@ -749,25 +775,19 @@ public class Kakariko implements EntryPoint, ValueChangeHandler {
 							@Override
 							public void onFailure(Throwable caught) {
 								// TODO
-								System.out.println("ERROR DE COMBOBOX");
+								btnComprar.setVisible(false);
+								label.setVisible(false);
+								label.setText("");
+								Window.alert("ERROR DE COMBOBOX");
+
 							}
 
 							@Override
 							public void onSuccess(String result) {
-
-								final long DURATION = 180000;
-
-								java.util.Date expires = new java.util.Date(
-										System.currentTimeMillis() + DURATION);
-								System.out.println("PRECIO CALCULADO en COMBOBOX: "
-										+ Cookies.getCookie("13051983moneda")
-										+ " " + result);
-							
-								
-							//String gaga=	"<p class=\"text-error\"><strong>Total a pagar : "+Cookies.getCookie("13051983moneda")+ " "+ result + "</strong></p>";
-								
+				
 								label.setHTML("<p class=\"text-error\"><strong>Total a pagar : "+Cookies.getCookie("13051983moneda")+ " "+ result + "</strong></p>");
-
+								label.setVisible(true);
+								btnComprar.setVisible(true);
 							}
 
 						});
@@ -1411,10 +1431,9 @@ class MyHandlerComprar implements ClickHandler, KeyUpHandler {
 								label.setText("");
 								p1.setVisible(false);
 								comboBox_1.setItemSelected(0, true);
-								comboBox_1.setVisible(true);
-								final long DURATION = 180000; 
+								comboBox_1.setVisible(true); 
 
-								java.util.Date expires = new java.util.Date(System.currentTimeMillis() + DURATION);
+								java.util.Date expires = new java.util.Date(System.currentTimeMillis() + DURATION_QUERY);
 								Cookies.setCookie("13051983valor", result[0], expires);
 								Cookies.setCookie("13051983moneda", result[1], expires);
 

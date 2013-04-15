@@ -331,20 +331,21 @@ private String currencies(String defaultCurrencyId){
 	
 	
 	@Override
-	public String calcularPrecioFinal(String precio, String shipping, String moneda){		
+	public String calcularPrecioFinal(String precio, String shipping, String moneda)throws IllegalArgumentException{		
+			
+		String salida="error inesperado";
 		
-		System.out.println("este es el shipping :"+shipping);
-		System.out.println("este es el precio :"+precio);
-		System.out.println("este es el moneda :"+moneda);
-		System.out.println("este es el precio redondeado porque viene float :"+precio);
-
+		if (precio == null || shipping == null || moneda == null){
+			
+			
+			throw new IllegalArgumentException();
+			
+		} else{
 		
 		Float total=(float) 0;
 		Float valor=(float) 0;	
 		valor=valor.parseFloat(redondeo(precio));
-		
-		String salida=null;
-		
+
 		
 		if (moneda.equals(PESOS)){
 				if (valor<=500){
@@ -447,7 +448,7 @@ private String currencies(String defaultCurrencyId){
 		
 		
 		}
-		
+		}
 			
 		return salida;
 	}
